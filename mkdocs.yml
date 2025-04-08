@@ -102,3 +102,4 @@ nav:
   - Conhecendo o VueJS: vuejs/index.md
   - Sintaxe do templates: sintaxe-templates/index.md
   - Reatividade: reatividade/index.md
+  - Renderização de listas: listas/index.md

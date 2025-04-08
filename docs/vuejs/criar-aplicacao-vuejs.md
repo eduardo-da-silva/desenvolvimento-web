@@ -4,7 +4,7 @@
 
     Antes de iniciar a criação da aplicação, é importante que você tenha o NodeJS instalado e configurado em seu ambiente.
 
-    - Garantir que os passos da [Aula inicial](/#configurando-o-ambiente) foram executados.
+    - Garantir que os passos da [Aula inicial](../index.md#configurando-o-ambiente) foram executados.
     - Crie uma nova pasta para o seu projeto e abra no VSCode.
     - Abra a **pasta** do projeto no vscode (repita em voz alta: _"Nunca abra um arquivo, sempre abra a pasta."_).
 
@@ -64,9 +64,9 @@ A imagem mostra a tela inicial da aplicação VueJS.
 
 !!!tip "Manter um repositório Git"
 
-    É muito importante que logo após a criação do projeto você crie um repositório Git para o projeto. Para isso, você pode usar o próprio Visual Studio Code. Para isso, abra o menu `Source Control` e clique em `Initialize Repository`. Em seguida, clique em `Create Repository`. O Visual Studio Code irá criar um repositório Git na pasta do projeto. Isso requer que o usuário tenha o Git instalado e configurado. Para mais informações, consulte a [Aula inicial](/#configurando-o-ambiente).
+    É muito importante que logo após a criação do projeto você crie um repositório Git para o projeto. Para isso, você pode usar o próprio Visual Studio Code. Para isso, abra o menu `Source Control` e clique em `Initialize Repository`. Em seguida, clique em `Create Repository`. O Visual Studio Code irá criar um repositório Git na pasta do projeto. Isso requer que o usuário tenha o Git instalado e configurado. Para mais informações, consulte a [Aula inicial](../index.md#configurando-o-ambiente).
 
-    Também, é importante que a cada alteração que você fizer no projeto, você faça um commit. Para isso, abra o menu `Source Control` e clique em `Stage All Changes`. Em seguida, clique em `Commit`. O Visual Studio Code irá criar um commit com as alterações realizadas. Para mais informações, consulte a [Aula inicial](/#configurando-o-ambiente).
+    Também, é importante que a cada alteração que você fizer no projeto, você faça um commit. Para isso, abra o menu `Source Control` e clique em `Stage All Changes`. Em seguida, clique em `Commit`. O Visual Studio Code irá criar um commit com as alterações realizadas. Para mais informações, consulte a [Aula inicial](../index.md#configurando-o-ambiente).
 
 ## Estrutura de arquivos
 

@@ -69,5 +69,3 @@ Faremos a correção dos exercícios usando a API de composição. Vamos, além 
     ```
 
 Note que esta é uma das formas de corrigir os exercícios. Existem outras formas de fazer a mesma coisa. O importante é entender o conceito e a sintaxe de templates do Vue 3.
-
-<span style="display: flex; justify-content: space-between;"><span>[&lt; Exercícios](exercicios.html 'Voltar')</span> <span>[Sumário &gt;](../ 'Próximo')</span></span>

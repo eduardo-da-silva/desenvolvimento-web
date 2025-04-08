@@ -35,26 +35,26 @@ Faremos a correção dos exercícios usando a API de composição. Vamos, além 
       <h1>Correção dos exercícios</h1>
       <div class="info">
         <h2>Informações</h2>
-        <p>Nome: {% raw %}{{ nome }} {% endraw %}</p>
-        <p>Idade: {% raw %}{{ idade }} {% endraw %} anos</p>
+        <p>Nome: {{ nome }} </p>
+        <p>Idade: {{ idade }}  anos</p>
         <hr />
         <p>
-          Para completar 50 anos faltam: {% raw %}{{ 50 - idade }} {% endraw %} anos
+          Para completar 50 anos faltam: {{ 50 - idade }}  anos
         </p>
-        <p>O nome tem {% raw %}{{ nome.length }} {% endraw %} caracteres</p>
+        <p>O nome tem {{ nome.length }}  caracteres</p>
         <p>
-          O nome invertido em maiúscula é: {% raw %}{{
-          inverterTextoEmMaiusculo(nome) }} {% endraw %}
+          O nome invertido em maiúscula é: {{
+          inverterTextoEmMaiusculo(nome) }}
         </p>
       </div>
       <div class="contador">
         <h2>Contador</h2>
-        <p>Valor: {% raw %}{{ contador }} {% endraw %}</p>
+        <p>Valor: {{ contador }} </p>
         <button @click="incrementar">Incrementar</button>
         <button @click="decrementar">Decrementar</button>
         <button @click="reiniciar">Reiniciar</button>
         <div
-          :style="{% raw %}{ backgroundColor: contador > 10 ? 'green' : 'red' }{% endraw %}"
+          :style="{ backgroundColor: contador > 10 ? 'green' : 'red' }"
         >
           <p v-if="contador > 10">Valor maior que 10</p>
           <p v-else>Valor menor que 10</p>

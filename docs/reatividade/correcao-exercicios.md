@@ -31,8 +31,8 @@ Faremos a correção dos exercícios usando a API de composição. Vamos, além 
       <h1>Correção dos exercícios</h1>
       <div class="booleano">
         <button @click="valorBooleano = !valorBooleano">
-          {% raw %} {{ valorBooleano ? 'Esconder Resultado' : 'Mostrar Resultado' }}
-          {% endraw %}
+           {{ valorBooleano ? 'Esconder Resultado' : 'Mostrar Resultado' }}
+
         </button>
       </div>
       <div v-if="valorBooleano">
@@ -40,7 +40,7 @@ Faremos a correção dos exercícios usando a API de composição. Vamos, além 
           <h2>Contador 1</h2>
           <button @click="incrementar('contador1')">Incrementar</button>
           <button @click="decrementar('contador1')">Decrementar</button>
-          <p>Valor: {% raw %}{{ contador1 }}{% endraw %}</p>
+          <p>Valor: {{ contador1 }}</p>
         </div>
         <div class="contador">
           <h2>Contador 2</h2>
@@ -50,7 +50,7 @@ Faremos a correção dos exercícios usando a API de composição. Vamos, além 
         </div>
         <div class="soma">
           <h2>Soma</h2>
-          <p>Valor: {% raw %} {{ soma }} {% endraw %}</p>
+          <p>Valor:  {{ soma }} </p>
           <div v-if="somaMaiorQue10">
             <p>A soma é maior que 10</p>
           </div>

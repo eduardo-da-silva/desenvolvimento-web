@@ -47,7 +47,7 @@ Faremos a correção dos exercícios usando a API de composição. Vamos, além 
             <h2>Lista de cidades</h2>
             <ul>
               <li v-for="(cidade, index) in cidades" :key="index">
-                {% raw %} {{ cidade }} {% endraw %}
+                 {{ cidade }}
                 <button @click="removerCidade(index)">Remover</button>
               </li>
             </ul>
@@ -56,7 +56,7 @@ Faremos a correção dos exercícios usando a API de composição. Vamos, além 
             <h2>Cidades ordenadas</h2>
             <ul>
               <li v-for="cidade in cidadesOrdenadas" :key="cidade">
-                {% raw %} {{ cidade }} {% endraw %}
+                 {{ cidade }}
               </li>
             </ul>
           </div>

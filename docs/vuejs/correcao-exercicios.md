@@ -35,7 +35,7 @@ Abaixo apresento uma proposta de correção dos exercícios. A correção é apr
           <template>
             <div>
               <h1>Contador</h1>
-              <p>{% raw %} {{ contador }} {% endraw %}</p>
+              <p> {{ contador }} </p>
               <button @click="incrementar">Incrementar</button>
               <button @click="decrementar">Decrementar</button>
               <button @click="reiniciar">Reiniciar</button>
@@ -69,7 +69,7 @@ Abaixo apresento uma proposta de correção dos exercícios. A correção é apr
           <template>
             <div>
               <h1>Contador</h1>
-              <p>{% raw %} {{ contador }} {% endraw %}</p>
+              <p> {{ contador }} </p>
               <button @click="incrementar">Incrementar</button>
               <button @click="decrementar">Decrementar</button>
               <button @click="reiniciar">Reiniciar</button>

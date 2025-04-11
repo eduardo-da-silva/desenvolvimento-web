@@ -95,7 +95,7 @@ Vamos agora renderizar um objeto. Para isso, vamos criar um objeto e renderizar 
 
 Neste exemplo, o objeto `items` contém três propriedades. A diretiva `v-for` é usada para iterar sobre as propriedades do objeto. As variáveis `value` e `key` são usadas para referenciar o valor e a chave de cada propriedade do objeto. A sintaxe `v-for="(value, key) in items"` é equivalente a `v-for="(value, key, index) in items"`. Contudo, como não precisamos do índice do item na lista, vamos usar a sintaxe mais simples. Porém, ainda precisamos de um valor único para a propriedade `key` e, neste caso, usaremos a própria chave da propriedade.
 
-Neste exemplo, o elemento `<li>` é renderizado três vezes. A primeira vez, o conteúdo do elemento é atualizado com o valor da propriedade `description` do objeto. A segunda vez, o conteúdo do elemento é atualizado com o valor da propriedade `price` do objeto. A terceira vez, o conteúdo do elemento é atualizado com o valor da propriedade `id` do objeto.
+Neste exemplo, o elemento `<li>` é renderizado três vezes. A primeira vez, o conteúdo do elemento é atualizado com o valor da propriedade `id` do objeto. A segunda vez, o conteúdo do elemento é atualizado com o valor da propriedade `description` do objeto. A terceira vez, o conteúdo do elemento é atualizado com o valor da propriedade `price` do objeto.
 
 O resultado da renderização é o seguinte:
 

@@ -10,7 +10,7 @@ Esse curso é parte de uma trilha de aprendizado. Siga os links abaixo para aces
 
 - **[Programação I](https://github.com/ldmfabio/Programacao)** ([Prof. Fábio Longo de Moura](https://github.com/ldmfabio))
   - Lógica de Programação usando JavaScript
-- **[Desenvolvimento Web II](https://eduardo-da-silva.github.io/aula-desenvolvimento-web/)** ([Prof. Eduardo da Silva](https://github.com/eduardo-da-silva/))
+- **[Desenvolvimento Web II](https://eduardo-da-silva.github.io/desenvolvimento-web/)** ([Prof. Eduardo da Silva](https://github.com/eduardo-da-silva/))
   - Desenvolvimento front-end com VueJS
 - **[Desenvolvimento Web III](https://github.com/marrcandre/django-drf-tutorial)** ([Prof. Marco André Lopes Mendes](https://github.com/marrcandre))
   - Desenvolvimento back-end com Django e DRF.

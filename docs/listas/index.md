@@ -18,3 +18,4 @@ A manipulação de listas é um dos recursos mais importantes do VueJS. Nessa au
 --8<-- "docs/listas/manipulacao-listas.md"
 --8<-- "docs/listas/exercícios.md"
 --8<-- "docs/listas/correcao-exercicios.md"
+--8<-- "docs/listas/projetos.md"

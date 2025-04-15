@@ -2,6 +2,10 @@
 
 Faremos a correção dos exercícios usando a API de composição. Vamos, além disso, corrigir todos os itens num só exemplo. Sugiro que você tente resolver os exercícios antes de ver a correção. A correção é apenas uma sugestão de como você pode resolver os exercícios. Não é a única forma de resolver os exercícios.
 
+!!! warning "Aviso"
+
+    **Importante**: Não foi apresentada a correção do exercício 3, referente à lista de notícias (newsletter).
+
 ??? example "Correção dos exercícios"
 
     ```html title="./src/App.vue" linenums="1"

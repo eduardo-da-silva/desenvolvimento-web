@@ -1,9 +1,9 @@
 site_name: Desenvolvimento Web II
-site_author: Eduardo da Silva
+site_author: Eduardo da Silva e Kennedy Araújo
 site_url: https://eduardo-da-silva.github.io/desenvolvimento-web
 repo_url: https://github.com/eduardo-da-silva/desenvolvimento-web
 repo_name: eduardo-da-silva/desenvolvimento-web
-copyright: Copyright &copy; 2025 Eduardo da Silva
+copyright: Copyright &copy; 2025
 
 theme:
   name: material
@@ -103,3 +103,4 @@ nav:
   - Sintaxe do templates: sintaxe-templates/index.md
   - Reatividade: reatividade/index.md
   - Renderização de listas: listas/index.md
+  - Tutorial livraria: livraria-tutorial/index.md

@@ -88,5 +88,16 @@ Também, para criar a aplicação, precisaremos das imagens que foram usadas no 
 
 [Baixar arquivo de imagens :fontawesome-solid-download:](../assets/imagens.zip){ .md-button .md-button--primary }
 
---8<-- "docs/livraria-tutorial/footer.md"
+--8<-- "docs/livraria-tutorial/header.md"
 --8<-- "docs/livraria-tutorial/hero.md"
+--8<-- "docs/livraria-tutorial/featured.md"
+--8<-- "docs/livraria-tutorial/books.md"
+--8<-- "docs/livraria-tutorial/footer.md"
+--8<-- "docs/livraria-tutorial/cart.md"
+--8<-- "docs/livraria-tutorial/handle-cart-items.md"
+
+## Conclusão
+
+Com esses passos concluídos, você terá uma aplicação básica de carrinho de compras em Vue.js. A aplicação possui um cabeçalho, uma seção de destaque, uma seção de livros e um rodapé. Além disso, a aplicação possui um carrinho de compras que permite adicionar e remover produtos.
+
+Nas próximas aulas, vamos utilizar essa aplicação como base para implementar funcionalidades mais avançadas, como o uso de componentes, rotas, e gerenciamento de estado com o Pinia.

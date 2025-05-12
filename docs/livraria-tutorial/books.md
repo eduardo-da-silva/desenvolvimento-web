@@ -1,101 +1,159 @@
-## A seção Footer
+## A listagem de livros
 
-Por fim, a seção de rodapé (footer) é a última parte do layout. Ela contém informações de contato e links para redes sociais. Ela é estilizada para ter um fundo verde e texto branco, com uma borda inferior para separá-la do restante da página. Inicialmente, vamos fazer a estrutura do rodapé, e depois vamos estilizar. Para isso, edite o arquivo `src/App.vue` e adicione o seguinte código no final do arquivo, antes da tag de fechamento `</template>`, logo após o fechamento da tag `<main>`:
+Vamos agora fazer uma parte central do nosso projeto, que é a listagem de livros. Como queremos mostrar vários livros, vamoos iniciar criando um array com os livros que queremos exibir. Para isso, vamos criar um array de objetos, onde cada objeto representa um livro. Cada livro terá as seguintes propriedades:
 
-```html title="./src/App.vue" linenums="133"
-<footer>
-  <nav>
-    <section class="upper-footer">
-      <div>
-        <p class="footer-title">
-          <a href="#"> IFbooks </a>
-        </p>
-        <ul>
-          <li><span class="mdi mdi-facebook" /></li>
-          <li><span class="mdi mdi-instagram" /></li>
-          <li><span class="mdi mdi-twitter" /></li>
-        </ul>
-      </div>
-      <div>
-        <p class="contact-text">Contato</p>
-        <p><span class="mdi mdi-phone" /> +55 47 99999-9999</p>
-        <p><span class="mdi mdi-clock" /> 8h às 23h - Seg a Sex</p>
-        <p><span class="mdi mdi-email" /> contato@ifbooks.com.br</p>
-        <div class="payment-methods">
-          <span class="mdi mdi-visa" />
-        </div>
-      </div>
-    </section>
-    <section class="lower-footer">
-      <p>&copy; Alguns direitos reservados. IFBooks. 2025</p>
-    </section>
-  </nav>
-</footer>
+- `id`: um número inteiro que representa o ID do livro.
+- `title`: uma string que representa o título do livro.
+- `cover`: uma string que representa o caminho da imagem de capa do livro.
+- `price`: um número que representa o preço do livro.
+- `author`: uma string que representa o autor do livro.
+
+Para dar início a essa parte, vamos editar o arquivo `src/App.vue` e adicionar o seguinte código no bloco `<script setup>`:
+
+```vue title="./src/App.vue" linenums="1"
+<script setup>
+const books = [
+  {
+    id: 1,
+    title: 'Comigo na livraria',
+    cover: '/covers/comigo-na-livraria.png',
+    price: 23.24,
+    author: 'Martha Medeiros',
+  },
+  {
+    id: 2,
+    title: 'Quincas Borba',
+    cover: '/covers/quincas-borba.png',
+    price: 23.24,
+    author: 'Machado de Assis',
+  },
+  {
+    id: 3,
+    title: 'A livraria',
+    cover: '/covers/a-livraria.png',
+    price: 13.94,
+    author: 'Penelope Fitzgerald',
+  },
+  {
+    id: 4,
+    title: 'A hora da estrela',
+    cover: '/covers/a-hora-da-estrela.png',
+    price: 16.84,
+    author: 'Clarice Lispector',
+  },
+  {
+    id: 5,
+    title: 'O alienista',
+    cover: '/covers/o-alienista.png',
+    price: 266.92,
+    author: 'Machado de Assis',
+  },
+  {
+    id: 6,
+    title: 'Mar morto',
+    cover: '/covers/mar-morto.png',
+    price: 13.95,
+    author: 'Jorge Amado',
+  },
+  {
+    id: 7,
+    title: 'Grande sertão',
+    cover: '/covers/grande-sertao-veredas.png',
+    price: 26.04,
+    author: 'Guimarães Rosa',
+  },
+  {
+    id: 8,
+    title: 'Flor de poemas',
+    cover: '/covers/flor-de-poema.png',
+    price: 15.81,
+    author: 'Cecília Meireles',
+  },
+];
+</script>
 ```
 
-Agora, vamos estilizar o rodapé. Para isso, adicione o seguinte código no bloco `<style>` do arquivo `src/App.vue`:
+No futuro, nós podemos substituir esse array por uma chamada a uma API, ou mesmo deixar essa informação estática em um arquivo JSON. Mas, por enquanto, vamos deixar assim.
 
-```css title="./src/App.vue" linenums="357"
-footer {
-  background-color: #27ae60;
-  padding: 2vh 8vw;
-  color: #fff;
+Agora, vamos exibir esses livros na tela. Para isso, vamos criar um loop `v-for` no bloco `<template>` do arquivo `src/App.vue`. O loop `v-for` é usado para iterar sobre os itens de um array e renderizar um elemento para cada item. Vamos adicionar o seguinte código no bloco `<template>`, logo abaixo da seção Featured:
 
-  .upper-footer {
+```html title="./src/App.vue" linenums="120"
+<section class="books">
+  <article class="book" v-for="book in books" :key="book.id">
+    <img :src="book.cover" :alt="book.title" />
+    <h2>{{ book.title }}</h2>
+    <p class="book-author">{{ book.author }}</p>
+    <span class="price-and-like">
+      <p class="book-price">R$ {{ book.price.toFixed(2) }}</p>
+      <span class="mdi mdi-heart-outline"></span>
+    </span>
+    <button><span class="mdi mdi-cart"></span>Comprar</button>
+  </article>
+</section>
+```
+
+Note que criamos uma seção com a classe `books`, que contém um loop `v-for` que itera sobre o array `books`, dentro de uma _tag_ `article`. Dessa forma, para cada livro, criamos um elemento `<article>` com a classe `book`, que contém a imagem de capa do livro, o título, o autor, o preço e um botão de compra. O botão de compra contém um ícone de carrinho. Também aqui, para cada elemento, foram utilizadas classes específicas para depois serem estilizadas no CSS.
+
+Ainda, temos alguns recurso de renderização interessantes utilizados:
+
+- O `:src` e `:alt` são usados para definir o caminho da imagem e o texto alternativo da imagem, respectivamente. O `:` indica que estamos usando uma expressão Vue, a diretiva `v-bind`, para definir o valor.
+- O `{{ book.title }}` e `{{ book.author }}` são usados para exibir o título e o autor do livro, respectivamente. O `{{ }}` indica que estamos usando uma expressão Vue para interpolar o valor.
+- Para mostrar o preço do livro, usamos `{{ book.price.toFixed(2) }}`, que formata o preço para duas casas decimais. Note que o `toFixed(2)` é um método do JavaScript que formata um número para ter um número fixo de casas decimais.
+
+Por, perceba que ainda não implementamos a funcionalidade do botão de compra. Isso será feito em um próximo passo.
+
+Agora, vamos estilizar a seção de livros. Para isso, adicione o seguinte código no arquivo `src/App.vue`, no bloco `<style>`, logo após a definição da seção Featured:
+
+```css title="./src/assets/main.css" linenums="290"
+.books {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  padding: 5vh 8vw;
+
+  & .book {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-bottom: 100px;
-    border-bottom: 2px solid #fff;
+    flex-direction: column;
+    min-width: 300px;
+    width: calc(100% / 4 - 42px);
+    margin: 20px;
 
-    & div {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-
-      & .footer-title {
-        font-size: 1.2rem;
-        font-weight: 700;
-
-        & a {
-          text-decoration: none;
-          color: #fff;
-        }
-      }
-
-      & .contact-text {
-        font-size: 1.1rem;
-        font-weight: 700;
-      }
+    & h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
     }
-  }
 
-  .lower-footer {
-    display: flex;
-    justify-content: center;
-    padding-top: 20px;
-    font-size: 0.8rem;
-  }
+    & .book-author {
+      font-size: 1rem;
+    }
 
-  ul {
-    display: flex;
-    padding: 0;
-    gap: 20px;
-
-    li {
-      list-style: none;
+    & .book-price {
       font-size: 1.2rem;
-      color: #fff;
+      font-weight: 700;
+    }
+
+    & .price-and-like {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+
+      & .mdi-heart-outline {
+        font-size: 1.3rem;
+        color: #27ae60;
+      }
     }
   }
 }
 ```
 
+O código acima estiliza a seção de livros. A seção é exibida como uma grade, com cada livro ocupando uma coluna. O número de colunas é ajustado automaticamente com base no tamanho da tela, usando a propriedade `grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))`. Isso significa que cada coluna terá um tamanho mínimo de 300 pixels e ocupará o restante do espaço disponível. A seção também possui um espaçamento de 20 pixels entre os livros.
+
+Outra coisa interessante é que, para cada livro, o título e o autor são estilizados com tamanhos de fonte diferentes. O preço do livro é exibido em negrito e com um tamanho de fonte maior. O ícone de coração é estilizado com uma cor em tom verde.
+
 O quadro abaixo mostra o resultado final do código que implementamos até agora.
 
 ???info ":eye::eye: Versão completa"
 
-    ```vue title="./src/App.vue" linenums="1" hl_lines="133-160 357-409"
+    ```vue title="./src/App.vue" linenums="1" hl_lines="2-59 120-131 290-327"
     <script setup>
         const books = [
             {
@@ -228,34 +286,6 @@ O quadro abaixo mostra o resultado final do código que implementamos até agora
                 </article>
             </section>
         </main>
-        <footer>
-            <nav>
-                <section class="upper-footer">
-                    <div>
-                        <p class="footer-title">
-                            <a href="#"> IFbooks </a>
-                        </p>
-                        <ul>
-                            <li><span class="mdi mdi-facebook" /></li>
-                            <li><span class="mdi mdi-instagram" /></li>
-                            <li><span class="mdi mdi-twitter" /></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <p class="contact-text">Contato</p>
-                        <p><span class="mdi mdi-phone" /> +55 47 99999-9999</p>
-                        <p><span class="mdi mdi-clock" /> 8h às 23h - Seg a Sex</p>
-                        <p><span class="mdi mdi-email" /> contato@ifbooks.com.br</p>
-                        <div class="payment-methods">
-                            <span class="mdi mdi-visa" />
-                        </div>
-                    </div>
-                </section>
-                <section class="lower-footer">
-                    <p>&copy; Alguns direitos reservados. IFBooks. 2025</p>
-                </section>
-            </nav>
-        </footer>
     </template>
 
     <style scoped>
@@ -448,60 +478,6 @@ O quadro abaixo mostra o resultado final do código que implementamos até agora
                     font-size: 1.3rem;
                     color: #27ae60;
                 }
-            }
-        }
-    }
-
-    footer {
-        background-color: #27ae60;
-        padding: 2vh 8vw;
-        color: #fff;
-
-        .upper-footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding-bottom: 100px;
-            border-bottom: 2px solid #fff;
-
-            & div {
-                display: flex;
-                flex-direction: column;
-                gap: 10px;
-
-                & .footer-title {
-                    font-size: 1.2rem;
-                    font-weight: 700;
-
-                    & a {
-                        text-decoration: none;
-                        color: #fff;
-                    }
-                }
-
-                & .contact-text {
-                    font-size: 1.1rem;
-                    font-weight: 700;
-                }
-            }
-        }
-
-        .lower-footer {
-            display: flex;
-            justify-content: center;
-            padding-top: 20px;
-            font-size: 0.8rem;
-        }
-
-        ul {
-            display: flex;
-            padding: 0;
-            gap: 20px;
-
-            li {
-                list-style: none;
-                font-size: 1.2rem;
-                color: #fff;
             }
         }
     }

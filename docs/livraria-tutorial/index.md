@@ -50,7 +50,14 @@ Vamos agora fazer a limpeza do projeto:
 
   ```css title="./src/assets/main.css" linenums="1"
   @import './base.css';
+
+  html {
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    line-height: 1.5;
+  }
   ```
+
+Note que o arquivo `base.css` é um arquivo CSS que contém as regras de estilo base para a aplicação. Ele é importado no arquivo `main.css`, que é o arquivo principal de estilos da aplicação. Também removemos as regras de estilo que estavam no arquivo `main.css` e deixamos apenas as regras de estilo base e da tag `html`. Nesse caso, a regra de estilo `font-size` define o tamanho da fonte da aplicação. O valor `clamp(1rem, 1.5vw, 1.2rem)` significa que o tamanho da fonte será de 1rem (16px) no menor tamanho de tela, aumentará para 1.5vw (1.5% da largura da tela) em telas médias e será limitado a 1.2rem (19.2px) em telas grandes.
 
 ## Instalando o pacote de ícones
 

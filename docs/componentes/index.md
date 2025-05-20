@@ -14,3 +14,4 @@ Alguns conceitos de reutilização de componentes farão mais sentido quando est
 --8<-- "docs/componentes/replicando-criacao-componentes-simples.md"
 --8<-- "docs/componentes/manipulando-eventos.md"
 --8<-- "docs/componentes/propriedades.md"
+--8<-- "docs/componentes/fixando-props-emits.md"

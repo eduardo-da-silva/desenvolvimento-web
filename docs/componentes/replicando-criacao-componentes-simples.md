@@ -608,3 +608,40 @@ A versão completa do arquivo `App.vue` está no bloco abaixo.
     }
     </style>
     ```
+
+### As configurações de CSS
+
+Note que, com essas alterações, o estilo CSS dos botões não foram colocados nos novos componentes, por isso a visualização pode estar diferente. Para resolver isso, vamos colocar todos os estilos CSS dos botões no arquivo `src/assets/main.css`. Para isso, abra o arquivo `src/assets/main.css` e deixe o código como abaixo:
+
+```css title="./src/assets/main.css" linenums="1"
+@import './base.css';
+
+html {
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  line-height: 1.5;
+}
+
+button {
+  background-color: #27ae60;
+  color: #fff;
+  border: none;
+  padding: 15px 20px;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  gap: 20px;
+  display: flex;
+  justify-content: center;
+  &.outlined {
+    background-color: transparent;
+    color: #27ae60;
+    border: 2px solid #27ae60;
+  }
+  &.plain {
+    background-color: transparent;
+    color: black;
+    border: none;
+    cursor: pointer;
+  }
+}
+```

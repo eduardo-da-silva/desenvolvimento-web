@@ -461,31 +461,5 @@ A versão completa do arquivo `App.vue` está no bloco abaixo.
         }
       }
     }
-
-    button {
-      background-color: #27ae60;
-      color: #fff;
-      border: none;
-      padding: 15px 20px;
-      border-radius: 5px;
-      font-size: 1rem;
-      cursor: pointer;
-      gap: 20px;
-      display: flex;
-      justify-content: center;
-
-      &.outlined {
-        background-color: transparent;
-        color: #27ae60;
-        border: 2px solid #27ae60;
-      }
-
-      &.plain {
-        background-color: transparent;
-        color: black;
-        border: none;
-        cursor: pointer;
-      }
-    }
     </style>
     ```

@@ -105,3 +105,4 @@ nav:
   - Renderização de listas: listas/index.md
   - Tutorial livraria: livraria-tutorial/index.md
   - Componentes: componentes/index.md
+  - Roteamento: router/index.md

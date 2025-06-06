@@ -106,3 +106,4 @@ nav:
   - Tutorial livraria: livraria-tutorial/index.md
   - Componentes: componentes/index.md
   - Roteamento: router/index.md
+  - Gerenciamento de estados: state/index.md

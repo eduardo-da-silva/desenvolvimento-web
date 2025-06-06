@@ -35,7 +35,7 @@ npm install pinia
 Em seguida, você precisa configurar o Pinia no seu projeto Vue.js. Para isso, abra o arquivo `src/main.js` e adicione o seguinte código:
 
 ```javascript title="src/main.js"
-import { createApp } from 'vue';
+import { createPinia } from 'pinia';
 
 const pinia = createPinia();
 app.use(pinia);

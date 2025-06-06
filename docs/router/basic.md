@@ -292,7 +292,7 @@ Note as alterações que fizemos nas linhas destacadas (linhas 9 a 12 e linha 19
 
 ???info ":eye::eye: Versão completa"
 
-    ```vue title="./src/components/HeaderComponent.vue" linenums="1" hl_lines="5-8 15"
+    ```vue title="./src/components/HeaderComponent.vue" linenums="1" hl_lines="9-12 19"
     <script setup>
         defineEmits(['click-cart'])
     </script>

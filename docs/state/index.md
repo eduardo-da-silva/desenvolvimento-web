@@ -375,3 +375,267 @@ const cartStore = useCartStore();
 ```
 
 Temos, agora, importado os stores `useBooksStore` e `useCartStore`, e instanciado as variáveis `booksStore` e `cartStore`. Essas variáveis nos permitem acessar o estado dos livros e do carrinho, respectivamente. Além disso, o componente `CartComponent` agora recebe o estado do carrinho diretamente do store, e o componente `BooksListing` recebe a lista de livros do store dos livros.
+
+### Fazendo a barra de pesquisa
+
+Agora, vamos fazer a barra de pesquisa para filtrar os livros. Para isso, vamos adicionar uma variável reativa chamada `filterText` no store dos livros e criar um método para filtrar os livros com base nessa consulta.
+
+Também vai precisar de uma função computada para retornar os livros filtrados com base na consulta de pesquisa. A função computada terá a seguinte estrutura:
+
+```javascript title="./src/stores/books.js" linenums="1"
+const filteredBooks = computed(() => {
+  return books.value.filter((book) => {
+    return book.title.toLowerCase().includes(filterText.value.toLowerCase());
+  });
+});
+```
+
+Também, será necessário retornar a variável `filterText` e a função computada `filteredBooks` do store. Assim, o componente `BooksListing` poderá usar a lista filtrada de livros.
+
+A versão completa do arquivo `src/stores/books.js` ficará assim (as linhas novas estão destacadas):
+
+???info ":eye::eye: Versão completa"
+
+    ```vue title="./src/stores/books.js" linenums="1" hl_lines="6 70-73 75"
+    import { computed, ref } from 'vue'
+
+    import { defineStore } from 'pinia'
+
+    export const useBookStore = defineStore('book', () => {
+      const filterText = ref('')
+
+      const books = [
+        {
+          id: 1,
+          title: 'Comigo na livraria',
+          cover: '/covers/comigo-na-livraria.png',
+          price: 23.24,
+          author: 'Martha Medeiros',
+        },
+        {
+          id: 2,
+          title: 'Quincas Borba',
+          cover: '/covers/quincas-borba.png',
+          price: 23.24,
+          author: 'Machado de Assis',
+        },
+        {
+          id: 3,
+          title: 'A livraria',
+          cover: '/covers/a-livraria.png',
+          price: 13.94,
+          author: 'Penelope Fitzgerald',
+        },
+        {
+          id: 4,
+          title: 'A hora da estrela',
+          cover: '/covers/a-hora-da-estrela.png',
+          price: 16.84,
+          author: 'Clarice Lispector',
+        },
+        {
+          id: 5,
+          title: 'O alienista',
+          cover: '/covers/o-alienista.png',
+          price: 266.92,
+          author: 'Machado de Assis',
+        },
+        {
+          id: 6,
+          title: 'Mar morto',
+          cover: '/covers/mar-morto.png',
+          price: 13.95,
+          author: 'Jorge Amado',
+        },
+        {
+          id: 7,
+          title: 'Grande sertão',
+          cover: '/covers/grande-sertao-veredas.png',
+          price: 26.04,
+          author: 'Guimarães Rosa',
+        },
+        {
+          id: 8,
+          title: 'Flor de poemas',
+          cover: '/covers/flor-de-poema.png',
+          price: 15.81,
+          author: 'Cecília Meireles',
+        },
+      ]
+
+      function getBookById(id) {
+          return books.find((book) => book.id == id)
+      }
+      const filteredBooks = computed(
+        () =>
+        books.filter((book) => book.title.toLowerCase().includes(filterText.value.toLowerCase()))
+      )
+
+      return { filteredBooks, filterText, getBookById }
+    })
+
+    ```
+
+Agora, vamos ajustar o componente `HomeView.vue` para usar a lista filtrada de livros. Abra o arquivo `src/views/HomeView.vue` e modifique o bloco `<template>`, alterando a variável `books` para `filteredBooks` (Veja a linha destacada):
+
+```vue title="src/views/HomeView.vue" linenums="1" hl_lines="25"
+<script setup>
+import FeaturedComponent from '@/components/FeaturedComponent.vue';
+import HeroBanner from '@/components/HeroBanner.vue';
+import CartComponent from '@/components/CartComponent.vue';
+import BooksListing from '@/components/BooksListing.vue';
+
+import { useBookStore } from '@/stores/book';
+import { useCartStore } from '@/stores/cart';
+
+const bookStore = useBookStore();
+const cartStore = useCartStore();
+</script>
+
+<template>
+  <CartComponent
+    v-if="cartStore.showCart"
+    :cart="cartStore.cart"
+    @hide-cart="cartStore.showCart = false"
+    @increment-book="cartStore.incrementBookToCart"
+    @decrement-book="cartStore.decrementBookToCart"
+  />
+  <template v-else>
+    <HeroBanner />
+    <FeaturedComponent />
+    <BooksListing
+      :books="bookStore.filteredBooks"
+      @add-to-cart="cartStore.addToCart"
+    />
+  </template>
+</template>
+```
+
+Por fim, vamos ajustar o componente `HeaderComponent.vue` para atualizar o valor de `filterText` no store dos livros quando o usuário digitar na barra de pesquisa. Abra o arquivo `src/components/HeaderComponent.vue` e modifique o bloco `<script setup>` para incluir o uso do store dos livros:
+
+```vue title="src/components/HeaderComponent.vue" linenums="1" hl_lines="6 19-24"
+<script setup>
+import { useCartStore } from '@/stores/cart';
+import { useBookStore } from '@/stores/book';
+
+const cartStore = useCartStore();
+const bookStore = useBookStore();
+</script>
+
+<template>
+  <header>
+    <nav>
+      <h1>
+        <RouterLink to="/">
+          IFbooks
+          <span class="logo-title"> Apreço a livros </span>
+        </RouterLink>
+      </h1>
+      <div class="search-wrapper">
+        <input
+          v-model="bookStore.filterText"
+          type="text"
+          class="search"
+          placeholder="Buscar..."
+        />
+      </div>
+      <ul>
+        <li>Termos</li>
+        <li><RouterLink to="/equipe">Equipe</RouterLink></li>
+        <li>Envio</li>
+        <li>Devoluções</li>
+      </ul>
+      <ul class="icons">
+        <li @click="cartStore.showCart = !cartStore.showCart">
+          <span class="mdi mdi-cart"></span>
+        </li>
+        <li><span class="mdi mdi-heart"></span></li>
+        <li><span class="mdi mdi-account"></span></li>
+      </ul>
+    </nav>
+  </header>
+</template>
+
+<style scoped>
+header nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2vh 8vw;
+  border-bottom: 2px solid #27ae6099;
+
+  & a {
+    text-decoration: none;
+    color: rgb(44, 62, 80);
+  }
+
+  & h1 {
+    font-size: 1.3rem;
+    color: #000;
+
+    & a {
+      text-decoration: none;
+      color: #000;
+      display: flex;
+      align-items: center;
+    }
+
+    & .logo-title {
+      border-left: 1px solid #27ae6099;
+      font-size: 0.8rem;
+      margin-left: 10px;
+      padding-left: 10px;
+      color: #27ae6099;
+      width: 100px;
+      line-height: 1rem;
+    }
+  }
+
+  & input {
+    width: 400px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 1rem;
+    border: 0;
+    background-color: #f1f1f1;
+    padding: 5px;
+  }
+
+  & ul {
+    display: flex;
+  }
+
+  & ul li {
+    list-style: none;
+    margin: 0 10px;
+    font-size: 1rem;
+  }
+
+  & .icons li {
+    color: #27ae60;
+    font-size: 1.3rem;
+  }
+
+  & .search-wrapper {
+    position: relative;
+  }
+
+  & .search-wrapper::before {
+    content: '󰍉'; /* Code glyph para mdi-magnify */
+    font-family: 'Material Design Icons';
+    font-size: 1.2rem;
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  & .search {
+    padding-right: 2rem;
+  }
+}
+</style>
+```
+
+Agora, quando o usuário digitar na barra de pesquisa, o valor de `filterText` no store dos livros será atualizado automaticamente, e a lista de livros exibida no componente `BooksListing` será filtrada com base nesse valor.

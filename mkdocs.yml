@@ -107,3 +107,5 @@ nav:
   - Componentes: componentes/index.md
   - Roteamento: router/index.md
   - Gerenciamento de estados: state/index.md
+  - Comunicação com APIs usando Axios: axios/index.md
+  - Tutorial TMDB: tmdb/index.md

@@ -1,0 +1,1589 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Eduardo da Silva e Kennedy Araújo">
+      
+      
+        <link rel="canonical" href="https://eduardo-da-silva.github.io/desenvolvimento-web/vuejs/">
+      
+      
+      
+        <link rel="next" href="../sintaxe-templates/">
+      
+      
+      <link rel="icon" href="../images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Conhecendo o VueJS - Desenvolvimento Web II</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#conhecendo-o-vuejs" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href=".." title="Desenvolvimento Web II" class="md-header__button md-logo" aria-label="Desenvolvimento Web II" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Desenvolvimento Web II
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Conhecendo o VueJS
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Compartilhar" aria-label="Compartilhar" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/eduardo-da-silva/desenvolvimento-web" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    eduardo-da-silva/desenvolvimento-web
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Desenvolvimento Web II" class="md-nav__button md-logo" aria-label="Desenvolvimento Web II" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Desenvolvimento Web II
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/eduardo-da-silva/desenvolvimento-web" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    eduardo-da-silva/desenvolvimento-web
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Conhecendo o VueJS
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Conhecendo o VueJS
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#o-framework-vuejs" class="md-nav__link">
+    <span class="md-ellipsis">
+      O framework VueJs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#criacao-de-uma-aplicacao-vuejs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Criação de uma aplicação VueJS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#estrutura-de-arquivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estrutura de arquivos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Estrutura de arquivos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#o-arquivo-indexhtml" class="md-nav__link">
+    <span class="md-ellipsis">
+      O arquivo index.html
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#o-arquivo-mainjs" class="md-nav__link">
+    <span class="md-ellipsis">
+      O arquivo main.js
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#o-arquivo-appvue" class="md-nav__link">
+    <span class="md-ellipsis">
+      O arquivo App.vue
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#componentes-de-arquivo-unico-single-file-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Componentes de arquivo único (Single-file Components)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#estilos-de-escrita-de-um-componente-de-arquivo-unico" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estilos de escrita de um componente de arquivo único
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Estilos de escrita de um componente de arquivo único">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usando-api-de-opcoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usando API de opções
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usando-api-de-composicao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usando API de composição
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consideracoes-importantes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Considerações importantes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deploy-da-aplicacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deploy da aplicação
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deploy da aplicação">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#compilacao-da-aplicacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compilação da aplicação
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#publicacao-da-aplicacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Publicação da aplicação
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercícios
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#correcao-dos-exercicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Correção dos exercícios
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sintaxe-templates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sintaxe do templates
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reatividade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reatividade
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../listas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Renderização de listas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../livraria-tutorial/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tutorial livraria
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../componentes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Componentes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../router/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Roteamento
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../state/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Gerenciamento de estados
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../axios/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Comunicação com APIs usando Axios
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tmdb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tutorial TMDB
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#o-framework-vuejs" class="md-nav__link">
+    <span class="md-ellipsis">
+      O framework VueJs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#criacao-de-uma-aplicacao-vuejs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Criação de uma aplicação VueJS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#estrutura-de-arquivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estrutura de arquivos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Estrutura de arquivos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#o-arquivo-indexhtml" class="md-nav__link">
+    <span class="md-ellipsis">
+      O arquivo index.html
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#o-arquivo-mainjs" class="md-nav__link">
+    <span class="md-ellipsis">
+      O arquivo main.js
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#o-arquivo-appvue" class="md-nav__link">
+    <span class="md-ellipsis">
+      O arquivo App.vue
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#componentes-de-arquivo-unico-single-file-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      Componentes de arquivo único (Single-file Components)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#estilos-de-escrita-de-um-componente-de-arquivo-unico" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estilos de escrita de um componente de arquivo único
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Estilos de escrita de um componente de arquivo único">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usando-api-de-opcoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usando API de opções
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usando-api-de-composicao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usando API de composição
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consideracoes-importantes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Considerações importantes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deploy-da-aplicacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deploy da aplicação
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deploy da aplicação">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#compilacao-da-aplicacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compilação da aplicação
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#publicacao-da-aplicacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Publicação da aplicação
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercícios
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#correcao-dos-exercicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Correção dos exercícios
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="conhecendo-o-vuejs">Conhecendo o VueJs<a class="headerlink" href="#conhecendo-o-vuejs" title="Permanent link">&para;</a></h1>
+<h2 id="o-framework-vuejs">O framework VueJs<a class="headerlink" href="#o-framework-vuejs" title="Permanent link">&para;</a></h2>
+<p class="annotate">O VueJs (1) é um <em>framework</em> javascript para desenvolvimento de aplicações web. Ele é um <em>framework</em> progressivo, sendo aplicável tanto em aplicações pequenas ou grandes, com ou sem o uso de bibliotecas adicionais. O VueJs é um <em>framework</em> de código aberto, mantido por uma comunidade de desenvolvedores. Ainda, ele provê uma programação reativa, que atualiza automaticamente a interface do usuário quando os dados são alterados. Também, é baseado em componentes, o que permite a criação de componentes reutilizáveis, que aumenta a produtividade do desenvolvedor.</p>
+<ol>
+<li>pronuncia-se <em>/vju:/</em>, como no inglês <strong>view</strong></li>
+</ol>
+<p>Duas características importantes do VueJs são:</p>
+<ul>
+<li>Renderização declarativa: o VueJs permite a criação de <em>templates</em> HTML que são renderizados dinamicamente com base nos dados da aplicação. Essa renderização é feita de forma declarativa, ou seja, o desenvolvedor declara o que deve ser renderizado, e não como deve ser renderizado. Isso permite que o VueJs faça o trabalho de atualizar a interface do usuário de forma eficiente.</li>
+<li>Programação reativa: o VueJs rastreia automaticamente o estado de cada variável declarada na aplicação, e atualiza a interface do usuário quando os dados são alterados. Isso permite que o desenvolvedor se concentre no desenvolvimento da aplicação, sem se preocupar com a atualização da interface do usuário.</li>
+</ul>
+<h2 id="criacao-de-uma-aplicacao-vuejs">Criação de uma aplicação VueJS<a class="headerlink" href="#criacao-de-uma-aplicacao-vuejs" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Importante</p>
+<p>Antes de iniciar a criação da aplicação, é importante que você tenha o NodeJS instalado e configurado em seu ambiente.</p>
+<ul>
+<li>Garantir que os passos da <a href="../#configurando-o-ambiente">Aula inicial</a> foram executados.</li>
+<li>Crie uma nova pasta para o seu projeto e abra no VSCode.</li>
+<li>Abra a <strong>pasta</strong> do projeto no vscode (repita em voz alta: <em>"Nunca abra um arquivo, sempre abra a pasta."</em>).</li>
+</ul>
+</div>
+<p>Para criar uma aplicação VueJS, abra o terminal no diretório em que você deseja criar o projeto e execute o comando:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>npm<span class="w"> </span>init<span class="w"> </span>vue@latest<span class="w"> </span><span class="o">[</span>nome-do-projeto<span class="o">]</span>
+</span></code></pre></div>
+<p><em>Note que usamos um parâmetro <code>[nome-do-projeto]</code> que é opcional. Se você informar este parâmetro, ele criará um projeto com o nome informado, caso contrário, ele solicitará o nome do projeto.</em></p>
+<p>O comando anterior irá criar uma aplicação VueJS usando uma ferramenta de scaffolding chamada <code>create-vue</code>. Ele apresentará uma série de perguntas para você. Responda conforme a seguir:</p>
+<ol>
+<li>
+<p><strong>Project name</strong>: informe o nome do projeto. Este nome será usado para criar a pasta do projeto.</p>
+</li>
+<li>
+<p><strong>Select features to include in your project</strong>: selecione as funcionalidades que você deseja incluir no projeto. Você pode navegar pelas opções usando as setas do teclado e selecionar/deselecionar as opções usando a barra de espaço. Abaixo, eu deixei um exemplo do que você deve pode escolher nesta etapa inicial do curso.</p>
+</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>◆<span class="w">  </span>Select<span class="w"> </span>features<span class="w"> </span>to<span class="w"> </span>include<span class="w"> </span><span class="k">in</span><span class="w"> </span>your<span class="w"> </span>project:<span class="w"> </span><span class="o">(</span>↑/↓<span class="w"> </span>to<span class="w"> </span>navigate,<span class="w"> </span>space<span class="w"> </span>to<span class="w"> </span><span class="k">select</span>,<span class="w"> </span>a<span class="w"> </span>to<span class="w"> </span>toggle<span class="w"> </span>all,<span class="w"> </span>enter<span class="w"> </span>to<span class="w"> </span>confirm<span class="o">)</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>│<span class="w">  </span>◻<span class="w"> </span>TypeScript
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>│<span class="w">  </span>◻<span class="w"> </span>JSX<span class="w"> </span>Support
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>│<span class="w">  </span>◻<span class="w"> </span>Router<span class="w"> </span><span class="o">(</span>SPA<span class="w"> </span>development<span class="o">)</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>│<span class="w">  </span>◻<span class="w"> </span>Pinia<span class="w"> </span><span class="o">(</span>state<span class="w"> </span>management<span class="o">)</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>│<span class="w">  </span>◻<span class="w"> </span>Vitest<span class="w"> </span><span class="o">(</span>unit<span class="w"> </span>testing<span class="o">)</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>│<span class="w">  </span>◻<span class="w"> </span>End-to-End<span class="w"> </span>Testing
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>│<span class="w">  </span>◼<span class="w"> </span>ESLint<span class="w"> </span><span class="o">(</span>error<span class="w"> </span>prevention<span class="o">)</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>│<span class="w">  </span>◼<span class="w"> </span>Prettier<span class="w"> </span><span class="o">(</span>code<span class="w"> </span>formatting<span class="o">)</span>
+</span></code></pre></div>
+<ol>
+<li><strong>Install Oxlint for faster linting</strong>: selecione <code>No</code> para não instalar o Oxlint.</li>
+</ol>
+<p>Então ele fará a criação do projeto em uma pasta com o nome do projeto informado.</p>
+<p>Note que no exemplo anterior, escolhemos não usar o Vue Router, Pinia, Vitest, Cypress, ESLint e Prettier, bem como o suporte ao TypeScript e JSX. Você pode escolher o que desejar.</p>
+<p>Agora, abra no VSCode a pasta do projeto criado. Importante que você abra a pasta do projeto, e não um arquivo específico. Outro ponto importante: caso você tenha executado o comando de criação do projeto já dentro do VS Code, eu sugiro que você reabra na pasta do projeto, pois o VS Code pode não reconhecer o projeto corretamente.</p>
+<p>Em seguida, basta executar os seguintes comandos:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>npm<span class="w"> </span>install
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>npm<span class="w"> </span>run<span class="w"> </span>dev
+</span></code></pre></div>
+<p>O primeiro comando instala as dependências do projeto. O segundo comando executa o servidor de desenvolvimento do VueJS. Em geral, o servidor estará em execução na porta 5173, caso esta esteja livre. Para acessar a aplicação, basta abrir o navegador e acessar a URL <code>http://localhost:5173</code>.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="w">  </span>VITE<span class="w"> </span>v6.2.2<span class="w">  </span>ready<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">500</span><span class="w"> </span>ms
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span>➜<span class="w">  </span>Local:<span class="w">   </span>http://127.0.0.1:5173/
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span>➜<span class="w">  </span>Network:<span class="w"> </span>use<span class="w"> </span>--host<span class="w"> </span>to<span class="w"> </span>expose
+</span></code></pre></div>
+<p>A imagem mostra a tela inicial da aplicação VueJS.</p>
+<p><img alt="Tela inicial da aplicação VueJS" src="../assets/CriacaoProjeto-TelaInicial.png" /></p>
+<div class="admonition tip">
+<p class="admonition-title">Manter um repositório Git</p>
+<p>É muito importante que logo após a criação do projeto você crie um repositório Git para o projeto. Para isso, você pode usar o próprio Visual Studio Code. Para isso, abra o menu <code>Source Control</code> e clique em <code>Initialize Repository</code>. Em seguida, clique em <code>Create Repository</code>. O Visual Studio Code irá criar um repositório Git na pasta do projeto. Isso requer que o usuário tenha o Git instalado e configurado. Para mais informações, consulte a <a href="../#configurando-o-ambiente">Aula inicial</a>.</p>
+<p>Também, é importante que a cada alteração que você fizer no projeto, você faça um commit. Para isso, abra o menu <code>Source Control</code> e clique em <code>Stage All Changes</code>. Em seguida, clique em <code>Commit</code>. O Visual Studio Code irá criar um commit com as alterações realizadas. Para mais informações, consulte a <a href="../#configurando-o-ambiente">Aula inicial</a>.</p>
+</div>
+<h2 id="estrutura-de-arquivos">Estrutura de arquivos<a class="headerlink" href="#estrutura-de-arquivos" title="Permanent link">&para;</a></h2>
+<p>A imagem a seguir mostra a estrutura de arquivos inicial do projeto.</p>
+<p><img alt="Estrutura de arquivos do projeto" src="../assets/CriacaoProjeto-EstruturaArquivos.png" /></p>
+<p>Esta estrutura pode ser resumida da seguinte forma:</p>
+<ul>
+<li><code>node_modules</code>: pasta com as dependências do projeto.</li>
+<li><code>public</code>: pasta com os arquivos estáticos da aplicação.</li>
+<li><code>src</code>: pasta com os arquivos fonte da aplicação. Por padrão, o arquivo <code>App.vue</code> é o componente raiz da aplicação, enquanto o arquivo <code>main.js</code> é o ponto de entrada da aplicação. Em geral, esta é a pasta que você irá trabalhar.</li>
+<li><code>index.html</code>: arquivo raiz do projeto que define .</li>
+<li><code>package.json</code>: arquivo com as configurações do projeto.</li>
+<li><code>package-lock.json</code>: arquivo com as configurações de versões das dependências do projeto.</li>
+<li><code>README.md</code>: arquivo com as instruções de instalação e execução do projeto.</li>
+<li><code>vite.config.js</code>: arquivo com as configurações do servidor de desenvolvimento.</li>
+</ul>
+<h3 id="o-arquivo-indexhtml">O arquivo index.html<a class="headerlink" href="#o-arquivo-indexhtml" title="Permanent link">&para;</a></h3>
+<p>O arquivo <code>index.html</code> é o arquivo raiz da aplicação. Ele define o elemento raiz da aplicação, que é o elemento <code>&lt;div id="app"&gt;</code>. Este elemento é o elemento que será substituído pelo VueJS. O arquivo <code>index.html</code> também define o arquivo <code>main.js</code> como o ponto de entrada da aplicação.</p>
+<p>O código a seguir mostra o arquivo <code>index.html</code>:</p>
+<div class="language-html highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">index.html</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span>
+<span class="normal"><a href="#__codelineno-4-12">12</a></span>
+<span class="normal"><a href="#__codelineno-4-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a>  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a>    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span> <span class="p">/&gt;</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a>    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;icon&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/favicon.ico&quot;</span> <span class="p">/&gt;</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a>    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;width=device-width, initial-scale=1.0&quot;</span> <span class="p">/&gt;</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="hll">    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Vite App<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+</span></span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8"></a>  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9"></a>  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10"></a>    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;app&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11"></a>    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;/src/main.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12"></a>  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13"></a><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Em geral, você não precisará alterar este arquivo. Contudo, alguns ajustes podem ser realizados. Por exemplo, você pode alterar o título da página, na linha 7, conforme o código a seguir:</p>
+<div class="language-html highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Aplicação exemplo Vue3<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+</span></code></pre></div>
+<p>Também, podem ser adicionados outras referências, como por exemplo, para um pacote de arquivos CSS.</p>
+<p>Note também que antes de fechar a tag <code>&lt;/body&gt;</code>, há uma referência para o arquivo <code>main.js</code>. Este arquivo é o ponto de entrada da aplicação.</p>
+<h3 id="o-arquivo-mainjs">O arquivo main.js<a class="headerlink" href="#o-arquivo-mainjs" title="Permanent link">&para;</a></h3>
+<p>Como comentando anteriormente, o arquivo <code>main.js</code> é o ponto de entrada da aplicação. Ele é responsável por carregar o VueJS e o componente raiz da aplicação. O código a seguir mostra o arquivo <code>main.js</code>:</p>
+<div class="language-javascript highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">./src/main.js</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span>
+<span class="normal"><a href="#__codelineno-6-5">5</a></span>
+<span class="normal"><a href="#__codelineno-6-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="k">import</span><span class="w"> </span><span class="s1">&#39;./assets/main.css&#39;</span><span class="p">;</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">createApp</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;vue&#39;</span><span class="p">;</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="k">import</span><span class="w"> </span><span class="nx">App</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./App.vue&#39;</span><span class="p">;</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5"></a>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="nx">createApp</span><span class="p">(</span><span class="nx">App</span><span class="p">).</span><span class="nx">mount</span><span class="p">(</span><span class="s1">&#39;#app&#39;</span><span class="p">);</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Neste exemplo, o arquivo <code>main.js</code> importa o método <code>createApp</code> do pacote <code>vue</code>, responsável por criar a aplicação VueJS. Em seguida, o arquivo importa o componente raiz da aplicação, que é o arquivo <code>App.vue</code>. E, por fim, o arquivo importa o arquivo <code>main.css</code>, que é o arquivo de estilo da aplicação.</p>
+<p>Na última linha, o arquivo chama o método <code>createApp</code> passando o componente raiz da aplicação como parâmetro. O método <code>createApp</code> retorna um objeto que possui o método <code>mount</code>, responsável por montar a aplicação no elemento raiz da aplicação, que é o elemento <code>&lt;div id="app"&gt;</code>. A div com o id <code>app</code> é definida no arquivo <code>index.html</code>.</p>
+<p>Ao longo das atividades, você irá alterar este arquivo para adicionar novos componentes e novas funcionalidades.</p>
+<h3 id="o-arquivo-appvue">O arquivo App.vue<a class="headerlink" href="#o-arquivo-appvue" title="Permanent link">&para;</a></h3>
+<p>O arquivo <code>App.vue</code> é o componente raiz da aplicação. Ele é responsável por carregar os demais componentes da aplicação. O código a seguir mostra a conteúdo padrão, que vem com a instalação, do arquivo <code>App.vue</code>:</p>
+<div class="language-html highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">./src/App.vue</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span>
+<span class="normal"><a href="#__codelineno-7-11">11</a></span>
+<span class="normal"><a href="#__codelineno-7-12">12</a></span>
+<span class="normal"><a href="#__codelineno-7-13">13</a></span>
+<span class="normal"><a href="#__codelineno-7-14">14</a></span>
+<span class="normal"><a href="#__codelineno-7-15">15</a></span>
+<span class="normal"><a href="#__codelineno-7-16">16</a></span>
+<span class="normal"><a href="#__codelineno-7-17">17</a></span>
+<span class="normal"><a href="#__codelineno-7-18">18</a></span>
+<span class="normal"><a href="#__codelineno-7-19">19</a></span>
+<span class="normal"><a href="#__codelineno-7-20">20</a></span>
+<span class="normal"><a href="#__codelineno-7-21">21</a></span>
+<span class="normal"><a href="#__codelineno-7-22">22</a></span>
+<span class="normal"><a href="#__codelineno-7-23">23</a></span>
+<span class="normal"><a href="#__codelineno-7-24">24</a></span>
+<span class="normal"><a href="#__codelineno-7-25">25</a></span>
+<span class="normal"><a href="#__codelineno-7-26">26</a></span>
+<span class="normal"><a href="#__codelineno-7-27">27</a></span>
+<span class="normal"><a href="#__codelineno-7-28">28</a></span>
+<span class="normal"><a href="#__codelineno-7-29">29</a></span>
+<span class="normal"><a href="#__codelineno-7-30">30</a></span>
+<span class="normal"><a href="#__codelineno-7-31">31</a></span>
+<span class="normal"><a href="#__codelineno-7-32">32</a></span>
+<span class="normal"><a href="#__codelineno-7-33">33</a></span>
+<span class="normal"><a href="#__codelineno-7-34">34</a></span>
+<span class="normal"><a href="#__codelineno-7-35">35</a></span>
+<span class="normal"><a href="#__codelineno-7-36">36</a></span>
+<span class="normal"><a href="#__codelineno-7-37">37</a></span>
+<span class="normal"><a href="#__codelineno-7-38">38</a></span>
+<span class="normal"><a href="#__codelineno-7-39">39</a></span>
+<span class="normal"><a href="#__codelineno-7-40">40</a></span>
+<span class="normal"><a href="#__codelineno-7-41">41</a></span>
+<span class="normal"><a href="#__codelineno-7-42">42</a></span>
+<span class="normal"><a href="#__codelineno-7-43">43</a></span>
+<span class="normal"><a href="#__codelineno-7-44">44</a></span>
+<span class="normal"><a href="#__codelineno-7-45">45</a></span>
+<span class="normal"><a href="#__codelineno-7-46">46</a></span>
+<span class="normal"><a href="#__codelineno-7-47">47</a></span>
+<span class="normal"><a href="#__codelineno-7-48">48</a></span>
+<span class="normal"><a href="#__codelineno-7-49">49</a></span>
+<span class="normal"><a href="#__codelineno-7-50">50</a></span>
+<span class="normal"><a href="#__codelineno-7-51">51</a></span>
+<span class="normal"><a href="#__codelineno-7-52">52</a></span>
+<span class="normal"><a href="#__codelineno-7-53">53</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="p">&lt;</span><span class="nt">script</span> <span class="na">setup</span><span class="p">&gt;</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="w">  </span><span class="k">import</span><span class="w"> </span><span class="nx">HelloWorld</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./components/HelloWorld.vue&#39;</span><span class="p">;</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="w">  </span><span class="k">import</span><span class="w"> </span><span class="nx">TheWelcome</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./components/TheWelcome.vue&#39;</span><span class="p">;</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7"></a>  <span class="p">&lt;</span><span class="nt">header</span><span class="p">&gt;</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8"></a>    <span class="p">&lt;</span><span class="nt">img</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9"></a>      <span class="na">alt</span><span class="o">=</span><span class="s">&quot;Vue logo&quot;</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10"></a>      <span class="na">class</span><span class="o">=</span><span class="s">&quot;logo&quot;</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11"></a>      <span class="na">src</span><span class="o">=</span><span class="s">&quot;./assets/logo.svg&quot;</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12"></a>      <span class="na">width</span><span class="o">=</span><span class="s">&quot;125&quot;</span>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13"></a>      <span class="na">height</span><span class="o">=</span><span class="s">&quot;125&quot;</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14"></a>    <span class="p">/&gt;</span>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15"></a>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16"></a>    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;wrapper&quot;</span><span class="p">&gt;</span>
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17"></a>      <span class="p">&lt;</span><span class="nt">HelloWorld</span> <span class="na">msg</span><span class="o">=</span><span class="s">&quot;You did it!&quot;</span> <span class="p">/&gt;</span>
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18"></a>    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19"></a>  <span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span>
+</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20"></a>
+</span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21"></a>  <span class="p">&lt;</span><span class="nt">main</span><span class="p">&gt;</span>
+</span><span id="__span-7-22"><a id="__codelineno-7-22" name="__codelineno-7-22"></a>    <span class="p">&lt;</span><span class="nt">TheWelcome</span> <span class="p">/&gt;</span>
+</span><span id="__span-7-23"><a id="__codelineno-7-23" name="__codelineno-7-23"></a>  <span class="p">&lt;/</span><span class="nt">main</span><span class="p">&gt;</span>
+</span><span id="__span-7-24"><a id="__codelineno-7-24" name="__codelineno-7-24"></a><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span><span id="__span-7-25"><a id="__codelineno-7-25" name="__codelineno-7-25"></a>
+</span><span id="__span-7-26"><a id="__codelineno-7-26" name="__codelineno-7-26"></a><span class="p">&lt;</span><span class="nt">style</span> <span class="na">scoped</span><span class="p">&gt;</span>
+</span><span id="__span-7-27"><a id="__codelineno-7-27" name="__codelineno-7-27"></a><span class="w">  </span><span class="nt">header</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-28"><a id="__codelineno-7-28" name="__codelineno-7-28"></a><span class="w">    </span><span class="k">line-height</span><span class="p">:</span><span class="w"> </span><span class="mf">1.5</span><span class="p">;</span>
+</span><span id="__span-7-29"><a id="__codelineno-7-29" name="__codelineno-7-29"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-7-30"><a id="__codelineno-7-30" name="__codelineno-7-30"></a>
+</span><span id="__span-7-31"><a id="__codelineno-7-31" name="__codelineno-7-31"></a><span class="w">  </span><span class="p">.</span><span class="nc">logo</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-32"><a id="__codelineno-7-32" name="__codelineno-7-32"></a><span class="w">    </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">block</span><span class="p">;</span>
+</span><span id="__span-7-33"><a id="__codelineno-7-33" name="__codelineno-7-33"></a><span class="w">    </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="kc">auto</span><span class="w"> </span><span class="mi">2</span><span class="kt">rem</span><span class="p">;</span>
+</span><span id="__span-7-34"><a id="__codelineno-7-34" name="__codelineno-7-34"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-7-35"><a id="__codelineno-7-35" name="__codelineno-7-35"></a>
+</span><span id="__span-7-36"><a id="__codelineno-7-36" name="__codelineno-7-36"></a><span class="w">  </span><span class="p">@</span><span class="k">media</span><span class="w"> </span><span class="o">(</span><span class="nt">min-width</span><span class="o">:</span><span class="w"> </span><span class="nt">1024px</span><span class="o">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-37"><a id="__codelineno-7-37" name="__codelineno-7-37"></a><span class="w">    </span><span class="nt">header</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-38"><a id="__codelineno-7-38" name="__codelineno-7-38"></a><span class="w">      </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">flex</span><span class="p">;</span>
+</span><span id="__span-7-39"><a id="__codelineno-7-39" name="__codelineno-7-39"></a><span class="w">      </span><span class="k">place-items</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;</span>
+</span><span id="__span-7-40"><a id="__codelineno-7-40" name="__codelineno-7-40"></a><span class="w">      </span><span class="k">padding-right</span><span class="p">:</span><span class="w"> </span><span class="nb">calc</span><span class="p">(</span><span class="nf">var</span><span class="p">(</span><span class="nv">--section-gap</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+</span><span id="__span-7-41"><a id="__codelineno-7-41" name="__codelineno-7-41"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-7-42"><a id="__codelineno-7-42" name="__codelineno-7-42"></a>
+</span><span id="__span-7-43"><a id="__codelineno-7-43" name="__codelineno-7-43"></a><span class="w">    </span><span class="p">.</span><span class="nc">logo</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-44"><a id="__codelineno-7-44" name="__codelineno-7-44"></a><span class="w">      </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">2</span><span class="kt">rem</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-7-45"><a id="__codelineno-7-45" name="__codelineno-7-45"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-7-46"><a id="__codelineno-7-46" name="__codelineno-7-46"></a>
+</span><span id="__span-7-47"><a id="__codelineno-7-47" name="__codelineno-7-47"></a><span class="w">    </span><span class="nt">header</span><span class="w"> </span><span class="p">.</span><span class="nc">wrapper</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-48"><a id="__codelineno-7-48" name="__codelineno-7-48"></a><span class="w">      </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">flex</span><span class="p">;</span>
+</span><span id="__span-7-49"><a id="__codelineno-7-49" name="__codelineno-7-49"></a><span class="w">      </span><span class="k">place-items</span><span class="p">:</span><span class="w"> </span><span class="kc">flex-start</span><span class="p">;</span>
+</span><span id="__span-7-50"><a id="__codelineno-7-50" name="__codelineno-7-50"></a><span class="w">      </span><span class="k">flex-wrap</span><span class="p">:</span><span class="w"> </span><span class="kc">wrap</span><span class="p">;</span>
+</span><span id="__span-7-51"><a id="__codelineno-7-51" name="__codelineno-7-51"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-7-52"><a id="__codelineno-7-52" name="__codelineno-7-52"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-7-53"><a id="__codelineno-7-53" name="__codelineno-7-53"></a><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Neste momento, você não precisa entender o código deste arquivo. Contudo, é importante que você saiba que este é o componente raiz da aplicação. Inicialmente, ele carrega dois componentes: <code>HelloWorld</code> e <code>TheWelcome</code>. Estes componentes são definidos nos arquivos <code>HelloWorld.vue</code> e <code>TheWelcome.vue</code>, respectivamente, ambos na pasta <code>./src/components</code>.</p>
+<p>Não nos deteremos neste arquivo, pois ele será alterado ao longo das atividades.</p>
+<h2 id="componentes-de-arquivo-unico-single-file-components">Componentes de arquivo único (Single-file Components)<a class="headerlink" href="#componentes-de-arquivo-unico-single-file-components" title="Permanent link">&para;</a></h2>
+<p>Os componentes de arquivo único (Sigle-file Components) são uma forma de definir componentes no VueJs. São componentes que são definidos em um único arquivo (arquivos <code>.vue</code>), encapsulando os components lógicos (JavaScript), de template (HTML) e de estilos (CSS).</p>
+<p>O arquivo <code>App.vue</code>, apresentado anteriormente, é um exemplo de componente de arquivo único. Nesta etapa, faremos uma nova versão do arquivo <code>App.vue</code> e explicando cada parte do arquivo. O que desejamos fazer é uma página simples com dois botões: um responsável por incrementar uma unidade um valor e outro por decrementar uma unidade neste mesmo valor.</p>
+<p>Como explicado anteriormente, um componente VueJS tem três partes: lógica, template e estilos. A estrutura de um componente de arquivo único é a seguinte:</p>
+<div class="language-html highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">./src/App.vue</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-8-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-8-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-8-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-8-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-8-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-8-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-8-10">10</a></span>
+<span class="normal"><a href="#__codelineno-8-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="w">  </span><span class="c1">// Lógica do componente</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6"></a>  <span class="cm">&lt;!-- Template do componente baseado em HTML --&gt;</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8"></a>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9"></a><span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10"></a><span class="w">  </span><span class="c">/* Estilos do componente baseado em CSS */</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11"></a><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>A parte lógica do componentes, escrita em JavaScript ou TypeScript pode ser desenvolvida usando API de opções ou API de composição. Estudaremos essas duas formas na próxima etapa.</p>
+<p>Na parte de template o Vue usa uma sintaxe baseada em HTML, que permite a utilização de diretivas e expressões. As diretivas são instruções especiais que são adicionadas ao template para alterar o comportamento da renderização. As expressões são trechos de código que são avaliados e renderizados como texto.</p>
+<p>O exemplo abaixo mostra um componente de arquivo único, sem a lógica (que será apresentada a seguir), um template e um estilo:</p>
+<div class="language-html highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">./src/App.vue</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-9-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-9-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-9-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-9-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-9-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-9-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-9-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-9-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-9-10">10</a></span>
+<span class="normal"><a href="#__codelineno-9-11">11</a></span>
+<span class="normal"><a href="#__codelineno-9-12">12</a></span>
+<span class="normal"><a href="#__codelineno-9-13">13</a></span>
+<span class="normal"><a href="#__codelineno-9-14">14</a></span>
+<span class="normal"><a href="#__codelineno-9-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="w">  </span><span class="c1">// Será apresentado a seguir</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4"></a>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="hll">  <span class="p">&lt;</span><span class="nt">button</span> <span class="err">@</span><span class="na">click</span><span class="o">=</span><span class="s">&quot;incrementarContador&quot;</span><span class="p">&gt;</span>Incrementar<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span></span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7"></a><span class="hll">  <span class="p">&lt;</span><span class="nt">button</span> <span class="err">@</span><span class="na">click</span><span class="o">=</span><span class="s">&quot;decrementarContador&quot;</span><span class="p">&gt;</span>Decrementar<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span></span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8"></a><span class="hll">  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Valor do contador é: {{ contador }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9"></a><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10"></a>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11"></a><span class="p">&lt;</span><span class="nt">style</span> <span class="na">scoped</span><span class="p">&gt;</span>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12"></a><span class="hll"><span class="w">  </span><span class="nt">button</span><span class="w"> </span><span class="p">{</span>
+</span></span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13"></a><span class="hll"><span class="w">    </span><span class="k">font-weight</span><span class="p">:</span><span class="w"> </span><span class="kc">bold</span><span class="p">;</span>
+</span></span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14"></a><span class="hll"><span class="w">  </span><span class="p">}</span>
+</span></span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15"></a><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>No bloco de estilos, o atributo <code>scoped</code> indica que os estilos definidos neste bloco são aplicados apenas ao componente. Isso significa que os estilos definidos neste bloco não afetam outros componentes. Foi definido um estilo para o elemento <code>button</code> que indica que a fonte será apresentada em negrito.</p>
+<p>No bloco de template, foram definidos dois botões e um parágrafo. O primeiro botão tem um evento <code>click</code> associado a uma função chamada <code>incrementarContador</code>. O segundo botão tem um evento <code>click</code> associado a uma função chamada <code>decrementarContador</code>. O parágrafo apresenta o valor de uma variável chamada <code>contador</code>.</p>
+<p>Ao longo do curso, vamos estudar os detalhes que podem ser utilizados usando a sintaxe de templates do Vue.</p>
+<h2 id="estilos-de-escrita-de-um-componente-de-arquivo-unico">Estilos de escrita de um componente de arquivo único<a class="headerlink" href="#estilos-de-escrita-de-um-componente-de-arquivo-unico" title="Permanent link">&para;</a></h2>
+<p>Quanto à parte lógica, existem duas formas de serem escritas: usando API de opções (Options API) ou usando API de composição (Composition API). A API de opções é a forma original de escrever um componente de arquivo único, presente desde a primeira versão do VueJS. A API de composição é uma forma mais recente de escrever um componente de arquivo único, e será a que daremos preferência neste tutorial.</p>
+<p>Implementaremos a parte lógica do exemplo que estamos desenvolvendo usando as duas formas. Em ambos os casos o resultado será o mesmo. Além disso, as diferenças aparecem apenas na parte lógica, sendo que a parte de template e de estilos são idênticas.</p>
+<h3 id="usando-api-de-opcoes">Usando API de opções<a class="headerlink" href="#usando-api-de-opcoes" title="Permanent link">&para;</a></h3>
+<p>Com API de opções, o componente é definido usando a propriedade <code>options</code> do objeto <code>Vue</code>. A propriedade <code>options</code> é um objeto que contém as propriedades <code>data</code>, <code>methods</code>, <code>computed</code>, <code>watch</code>, <code>components</code>, <code>directives</code>, <code>filters</code>, <code>mixins</code>, <code>extends</code>, <code>provide</code> e <code>inject</code>. Cada uma dessas propriedades é responsável por definir um tipo de dado ou comportamento do componente.</p>
+<p>O código abaixo mostra um exemplo de componente de arquivo único usando API de opções:</p>
+<div class="language-html highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">./src/App.vue</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-10-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-10-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-10-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-10-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-10-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-10-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-10-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-10-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-10-10">10</a></span>
+<span class="normal"><a href="#__codelineno-10-11">11</a></span>
+<span class="normal"><a href="#__codelineno-10-12">12</a></span>
+<span class="normal"><a href="#__codelineno-10-13">13</a></span>
+<span class="normal"><a href="#__codelineno-10-14">14</a></span>
+<span class="normal"><a href="#__codelineno-10-15">15</a></span>
+<span class="normal"><a href="#__codelineno-10-16">16</a></span>
+<span class="normal"><a href="#__codelineno-10-17">17</a></span>
+<span class="normal"><a href="#__codelineno-10-18">18</a></span>
+<span class="normal"><a href="#__codelineno-10-19">19</a></span>
+<span class="normal"><a href="#__codelineno-10-20">20</a></span>
+<span class="normal"><a href="#__codelineno-10-21">21</a></span>
+<span class="normal"><a href="#__codelineno-10-22">22</a></span>
+<span class="normal"><a href="#__codelineno-10-23">23</a></span>
+<span class="normal"><a href="#__codelineno-10-24">24</a></span>
+<span class="normal"><a href="#__codelineno-10-25">25</a></span>
+<span class="normal"><a href="#__codelineno-10-26">26</a></span>
+<span class="normal"><a href="#__codelineno-10-27">27</a></span>
+<span class="normal"><a href="#__codelineno-10-28">28</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="hll"><span class="w">  </span><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="p">{</span>
+</span></span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="hll"><span class="w">    </span><span class="nx">data</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span></span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="hll"><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+</span></span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="hll"><span class="w">        </span><span class="nx">contador</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
+</span></span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6"></a><span class="hll"><span class="w">      </span><span class="p">};</span>
+</span></span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7"></a><span class="hll"><span class="w">    </span><span class="p">},</span>
+</span></span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8"></a><span class="hll"><span class="w">    </span><span class="nx">methods</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+</span></span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9"></a><span class="hll"><span class="w">      </span><span class="nx">incrementarContador</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span></span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10"></a><span class="hll"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">contador</span><span class="o">++</span><span class="p">;</span>
+</span></span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11"></a><span class="hll"><span class="w">      </span><span class="p">},</span>
+</span></span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12"></a><span class="hll"><span class="w">      </span><span class="nx">decrementarContador</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span></span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13"></a><span class="hll"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">contador</span><span class="o">--</span><span class="p">;</span>
+</span></span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14"></a><span class="hll"><span class="w">      </span><span class="p">},</span>
+</span></span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15"></a><span class="hll"><span class="w">    </span><span class="p">},</span>
+</span></span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16"></a><span class="hll"><span class="w">    </span><span class="nx">mounted</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span></span><span id="__span-10-17"><a id="__codelineno-10-17" name="__codelineno-10-17"></a><span class="hll"><span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`O valor inicial do contador é </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">contador</span><span class="si">}</span><span class="sb">.`</span><span class="p">);</span>
+</span></span><span id="__span-10-18"><a id="__codelineno-10-18" name="__codelineno-10-18"></a><span class="hll"><span class="w">    </span><span class="p">},</span>
+</span></span><span id="__span-10-19"><a id="__codelineno-10-19" name="__codelineno-10-19"></a><span class="hll"><span class="w">  </span><span class="p">};</span>
+</span></span><span id="__span-10-20"><a id="__codelineno-10-20" name="__codelineno-10-20"></a><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span><span id="__span-10-21"><a id="__codelineno-10-21" name="__codelineno-10-21"></a>
+</span><span id="__span-10-22"><a id="__codelineno-10-22" name="__codelineno-10-22"></a><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span><span id="__span-10-23"><a id="__codelineno-10-23" name="__codelineno-10-23"></a>  <span class="cm">&lt;!-- Template já apresentada --&gt;</span>
+</span><span id="__span-10-24"><a id="__codelineno-10-24" name="__codelineno-10-24"></a><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span><span id="__span-10-25"><a id="__codelineno-10-25" name="__codelineno-10-25"></a>
+</span><span id="__span-10-26"><a id="__codelineno-10-26" name="__codelineno-10-26"></a><span class="p">&lt;</span><span class="nt">style</span> <span class="na">scoped</span><span class="p">&gt;</span>
+</span><span id="__span-10-27"><a id="__codelineno-10-27" name="__codelineno-10-27"></a><span class="w">  </span><span class="c">/* Estilos já apresentados */</span>
+</span><span id="__span-10-28"><a id="__codelineno-10-28" name="__codelineno-10-28"></a><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Neste exemplo, note que é exportado um objeto com várias propriedades. A propriedade <code>data</code> é responsável por definir uma variável chamada <code>contador</code> que é inicializada com o valor <code>0</code>. Nesse caso, a sintaxe exige que <code>data</code> seja uma função que retorna um objeto. As propriedades desse objeto de retorno são reconhecidas pelo VueJs como <em>variáveis</em>.</p>
+<p>A propriedade <code>methods</code> é responsável por definir duas funções: <code>incrementarContador</code> e <code>decrementarContador</code>. A função <code>incrementarContador</code> incrementa em uma unidade o valor da variável <code>contador</code>. A função <code>decrementarContador</code> decrementa em uma unidade o valor da variável <code>contador</code>. Note que no bloco de template, os eventos <code>click</code> dos botões estão associados a essas funções.</p>
+<p>A propriedade <code>mounted</code> é responsável por definir uma função que será executada quando o componente for montado. Neste caso, a função imprime no console o valor inicial da variável <code>contador</code>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Dicas de uso do console</p>
+<p>Para visualizar os resultados no console, é necessário abrir o console do navegador (F12 no Chrome).</p>
+</div>
+<h3 id="usando-api-de-composicao">Usando API de composição<a class="headerlink" href="#usando-api-de-composicao" title="Permanent link">&para;</a></h3>
+<p>Com API de composição, a lógica do componente é definida usando funções, chamadas de funções de composição. As funções de composição podem ser importadas de bibliotecas externas ou podem ser definidas pelo próprio desenvolvedor.</p>
+<p>A API de composição é usada tipicamente com <code>&lt;script setup&gt;</code>. O atributo <code>setup</code> é uma propriedade especial que faz o Vue realizar transformações em tempo de compilação que permitem usar a API de composição com menos <em>boilerplate</em> (repetição de códigos). Por exemplo, importações e variáveis ou funções declaradas no bloco de <code>&lt;script setup&gt;</code> podem ser usadas diretamente no bloco de template, sem configurações adicionais.</p>
+<p>Abaixo, temos um exemplo de componente de arquivo único usando API de composição:</p>
+<div class="language-html highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">./src/App.vue</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-11-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-11-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-11-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-11-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-11-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-11-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-11-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-11-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-11-10">10</a></span>
+<span class="normal"><a href="#__codelineno-11-11">11</a></span>
+<span class="normal"><a href="#__codelineno-11-12">12</a></span>
+<span class="normal"><a href="#__codelineno-11-13">13</a></span>
+<span class="normal"><a href="#__codelineno-11-14">14</a></span>
+<span class="normal"><a href="#__codelineno-11-15">15</a></span>
+<span class="normal"><a href="#__codelineno-11-16">16</a></span>
+<span class="normal"><a href="#__codelineno-11-17">17</a></span>
+<span class="normal"><a href="#__codelineno-11-18">18</a></span>
+<span class="normal"><a href="#__codelineno-11-19">19</a></span>
+<span class="normal"><a href="#__codelineno-11-20">20</a></span>
+<span class="normal"><a href="#__codelineno-11-21">21</a></span>
+<span class="normal"><a href="#__codelineno-11-22">22</a></span>
+<span class="normal"><a href="#__codelineno-11-23">23</a></span>
+<span class="normal"><a href="#__codelineno-11-24">24</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="p">&lt;</span><span class="nt">script</span> <span class="na">setup</span><span class="p">&gt;</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="hll"><span class="w">  </span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ref</span><span class="p">,</span><span class="w"> </span><span class="nx">onMounted</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;vue&#39;</span><span class="p">;</span>
+</span></span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="hll">
+</span></span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="hll"><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">contador</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ref</span><span class="p">(</span><span class="mf">0</span><span class="p">);</span>
+</span></span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5"></a><span class="hll">
+</span></span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6"></a><span class="hll"><span class="w">  </span><span class="kd">function</span><span class="w"> </span><span class="nx">incrementarContador</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span></span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7"></a><span class="hll"><span class="w">    </span><span class="nx">contador</span><span class="p">.</span><span class="nx">value</span><span class="o">++</span><span class="p">;</span>
+</span></span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8"></a><span class="hll"><span class="w">  </span><span class="p">}</span>
+</span></span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9"></a><span class="hll"><span class="w">  </span><span class="kd">function</span><span class="w"> </span><span class="nx">decrementarContador</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span></span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10"></a><span class="hll"><span class="w">    </span><span class="nx">contador</span><span class="p">.</span><span class="nx">value</span><span class="o">--</span><span class="p">;</span>
+</span></span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11"></a><span class="hll"><span class="w">  </span><span class="p">}</span>
+</span></span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12"></a><span class="hll">
+</span></span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13"></a><span class="hll"><span class="w">  </span><span class="nx">onMounted</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span></span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14"></a><span class="hll"><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`O valor inicial do contador é </span><span class="si">${</span><span class="nx">contador</span><span class="p">.</span><span class="nx">value</span><span class="si">}</span><span class="sb">.`</span><span class="p">);</span>
+</span></span><span id="__span-11-15"><a id="__codelineno-11-15" name="__codelineno-11-15"></a><span class="hll"><span class="w">  </span><span class="p">});</span>
+</span></span><span id="__span-11-16"><a id="__codelineno-11-16" name="__codelineno-11-16"></a><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span><span id="__span-11-17"><a id="__codelineno-11-17" name="__codelineno-11-17"></a>
+</span><span id="__span-11-18"><a id="__codelineno-11-18" name="__codelineno-11-18"></a><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span><span id="__span-11-19"><a id="__codelineno-11-19" name="__codelineno-11-19"></a>  <span class="cm">&lt;!-- Template já apresentada --&gt;</span>
+</span><span id="__span-11-20"><a id="__codelineno-11-20" name="__codelineno-11-20"></a><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span><span id="__span-11-21"><a id="__codelineno-11-21" name="__codelineno-11-21"></a>
+</span><span id="__span-11-22"><a id="__codelineno-11-22" name="__codelineno-11-22"></a><span class="p">&lt;</span><span class="nt">style</span> <span class="na">scoped</span><span class="p">&gt;</span>
+</span><span id="__span-11-23"><a id="__codelineno-11-23" name="__codelineno-11-23"></a><span class="w">  </span><span class="c">/* Estilos já apresentados */</span>
+</span><span id="__span-11-24"><a id="__codelineno-11-24" name="__codelineno-11-24"></a><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Neste exemplo, note que é importada a função <code>ref</code> da biblioteca <code>vue</code>. A função <code>ref</code> é responsável por criar uma variável reativa (estudaremos esse conceito em breve). A variável <code>contador</code> é inicializada com o valor <code>0</code>.</p>
+<p>As funções <code>incrementarContador</code> e <code>decrementarContador</code> são responsáveis por incrementar e decrementar, respectivamente, em uma unidade o valor da variável <code>contador</code>. Note que no bloco de template, os eventos <code>click</code> dos botões estão associados a essas funções.</p>
+<p>Por fim, a função <code>onMounted</code> é responsável por definir uma função que será executada quando o componente for montado. Neste caso, a função imprime no console o valor inicial da variável <code>contador</code>.</p>
+<h3 id="consideracoes-importantes">Considerações importantes<a class="headerlink" href="#consideracoes-importantes" title="Permanent link">&para;</a></h3>
+<p>Ambos os exemplos apresentados acima são equivalentes. A diferença entre eles é que o primeiro usa API de opções e o segundo usa API de composição. Também os dois estilos de escrita da parte lógica podem ser usados em um mesmo projeto. Na prática, a API de opção é construída sobre a API de composição.</p>
+<p>A API de opções é centrada no conceito de uma instância de componente, que em geral é mais adaptável aos desenvolvedores que preferem o modelo baseado em classes, oriundo da Orientação a Objetos.</p>
+<p>A API de composição é centrada no conceito de funções, que em geral é mais adaptável aos desenvolvedores que preferem o modelo baseado em funções, oriundo da Programação Funcional.</p>
+<p>Mas lembre, você não precisa usar uma API ou outra. Você pode usar as duas APIs em um mesmo projeto, dependendo da situação e complexidade do componente.</p>
+<p>A figura abaixo mostra o resultado da aplicação exemplo apresentada acima. Note que o valor inicial do contador é impresso no console.</p>
+<p><img alt="Exemplo de aplicação com VueJs" src="../assets/CriacaoProjeto-IncrementadorDecrementador.png" /></p>
+<h2 id="deploy-da-aplicacao">Deploy da aplicação<a class="headerlink" href="#deploy-da-aplicacao" title="Permanent link">&para;</a></h2>
+<p>Durante o desenvolvimento, a aplicação é executada localmente, no computador do desenvolvedor. Para que a aplicação possa ser acessada por outros usuários, ela precisa ser publicada em um servidor.</p>
+<p>Duas etapas são necessárias para publicar uma aplicação VueJs:</p>
+<ul>
+<li>Compilação da aplicação</li>
+<li>Publicação da aplicação</li>
+</ul>
+<h3 id="compilacao-da-aplicacao">Compilação da aplicação<a class="headerlink" href="#compilacao-da-aplicacao" title="Permanent link">&para;</a></h3>
+<p>A compilação da aplicação é feita pelo comando:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>npm<span class="w"> </span>run<span class="w"> </span>build
+</span></code></pre></div>
+<p>Esse comando gera uma pasta <code>dist</code> com os arquivos estáticos da aplicação. Esses arquivos são os que serão publicados no servidor.</p>
+<p>Os arquivos gerados na pasta <code>dist</code> são os mesmos que são gerados pelo comando <code>npm run serve</code>. A diferença é que, ao executar o comando <code>npm run serve</code>, os arquivos são servidos pelo servidor de desenvolvimento, que é executado localmente. Já ao executar o comando <code>npm run build</code>, os arquivos são gerados para serem servidos por um servidor web.</p>
+<p>Além disso, esses arquivos são otimizados para serem servidos em produção. Por exemplo, os arquivos CSS e JS são minificados, e os arquivos de imagem são otimizados.</p>
+<h3 id="publicacao-da-aplicacao">Publicação da aplicação<a class="headerlink" href="#publicacao-da-aplicacao" title="Permanent link">&para;</a></h3>
+<p>A publicação da aplicação é feita copiando os arquivos da pasta <code>dist</code> para o servidor web. Essa etapa pode ser feita de diversas formas, dependendo do servidor web utilizado. Por exemplo, você pode instalar um servidor Web usando o Ngix ou o Apache, ou você pode utilizar um serviço de hospedagem de sites.</p>
+<p>Neste curso, vamos utilizar o serviço de hospedagem de sites <a href="https://surge.sh/">Surge</a>. O Surge é um serviço de hospedagem de sites estáticos, que permite a publicação de sites gratuitamente. Para utilizar o Surge, é necessário ter uma aplicação de linha de comando instalada. Essa aplicação é o <a href="https://surge.sh/">Surge</a>, que pode ser instalado com o comando:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>npm<span class="w"> </span>install<span class="w"> </span>-g<span class="w"> </span>surge
+</span></code></pre></div>
+<p>Ao executar o comando <code>surge</code>, o Surge solicita o e-mail e a senha do usuário. Esses dados são utilizados para autenticar o usuário no serviço. Caso o usuário não possua uma conta no Surge, o comando criará uma conta para o usuário, com os dados informados.</p>
+<p>Após a autenticação, o Surge solicita o caminho da pasta que será publicada. Neste caso, o caminho é <code>dist</code>. O Surge então publica a aplicação, e exibe a URL onde a aplicação foi publicada.</p>
+<p>Para publicar a aplicação, execute o comando, de preferência dentro da pasta <code>dist</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>surge
+</span></code></pre></div>
+<p>Algumas dicas importantes:</p>
+<ul>
+<li>Caso algum usuário já esteja autenticado no Surge, o comando <code>surge</code> publicará a aplicação para o usuário autenticado. Para publicar a aplicação para outro usuário, é necessário <em>deslogar</em> do Surge, utilizando o comando <code>surge logout</code>.</li>
+<li>O usuário correto pode ser verificado executando o comando <code>surge whoami</code>. Caso o comando retorne um e-mail, significa que o usuário está autenticado. Caso o comando retorne <code>Not logged in</code>, significa que o usuário não está autenticado.</li>
+<li>Sempre que novas alterações forem feitas na aplicação, é necessário executar o comando <code>npm run build</code> para gerar os arquivos estáticos, e então executar o comando <code>surge</code> para publicar a aplicação.</li>
+</ul>
+<h2 id="exercicios">Exercícios<a class="headerlink" href="#exercicios" title="Permanent link">&para;</a></h2>
+<p>Para exercitar o que foi aprendido, segue uma lista de exercícios para serem realizados.</p>
+<ol>
+<li>Altere a aplicação exemplo, não permitindo que o valor do contador seja menor que zero.</li>
+<li>Inclua um botão que reinicia o valor do contador para zero.</li>
+</ol>
+<p>Sugiro que ambos os exercícios sejam realizados usando a API de composição.</p>
+<h2 id="correcao-dos-exercicios">Correção dos exercícios<a class="headerlink" href="#correcao-dos-exercicios" title="Permanent link">&para;</a></h2>
+<p>Abaixo apresento uma proposta de correção dos exercícios. A correção é apresentada em dois exemplos: um usando a API de opções e outro usando a API de composição. Sugiro que você tente resolver os exercícios antes de ver a correção.</p>
+<details class="example">
+<summary>Correção dos exercícios</summary>
+<p>Abaixo as correções dos exercícios</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="correcao-dos-exercicios-correção-usando-a-api-de-opções" name="__tabbed_1" type="radio" /><input id="correcao-dos-exercicios-correção-usando-a-api-de-composição" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="correcao-dos-exercicios-correção-usando-a-api-de-opções">Correção usando a API de opções</label><label for="correcao-dos-exercicios-correção-usando-a-api-de-composição">Correção usando a API de composição</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-html highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">./src/App.vue</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-15-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-15-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-15-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-15-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-15-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-15-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-15-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-15-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-15-10">10</a></span>
+<span class="normal"><a href="#__codelineno-15-11">11</a></span>
+<span class="normal"><a href="#__codelineno-15-12">12</a></span>
+<span class="normal"><a href="#__codelineno-15-13">13</a></span>
+<span class="normal"><a href="#__codelineno-15-14">14</a></span>
+<span class="normal"><a href="#__codelineno-15-15">15</a></span>
+<span class="normal"><a href="#__codelineno-15-16">16</a></span>
+<span class="normal"><a href="#__codelineno-15-17">17</a></span>
+<span class="normal"><a href="#__codelineno-15-18">18</a></span>
+<span class="normal"><a href="#__codelineno-15-19">19</a></span>
+<span class="normal"><a href="#__codelineno-15-20">20</a></span>
+<span class="normal"><a href="#__codelineno-15-21">21</a></span>
+<span class="normal"><a href="#__codelineno-15-22">22</a></span>
+<span class="normal"><a href="#__codelineno-15-23">23</a></span>
+<span class="normal"><a href="#__codelineno-15-24">24</a></span>
+<span class="normal"><a href="#__codelineno-15-25">25</a></span>
+<span class="normal"><a href="#__codelineno-15-26">26</a></span>
+<span class="normal"><a href="#__codelineno-15-27">27</a></span>
+<span class="normal"><a href="#__codelineno-15-28">28</a></span>
+<span class="normal"><a href="#__codelineno-15-29">29</a></span>
+<span class="normal"><a href="#__codelineno-15-30">30</a></span>
+<span class="normal"><a href="#__codelineno-15-31">31</a></span>
+<span class="normal"><a href="#__codelineno-15-32">32</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2"></a><span class="w">  </span><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3"></a><span class="w">    </span><span class="nx">data</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4"></a><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5"></a><span class="w">        </span><span class="nx">contador</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6"></a><span class="w">      </span><span class="p">};</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8"></a><span class="w">    </span><span class="nx">methods</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9"></a><span class="w">      </span><span class="nx">incrementar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10"></a><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">contador</span><span class="o">++</span><span class="p">;</span>
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11"></a><span class="w">      </span><span class="p">},</span>
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12"></a><span class="w">      </span><span class="nx">decrementar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">contador</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14"></a><span class="w">          </span><span class="k">this</span><span class="p">.</span><span class="nx">contador</span><span class="o">--</span><span class="p">;</span>
+</span><span id="__span-15-15"><a id="__codelineno-15-15" name="__codelineno-15-15"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-15-16"><a id="__codelineno-15-16" name="__codelineno-15-16"></a><span class="w">      </span><span class="p">},</span>
+</span><span id="__span-15-17"><a id="__codelineno-15-17" name="__codelineno-15-17"></a><span class="w">      </span><span class="nx">reiniciar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-18"><a id="__codelineno-15-18" name="__codelineno-15-18"></a><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">contador</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+</span><span id="__span-15-19"><a id="__codelineno-15-19" name="__codelineno-15-19"></a><span class="w">      </span><span class="p">},</span>
+</span><span id="__span-15-20"><a id="__codelineno-15-20" name="__codelineno-15-20"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-15-21"><a id="__codelineno-15-21" name="__codelineno-15-21"></a><span class="w">  </span><span class="p">};</span>
+</span><span id="__span-15-22"><a id="__codelineno-15-22" name="__codelineno-15-22"></a><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span><span id="__span-15-23"><a id="__codelineno-15-23" name="__codelineno-15-23"></a>
+</span><span id="__span-15-24"><a id="__codelineno-15-24" name="__codelineno-15-24"></a><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span><span id="__span-15-25"><a id="__codelineno-15-25" name="__codelineno-15-25"></a>  <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+</span><span id="__span-15-26"><a id="__codelineno-15-26" name="__codelineno-15-26"></a>    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Contador<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</span><span id="__span-15-27"><a id="__codelineno-15-27" name="__codelineno-15-27"></a>    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span> {{ contador }} <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span><span id="__span-15-28"><a id="__codelineno-15-28" name="__codelineno-15-28"></a>    <span class="p">&lt;</span><span class="nt">button</span> <span class="err">@</span><span class="na">click</span><span class="o">=</span><span class="s">&quot;incrementar&quot;</span><span class="p">&gt;</span>Incrementar<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span><span id="__span-15-29"><a id="__codelineno-15-29" name="__codelineno-15-29"></a>    <span class="p">&lt;</span><span class="nt">button</span> <span class="err">@</span><span class="na">click</span><span class="o">=</span><span class="s">&quot;decrementar&quot;</span><span class="p">&gt;</span>Decrementar<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span><span id="__span-15-30"><a id="__codelineno-15-30" name="__codelineno-15-30"></a>    <span class="p">&lt;</span><span class="nt">button</span> <span class="err">@</span><span class="na">click</span><span class="o">=</span><span class="s">&quot;reiniciar&quot;</span><span class="p">&gt;</span>Reiniciar<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span><span id="__span-15-31"><a id="__codelineno-15-31" name="__codelineno-15-31"></a>  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span><span id="__span-15-32"><a id="__codelineno-15-32" name="__codelineno-15-32"></a><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></code></pre></div></td></tr></table></div>
+</div>
+<div class="tabbed-block">
+<div class="language-html highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">./src/App.vue</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-16-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-16-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-16-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-16-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-16-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-16-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-16-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-16-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-16-10">10</a></span>
+<span class="normal"><a href="#__codelineno-16-11">11</a></span>
+<span class="normal"><a href="#__codelineno-16-12">12</a></span>
+<span class="normal"><a href="#__codelineno-16-13">13</a></span>
+<span class="normal"><a href="#__codelineno-16-14">14</a></span>
+<span class="normal"><a href="#__codelineno-16-15">15</a></span>
+<span class="normal"><a href="#__codelineno-16-16">16</a></span>
+<span class="normal"><a href="#__codelineno-16-17">17</a></span>
+<span class="normal"><a href="#__codelineno-16-18">18</a></span>
+<span class="normal"><a href="#__codelineno-16-19">19</a></span>
+<span class="normal"><a href="#__codelineno-16-20">20</a></span>
+<span class="normal"><a href="#__codelineno-16-21">21</a></span>
+<span class="normal"><a href="#__codelineno-16-22">22</a></span>
+<span class="normal"><a href="#__codelineno-16-23">23</a></span>
+<span class="normal"><a href="#__codelineno-16-24">24</a></span>
+<span class="normal"><a href="#__codelineno-16-25">25</a></span>
+<span class="normal"><a href="#__codelineno-16-26">26</a></span>
+<span class="normal"><a href="#__codelineno-16-27">27</a></span>
+<span class="normal"><a href="#__codelineno-16-28">28</a></span>
+<span class="normal"><a href="#__codelineno-16-29">29</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="p">&lt;</span><span class="nt">script</span> <span class="na">setup</span><span class="p">&gt;</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2"></a><span class="w">  </span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ref</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;vue&#39;</span><span class="p">;</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3"></a>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">contador</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ref</span><span class="p">(</span><span class="mf">0</span><span class="p">);</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5"></a>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6"></a><span class="w">  </span><span class="kd">function</span><span class="w"> </span><span class="nx">incrementar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7"></a><span class="w">    </span><span class="nx">contador</span><span class="p">.</span><span class="nx">value</span><span class="o">++</span><span class="p">;</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9"></a>
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10"></a><span class="w">  </span><span class="kd">function</span><span class="w"> </span><span class="nx">decrementar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">contador</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12"></a><span class="w">      </span><span class="nx">contador</span><span class="p">.</span><span class="nx">value</span><span class="o">--</span><span class="p">;</span>
+</span><span id="__span-16-13"><a id="__codelineno-16-13" name="__codelineno-16-13"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-16-14"><a id="__codelineno-16-14" name="__codelineno-16-14"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-16-15"><a id="__codelineno-16-15" name="__codelineno-16-15"></a>
+</span><span id="__span-16-16"><a id="__codelineno-16-16" name="__codelineno-16-16"></a><span class="w">  </span><span class="kd">function</span><span class="w"> </span><span class="nx">reiniciar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-16-17"><a id="__codelineno-16-17" name="__codelineno-16-17"></a><span class="w">    </span><span class="nx">contador</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+</span><span id="__span-16-18"><a id="__codelineno-16-18" name="__codelineno-16-18"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-16-19"><a id="__codelineno-16-19" name="__codelineno-16-19"></a><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span><span id="__span-16-20"><a id="__codelineno-16-20" name="__codelineno-16-20"></a>
+</span><span id="__span-16-21"><a id="__codelineno-16-21" name="__codelineno-16-21"></a><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span><span id="__span-16-22"><a id="__codelineno-16-22" name="__codelineno-16-22"></a>  <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+</span><span id="__span-16-23"><a id="__codelineno-16-23" name="__codelineno-16-23"></a>    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Contador<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</span><span id="__span-16-24"><a id="__codelineno-16-24" name="__codelineno-16-24"></a>    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span> {{ contador }} <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span><span id="__span-16-25"><a id="__codelineno-16-25" name="__codelineno-16-25"></a>    <span class="p">&lt;</span><span class="nt">button</span> <span class="err">@</span><span class="na">click</span><span class="o">=</span><span class="s">&quot;incrementar&quot;</span><span class="p">&gt;</span>Incrementar<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span><span id="__span-16-26"><a id="__codelineno-16-26" name="__codelineno-16-26"></a>    <span class="p">&lt;</span><span class="nt">button</span> <span class="err">@</span><span class="na">click</span><span class="o">=</span><span class="s">&quot;decrementar&quot;</span><span class="p">&gt;</span>Decrementar<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span><span id="__span-16-27"><a id="__codelineno-16-27" name="__codelineno-16-27"></a>    <span class="p">&lt;</span><span class="nt">button</span> <span class="err">@</span><span class="na">click</span><span class="o">=</span><span class="s">&quot;reiniciar&quot;</span><span class="p">&gt;</span>Reiniciar<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span><span id="__span-16-28"><a id="__codelineno-16-28" name="__codelineno-16-28"></a>  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span><span id="__span-16-29"><a id="__codelineno-16-29" name="__codelineno-16-29"></a><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar para o topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Rodapé" >
+        
+        
+          
+          <a href="../sintaxe-templates/" class="md-footer__link md-footer__link--next" aria-label="Próximo: Sintaxe do templates">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Próximo
+              </span>
+              <div class="md-ellipsis">
+                Sintaxe do templates
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["announce.dismiss", "content.code.annotate", "content.code.copy", "content.code.select", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.instant.progress", "navigation.sections", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

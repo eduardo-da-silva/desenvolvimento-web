@@ -1,0 +1,1776 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Eduardo da Silva e Kennedy Araújo">
+      
+      
+        <link rel="canonical" href="https://eduardo-da-silva.github.io/desenvolvimento-web/listas/">
+      
+      
+        <link rel="prev" href="../reatividade/">
+      
+      
+        <link rel="next" href="../livraria-tutorial/">
+      
+      
+      <link rel="icon" href="../images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Renderização de listas - Desenvolvimento Web II</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#renderizacao-de-listas" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href=".." title="Desenvolvimento Web II" class="md-header__button md-logo" aria-label="Desenvolvimento Web II" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Desenvolvimento Web II
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Renderização de listas
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Compartilhar" aria-label="Compartilhar" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/eduardo-da-silva/desenvolvimento-web" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    eduardo-da-silva/desenvolvimento-web
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Desenvolvimento Web II" class="md-nav__button md-logo" aria-label="Desenvolvimento Web II" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Desenvolvimento Web II
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/eduardo-da-silva/desenvolvimento-web" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    eduardo-da-silva/desenvolvimento-web
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vuejs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Conhecendo o VueJS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sintaxe-templates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sintaxe do templates
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reatividade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reatividade
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Renderização de listas
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Renderização de listas
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#renderizacao-dos-elementos-de-listas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Renderização dos elementos de listas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Renderização dos elementos de listas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#renderizacao-de-arrays-de-strings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Renderização de arrays de strings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#renderizacao-de-arrays-de-objetos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Renderização de arrays de objetos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#renderizacao-de-objetos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Renderização de objetos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#renderizacao-de-arrays-de-objetos-com-objetos-aninhados" class="md-nav__link">
+    <span class="md-ellipsis">
+      Renderização de arrays de objetos com objetos aninhados
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manipulacao-de-listas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Manipulação de listas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Manipulação de listas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adicionando-elementos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adicionando elementos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removendo-elementos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Removendo elementos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#atualizando-elementos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atualizando elementos
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercícios
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exercícios">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exercicio-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercício 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exercicio-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercício 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exercicio-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercício 3
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#correcao-dos-exercicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Correção dos exercícios
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Projeto
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../livraria-tutorial/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tutorial livraria
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../componentes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Componentes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../router/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Roteamento
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../state/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Gerenciamento de estados
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../axios/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Comunicação com APIs usando Axios
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tmdb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tutorial TMDB
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#renderizacao-dos-elementos-de-listas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Renderização dos elementos de listas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Renderização dos elementos de listas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#renderizacao-de-arrays-de-strings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Renderização de arrays de strings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#renderizacao-de-arrays-de-objetos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Renderização de arrays de objetos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#renderizacao-de-objetos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Renderização de objetos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#renderizacao-de-arrays-de-objetos-com-objetos-aninhados" class="md-nav__link">
+    <span class="md-ellipsis">
+      Renderização de arrays de objetos com objetos aninhados
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manipulacao-de-listas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Manipulação de listas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Manipulação de listas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adicionando-elementos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adicionando elementos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removendo-elementos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Removendo elementos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#atualizando-elementos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atualizando elementos
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercícios
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exercícios">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exercicio-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercício 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exercicio-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercício 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exercicio-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercício 3
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#correcao-dos-exercicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Correção dos exercícios
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Projeto
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="renderizacao-de-listas">Renderização de listas<a class="headerlink" href="#renderizacao-de-listas" title="Permanent link">&para;</a></h1>
+<p>O uso de listas é muito comum em aplicações web. Em geral, as listas são geradas a partir de dados que são obtidos de um servidor. Sempre que precisamos renderizar uma lista de dados, precisamos de um mecanismo que nos permita iterar sobre os dados e gerar um elemento para cada item da lista. O VueJS oferece uma forma simples de renderizar listas de dados.</p>
+<p>Alguns exemplos de listas são:</p>
+<ul>
+<li>Lista de produtos</li>
+<li>Lista de usuários</li>
+<li>Lista de tarefas</li>
+<li>Lista de cidades</li>
+<li>Lista de países</li>
+</ul>
+<p>De forma geral, os dados em listas podem estar em um array ou em um objeto. Em um array, os dados são indexados por números. Em um objeto, os dados são indexados por chaves. Ainda, no caso dos arrays, podemos ter dados um array simples, como um array de strings, ou um array de objetos.</p>
+<p>A manipulação de listas é um dos recursos mais importantes do VueJS. Nessa aula, vamos aprender a renderizar listas de dados.</p>
+<h2 id="renderizacao-dos-elementos-de-listas">Renderização dos elementos de listas<a class="headerlink" href="#renderizacao-dos-elementos-de-listas" title="Permanent link">&para;</a></h2>
+<p>Nessa aula, vamos aprender a renderizar listas de dados. Usamos esse termo para descrever a renderização de arrays e objetos, bem como arrays de objetos.</p>
+<h3 id="renderizacao-de-arrays-de-strings">Renderização de arrays de strings<a class="headerlink" href="#renderizacao-de-arrays-de-strings" title="Permanent link">&para;</a></h3>
+<p>Para isso, inicialmente vamos criar um array de strings e renderizar cada item da lista em uma tag <code>&lt;li&gt;</code>.</p>
+<div class="language-html highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">./src/App.vue</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span>
+<span class="normal"><a href="#__codelineno-0-6">6</a></span>
+<span class="normal"><a href="#__codelineno-0-7">7</a></span>
+<span class="normal"><a href="#__codelineno-0-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="p">&lt;</span><span class="nt">script</span> <span class="na">setup</span><span class="p">&gt;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">items</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;Item 1&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Item 2&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Item 3&#39;</span><span class="p">];</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a>  <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a>    <span class="p">&lt;</span><span class="nt">li</span> <span class="na">v-for</span><span class="o">=</span><span class="s">&quot;(item, index) in items&quot;</span> <span class="na">:key</span><span class="o">=</span><span class="s">&quot;index&quot;</span><span class="p">&gt;</span>{{ item }}<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a>  <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Neste exemplo, o array <code>items</code> contém três strings. A diretiva <code>v-for</code> é usada para iterar sobre os itens do array. A variável <code>item</code> é usada para referenciar cada item da lista. A sintaxe <code>v-for="item in items"</code> é equivalente a <code>v-for="(item, index) in items"</code>. O segundo parâmetro da diretiva <code>v-for</code> é o índice do item na lista. O índice é opcional e pode ser omitido. Contudo, como precisamos de um valor único para a propriedade <code>key</code>, vamos usar o índice do item na lista.</p>
+<p>A propriedade <code>key</code> é usada pelo VueJS para identificar cada item da lista e é obrigatória quando usamos a diretiva <code>v-for</code>. Sem a propriedade <code>key</code>, o VueJS não consegue identificar cada item da lista e não consegue atualizar corretamente a lista quando os dados são alterados.</p>
+<p>Para reforçar os conceitos, é importante entender que o elemento <code>&lt;li&gt;</code> é renderizado uma vez para cada item da lista. O VueJS renderiza o elemento <code>&lt;li&gt;</code> e, em seguida, atualiza o conteúdo do elemento com o valor do item da lista. No exemplo, o elemento <code>&lt;li&gt;</code> é renderizado três vezes. A primeira vez, o conteúdo do elemento é atualizado com o valor do primeiro item da lista. A segunda vez, o conteúdo do elemento é atualizado com o valor do segundo item da lista. A terceira vez, o conteúdo do elemento é atualizado com o valor do terceiro item da lista.</p>
+<p>Por fim, fizemos a iteração no elemento <code>&lt;li&gt;</code>, mas poderíamos ter feito com qualquer outro elemento ou mesmo com um componente. Por exemplo, poderíamos ter feito a iteração no elemento <code>&lt;p&gt;</code>.</p>
+<div class="language-html highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">./src/App.vue</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span>
+<span class="normal"><a href="#__codelineno-1-5">5</a></span>
+<span class="normal"><a href="#__codelineno-1-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="p">&lt;</span><span class="nt">script</span> <span class="na">setup</span><span class="p">&gt;</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">items</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;Item 1&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Item 2&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Item 3&#39;</span><span class="p">];</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a>  <span class="p">&lt;</span><span class="nt">p</span> <span class="na">v-for</span><span class="o">=</span><span class="s">&quot;(item, index) in items&quot;</span> <span class="na">:key</span><span class="o">=</span><span class="s">&quot;index&quot;</span><span class="p">&gt;</span>{{ item }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="renderizacao-de-arrays-de-objetos">Renderização de arrays de objetos<a class="headerlink" href="#renderizacao-de-arrays-de-objetos" title="Permanent link">&para;</a></h3>
+<p>Vamos agora renderizar uma lista de objetos. Para isso, vamos criar um array de objetos e renderizar cada item da lista em uma tag <code>&lt;li&gt;</code>.</p>
+<div class="language-html highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">./src/App.vue</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="p">&lt;</span><span class="nt">script</span> <span class="na">setup</span><span class="p">&gt;</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">items</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Item 1&#39;</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Item 2&#39;</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Item 3&#39;</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="w">  </span><span class="p">];</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9"></a>  <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10"></a>    <span class="p">&lt;</span><span class="nt">li</span> <span class="na">v-for</span><span class="o">=</span><span class="s">&quot;item in items&quot;</span> <span class="na">:key</span><span class="o">=</span><span class="s">&quot;item.id&quot;</span><span class="p">&gt;</span>{{ item.name }}<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11"></a>  <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Neste exemplo, o array <code>items</code> contém três objetos. A diretiva <code>v-for</code> é usada para iterar sobre os itens do array. A variável <code>item</code> é usada para referenciar cada item da lista. A sintaxe <code>v-for="item in items"</code> é equivalente a <code>v-for="(item, index) in items"</code>. Contudo, como não precisamos do índice do item na lista, vamos usar a sintaxe mais simples. Porém, ainda precisamos de um valor único para a propriedade <code>key</code> e, neste caso, usaremos o valor da propriedade <code>id</code> do objeto.</p>
+<p>Neste exemplo, o elemento <code>&lt;li&gt;</code> é renderizado três vezes. A primeira vez, o conteúdo do elemento é atualizado com o valor da propriedade <code>name</code> do primeiro item da lista. A segunda vez, o conteúdo do elemento é atualizado com o valor da propriedade <code>name</code> do segundo item da lista. A terceira vez, o conteúdo do elemento é atualizado com o valor da propriedade <code>name</code> do terceiro item da lista.</p>
+<p>Por fim, fizemos a iteração no elemento <code>&lt;li&gt;</code>, mas poderíamos ter feito com qualquer outro elemento ou mesmo com um componente. Por exemplo, poderíamos ter feito a iteração no elemento <code>&lt;div&gt;</code>.</p>
+<div class="language-html highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">./src/App.vue</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-3-10">10</a></span>
+<span class="normal"><a href="#__codelineno-3-11">11</a></span>
+<span class="normal"><a href="#__codelineno-3-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="p">&lt;</span><span class="nt">script</span> <span class="na">setup</span><span class="p">&gt;</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">items</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Item 1&#39;</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Item 2&#39;</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Item 3&#39;</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="w">  </span><span class="p">];</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9"></a>  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">v-for</span><span class="o">=</span><span class="s">&quot;item in items&quot;</span> <span class="na">:key</span><span class="o">=</span><span class="s">&quot;item.id&quot;</span><span class="p">&gt;</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10"></a>    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{ item.name }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11"></a>  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12"></a><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="renderizacao-de-objetos">Renderização de objetos<a class="headerlink" href="#renderizacao-de-objetos" title="Permanent link">&para;</a></h3>
+<p>Vamos agora renderizar um objeto. Para isso, vamos criar um objeto e renderizar cada propriedade do objeto em uma tag <code>&lt;li&gt;</code>.</p>
+<div class="language-html highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">./src/App.vue</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span>
+<span class="normal"><a href="#__codelineno-4-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="p">&lt;</span><span class="nt">script</span> <span class="na">setup</span><span class="p">&gt;</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">items</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="w">    </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="w">    </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Item 1&#39;</span><span class="p">,</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="w">    </span><span class="nx">price</span><span class="o">:</span><span class="w"> </span><span class="mf">10.0</span><span class="p">,</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="w">  </span><span class="p">};</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9"></a>  <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10"></a>    <span class="p">&lt;</span><span class="nt">li</span> <span class="na">v-for</span><span class="o">=</span><span class="s">&quot;(value, key) in items&quot;</span> <span class="na">:key</span><span class="o">=</span><span class="s">&quot;key&quot;</span><span class="p">&gt;</span>{{ key }}: {{ value }}<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11"></a>  <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12"></a><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Neste exemplo, o objeto <code>items</code> contém três propriedades. A diretiva <code>v-for</code> é usada para iterar sobre as propriedades do objeto. As variáveis <code>value</code> e <code>key</code> são usadas para referenciar o valor e a chave de cada propriedade do objeto. A sintaxe <code>v-for="(value, key) in items"</code> é equivalente a <code>v-for="(value, key, index) in items"</code>. Contudo, como não precisamos do índice do item na lista, vamos usar a sintaxe mais simples. Porém, ainda precisamos de um valor único para a propriedade <code>key</code> e, neste caso, usaremos a própria chave da propriedade.</p>
+<p>Neste exemplo, o elemento <code>&lt;li&gt;</code> é renderizado três vezes. A primeira vez, o conteúdo do elemento é atualizado com o valor da propriedade <code>id</code> do objeto. A segunda vez, o conteúdo do elemento é atualizado com o valor da propriedade <code>description</code> do objeto. A terceira vez, o conteúdo do elemento é atualizado com o valor da propriedade <code>price</code> do objeto.</p>
+<p>O resultado da renderização é o seguinte:</p>
+<div class="language-html highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>description: Item 1<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>price: 10<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>  <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>id: 1<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span></code></pre></div>
+<p>Este exemplo é um pouco diferente dos exemplos anteriores. No exemplo anterior, o objeto <code>items</code> era iterado e cada item da lista era renderizado em um elemento <code>&lt;li&gt;</code>. Neste exemplo, o objeto <code>items</code> é iterado e cada propriedade do objeto é renderizada em um elemento <code>&lt;li&gt;</code>. Por isso, o resultado da renderização é diferente.</p>
+<p>Por fim, fizemos a iteração no elemento <code>&lt;li&gt;</code>, mas poderíamos ter feito com qualquer outro elemento ou mesmo com um componente. Por exemplo, poderíamos ter feito a iteração no elemento <code>&lt;p&gt;</code>.</p>
+<div class="language-html highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">./src/App.vue</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-6-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-6-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-6-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-6-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-6-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-6-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-6-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="p">&lt;</span><span class="nt">script</span> <span class="na">setup</span><span class="p">&gt;</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">items</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="w">    </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="w">    </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Item 1&#39;</span><span class="p">,</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="w">    </span><span class="nx">price</span><span class="o">:</span><span class="w"> </span><span class="mf">10.0</span><span class="p">,</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="w">  </span><span class="p">};</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9"></a>  <span class="p">&lt;</span><span class="nt">p</span> <span class="na">v-for</span><span class="o">=</span><span class="s">&quot;(value, key) in items&quot;</span> <span class="na">:key</span><span class="o">=</span><span class="s">&quot;key&quot;</span><span class="p">&gt;</span>{{ key }}: {{ value }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10"></a><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="renderizacao-de-arrays-de-objetos-com-objetos-aninhados">Renderização de arrays de objetos com objetos aninhados<a class="headerlink" href="#renderizacao-de-arrays-de-objetos-com-objetos-aninhados" title="Permanent link">&para;</a></h3>
+<p>Vamos agora renderizar uma lista de objetos que contém objetos aninhados. Para isso, vamos criar um array de objetos e renderizar cada item da lista em uma tag <code>&lt;li&gt;</code>.</p>
+<div class="language-html highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">./src/App.vue</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span>
+<span class="normal"><a href="#__codelineno-7-11">11</a></span>
+<span class="normal"><a href="#__codelineno-7-12">12</a></span>
+<span class="normal"><a href="#__codelineno-7-13">13</a></span>
+<span class="normal"><a href="#__codelineno-7-14">14</a></span>
+<span class="normal"><a href="#__codelineno-7-15">15</a></span>
+<span class="normal"><a href="#__codelineno-7-16">16</a></span>
+<span class="normal"><a href="#__codelineno-7-17">17</a></span>
+<span class="normal"><a href="#__codelineno-7-18">18</a></span>
+<span class="normal"><a href="#__codelineno-7-19">19</a></span>
+<span class="normal"><a href="#__codelineno-7-20">20</a></span>
+<span class="normal"><a href="#__codelineno-7-21">21</a></span>
+<span class="normal"><a href="#__codelineno-7-22">22</a></span>
+<span class="normal"><a href="#__codelineno-7-23">23</a></span>
+<span class="normal"><a href="#__codelineno-7-24">24</a></span>
+<span class="normal"><a href="#__codelineno-7-25">25</a></span>
+<span class="normal"><a href="#__codelineno-7-26">26</a></span>
+<span class="normal"><a href="#__codelineno-7-27">27</a></span>
+<span class="normal"><a href="#__codelineno-7-28">28</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="p">&lt;</span><span class="nt">script</span> <span class="na">setup</span><span class="p">&gt;</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">items</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="w">      </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="w">      </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Item 1&#39;</span><span class="p">,</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="w">      </span><span class="nx">details</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Item 1 description&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">price</span><span class="o">:</span><span class="w"> </span><span class="mf">10.0</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9"></a><span class="w">      </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10"></a><span class="w">      </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Item 2&#39;</span><span class="p">,</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11"></a><span class="w">      </span><span class="nx">details</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Item 2 description&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">price</span><span class="o">:</span><span class="w"> </span><span class="mf">20.0</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14"></a><span class="w">      </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15"></a><span class="w">      </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Item 3&#39;</span><span class="p">,</span>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16"></a><span class="w">      </span><span class="nx">details</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Item 3 description&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">price</span><span class="o">:</span><span class="w"> </span><span class="mf">30.0</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18"></a><span class="w">  </span><span class="p">];</span>
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19"></a><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20"></a><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21"></a>  <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span><span id="__span-7-22"><a id="__codelineno-7-22" name="__codelineno-7-22"></a>    <span class="p">&lt;</span><span class="nt">li</span> <span class="na">v-for</span><span class="o">=</span><span class="s">&quot;item in items&quot;</span> <span class="na">:key</span><span class="o">=</span><span class="s">&quot;item.id&quot;</span><span class="p">&gt;</span>
+</span><span id="__span-7-23"><a id="__codelineno-7-23" name="__codelineno-7-23"></a>      <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{ item.name }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span><span id="__span-7-24"><a id="__codelineno-7-24" name="__codelineno-7-24"></a>      <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{ item.details.description }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span><span id="__span-7-25"><a id="__codelineno-7-25" name="__codelineno-7-25"></a>      <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{ item.details.price }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span><span id="__span-7-26"><a id="__codelineno-7-26" name="__codelineno-7-26"></a>    <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span><span id="__span-7-27"><a id="__codelineno-7-27" name="__codelineno-7-27"></a>  <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span><span id="__span-7-28"><a id="__codelineno-7-28" name="__codelineno-7-28"></a><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Neste exemplo, o array <code>items</code> contém três objetos. A diretiva <code>v-for</code> é usada para iterar sobre os itens do array. A variável <code>item</code> é usada para referenciar cada item da lista.</p>
+<p>Poderíamos ter feito duas iterações. A primeira iteração seria para iterar sobre os itens do array e a segunda iteração seria para iterar sobre as propriedades do objeto. Veja o exemplo a seguir:</p>
+<div class="language-html highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">./src/App.vue</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-8-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-8-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-8-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-8-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-8-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-8-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-8-10">10</a></span>
+<span class="normal"><a href="#__codelineno-8-11">11</a></span>
+<span class="normal"><a href="#__codelineno-8-12">12</a></span>
+<span class="normal"><a href="#__codelineno-8-13">13</a></span>
+<span class="normal"><a href="#__codelineno-8-14">14</a></span>
+<span class="normal"><a href="#__codelineno-8-15">15</a></span>
+<span class="normal"><a href="#__codelineno-8-16">16</a></span>
+<span class="normal"><a href="#__codelineno-8-17">17</a></span>
+<span class="normal"><a href="#__codelineno-8-18">18</a></span>
+<span class="normal"><a href="#__codelineno-8-19">19</a></span>
+<span class="normal"><a href="#__codelineno-8-20">20</a></span>
+<span class="normal"><a href="#__codelineno-8-21">21</a></span>
+<span class="normal"><a href="#__codelineno-8-22">22</a></span>
+<span class="normal"><a href="#__codelineno-8-23">23</a></span>
+<span class="normal"><a href="#__codelineno-8-24">24</a></span>
+<span class="normal"><a href="#__codelineno-8-25">25</a></span>
+<span class="normal"><a href="#__codelineno-8-26">26</a></span>
+<span class="normal"><a href="#__codelineno-8-27">27</a></span>
+<span class="normal"><a href="#__codelineno-8-28">28</a></span>
+<span class="normal"><a href="#__codelineno-8-29">29</a></span>
+<span class="normal"><a href="#__codelineno-8-30">30</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="p">&lt;</span><span class="nt">script</span> <span class="na">setup</span><span class="p">&gt;</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">items</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="w">      </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="w">      </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Item 1&#39;</span><span class="p">,</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="w">      </span><span class="nx">details</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Item 1 description&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">price</span><span class="o">:</span><span class="w"> </span><span class="mf">10.0</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9"></a><span class="w">      </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10"></a><span class="w">      </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Item 2&#39;</span><span class="p">,</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11"></a><span class="w">      </span><span class="nx">details</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Item 2 description&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">price</span><span class="o">:</span><span class="w"> </span><span class="mf">20.0</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14"></a><span class="w">      </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span>
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15"></a><span class="w">      </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Item 3&#39;</span><span class="p">,</span>
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16"></a><span class="w">      </span><span class="nx">details</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Item 3 description&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">price</span><span class="o">:</span><span class="w"> </span><span class="mf">30.0</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18"></a><span class="w">  </span><span class="p">];</span>
+</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19"></a><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20"></a><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21"></a>  <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22"></a>    <span class="p">&lt;</span><span class="nt">li</span> <span class="na">v-for</span><span class="o">=</span><span class="s">&quot;item in items&quot;</span> <span class="na">:key</span><span class="o">=</span><span class="s">&quot;item.id&quot;</span><span class="p">&gt;</span>
+</span><span id="__span-8-23"><a id="__codelineno-8-23" name="__codelineno-8-23"></a>      <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Nome: {{ item.name }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span><span id="__span-8-24"><a id="__codelineno-8-24" name="__codelineno-8-24"></a>      <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Detalhes<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span><span id="__span-8-25"><a id="__codelineno-8-25" name="__codelineno-8-25"></a>      <span class="p">&lt;</span><span class="nt">p</span> <span class="na">v-for</span><span class="o">=</span><span class="s">&quot;(value, key) in item.details&quot;</span> <span class="na">:key</span><span class="o">=</span><span class="s">&quot;key&quot;</span><span class="p">&gt;</span>
+</span><span id="__span-8-26"><a id="__codelineno-8-26" name="__codelineno-8-26"></a>        {{ key }}: {{ value }}
+</span><span id="__span-8-27"><a id="__codelineno-8-27" name="__codelineno-8-27"></a>      <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span><span id="__span-8-28"><a id="__codelineno-8-28" name="__codelineno-8-28"></a>    <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span><span id="__span-8-29"><a id="__codelineno-8-29" name="__codelineno-8-29"></a>  <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span><span id="__span-8-30"><a id="__codelineno-8-30" name="__codelineno-8-30"></a><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></code></pre></div></td></tr></table></div>
+<h2 id="manipulacao-de-listas">Manipulação de listas<a class="headerlink" href="#manipulacao-de-listas" title="Permanent link">&para;</a></h2>
+<p>É comum precisarmos adicionar, remover ou atualizar elementos de uma lista. O VueJS oferece uma forma simples de manipular listas de dados.</p>
+<h3 id="adicionando-elementos">Adicionando elementos<a class="headerlink" href="#adicionando-elementos" title="Permanent link">&para;</a></h3>
+<p>Para adicionar um elemento a uma lista, basta usar o método <code>push</code> do array. O método <code>push</code> adiciona um elemento ao final do array. Veja o exemplo abaixo:</p>
+<div class="language-html highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">./src/App.vue</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-9-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-9-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-9-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-9-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-9-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-9-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-9-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-9-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-9-10">10</a></span>
+<span class="normal"><a href="#__codelineno-9-11">11</a></span>
+<span class="normal"><a href="#__codelineno-9-12">12</a></span>
+<span class="normal"><a href="#__codelineno-9-13">13</a></span>
+<span class="normal"><a href="#__codelineno-9-14">14</a></span>
+<span class="normal"><a href="#__codelineno-9-15">15</a></span>
+<span class="normal"><a href="#__codelineno-9-16">16</a></span>
+<span class="normal"><a href="#__codelineno-9-17">17</a></span>
+<span class="normal"><a href="#__codelineno-9-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="p">&lt;</span><span class="nt">script</span> <span class="na">setup</span><span class="p">&gt;</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="w">  </span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ref</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;vue&#39;</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3"></a>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">novoItem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ref</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">listaCompras</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ref</span><span class="p">([</span><span class="s1">&#39;arroz&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;batata&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;feijão&#39;</span><span class="p">])</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6"></a>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7"></a><span class="w">  </span><span class="kd">function</span><span class="w"> </span><span class="nx">adicionar</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8"></a><span class="hll"><span class="w">    </span><span class="nx">listaCompras</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">novoItem</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span>
+</span></span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9"></a><span class="w">    </span><span class="nx">novoItem</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11"></a><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12"></a><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13"></a><span class="hll">  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">v-model</span><span class="o">=</span><span class="s">&quot;novoItem&quot;</span> <span class="p">/&gt;</span>
+</span></span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14"></a><span class="hll">  <span class="p">&lt;</span><span class="nt">button</span> <span class="err">@</span><span class="na">click</span><span class="o">=</span><span class="s">&quot;adicionar&quot;</span><span class="p">&gt;</span>Adicionar<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span></span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15"></a>  <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16"></a>    <span class="p">&lt;</span><span class="nt">li</span> <span class="na">v-for</span><span class="o">=</span><span class="s">&quot;item in listaCompras&quot;</span><span class="p">&gt;</span>{{ item }<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17"></a>  <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18"></a><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Note uma diferença importante entre o exemplo acima e o exemplo da aula anterior. No exemplo anterior, a lista de compras era uma constante. Agora, a lista de compras é uma variável reativa. Isso significa que, sempre que o valor da variável <code>listaCompras</code> for alterado, o VueJS vai atualizar a lista de compras na tela.</p>
+<p>Para isso, precisamos usar a função <code>ref</code> do VueJS. A função <code>ref</code> cria uma variável reativa. A variável reativa é um objeto que contém o valor da variável e uma propriedade <code>value</code>. A propriedade <code>value</code> contém o valor da variável. Por exemplo, a variável <code>novoItem</code> é uma variável reativa. A variável <code>novoItem</code> contém a propriedade <code>value</code>. A propriedade <code>value</code> contém o valor da variável <code>novoItem</code>. Veja o exemplo abaixo:</p>
+<h3 id="removendo-elementos">Removendo elementos<a class="headerlink" href="#removendo-elementos" title="Permanent link">&para;</a></h3>
+<p>Para remover um elemento de uma lista, basta usar o método <code>splice</code> do array. O método <code>splice</code> recebe dois parâmetros: o índice do elemento a ser removido e a quantidade de elementos a serem removidos. Veja o exemplo abaixo:</p>
+<div class="language-html highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">./src/App.vue</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-10-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-10-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-10-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-10-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-10-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-10-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-10-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-10-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-10-10">10</a></span>
+<span class="normal"><a href="#__codelineno-10-11">11</a></span>
+<span class="normal"><a href="#__codelineno-10-12">12</a></span>
+<span class="normal"><a href="#__codelineno-10-13">13</a></span>
+<span class="normal"><a href="#__codelineno-10-14">14</a></span>
+<span class="normal"><a href="#__codelineno-10-15">15</a></span>
+<span class="normal"><a href="#__codelineno-10-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="p">&lt;</span><span class="nt">script</span> <span class="na">setup</span><span class="p">&gt;</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="w">  </span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ref</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;vue&#39;</span><span class="p">;</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3"></a>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">listaCompras</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ref</span><span class="p">([</span><span class="s1">&#39;arroz&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;batata&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;feijão&#39;</span><span class="p">]);</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5"></a>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6"></a><span class="w">  </span><span class="kd">function</span><span class="w"> </span><span class="nx">remover</span><span class="p">(</span><span class="nx">index</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7"></a><span class="hll"><span class="w">    </span><span class="nx">listaCompras</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span><span class="w"> </span><span class="mf">1</span><span class="p">);</span>
+</span></span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9"></a><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10"></a><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11"></a>  <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12"></a>    <span class="p">&lt;</span><span class="nt">li</span> <span class="na">v-for</span><span class="o">=</span><span class="s">&quot;(item, index) in listaCompras&quot;</span><span class="p">&gt;</span>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13"></a><span class="hll">      {{ item }}<span class="p">&lt;</span><span class="nt">button</span> <span class="err">@</span><span class="na">click</span><span class="o">=</span><span class="s">&quot;remover(index)&quot;</span><span class="p">&gt;</span>Remover<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span></span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14"></a>    <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15"></a>  <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16"></a><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="atualizando-elementos">Atualizando elementos<a class="headerlink" href="#atualizando-elementos" title="Permanent link">&para;</a></h3>
+<p>Para atualizar um elemento de uma lista, basta atribuir um novo valor ao elemento. Vamos usar como exemplo, um array de objetos. Veja o exemplo abaixo:</p>
+<div class="language-html highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">./src/App.vue</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-11-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-11-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-11-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-11-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-11-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-11-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-11-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-11-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-11-10">10</a></span>
+<span class="normal"><a href="#__codelineno-11-11">11</a></span>
+<span class="normal"><a href="#__codelineno-11-12">12</a></span>
+<span class="normal"><a href="#__codelineno-11-13">13</a></span>
+<span class="normal"><a href="#__codelineno-11-14">14</a></span>
+<span class="normal"><a href="#__codelineno-11-15">15</a></span>
+<span class="normal"><a href="#__codelineno-11-16">16</a></span>
+<span class="normal"><a href="#__codelineno-11-17">17</a></span>
+<span class="normal"><a href="#__codelineno-11-18">18</a></span>
+<span class="normal"><a href="#__codelineno-11-19">19</a></span>
+<span class="normal"><a href="#__codelineno-11-20">20</a></span>
+<span class="normal"><a href="#__codelineno-11-21">21</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="p">&lt;</span><span class="nt">script</span> <span class="na">setup</span><span class="p">&gt;</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="w">  </span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ref</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;vue&#39;</span><span class="p">;</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3"></a>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">listaCompras</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ref</span><span class="p">([</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5"></a><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">nome</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;arroz&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">quantidade</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6"></a><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">nome</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;batata&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">quantidade</span><span class="o">:</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7"></a><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nx">nome</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;feijão&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">quantidade</span><span class="o">:</span><span class="w"> </span><span class="mf">3</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8"></a><span class="w">  </span><span class="p">]);</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9"></a>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10"></a><span class="hll"><span class="w">  </span><span class="kd">function</span><span class="w"> </span><span class="nx">incrementar</span><span class="p">(</span><span class="nx">index</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span></span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11"></a><span class="hll"><span class="w">    </span><span class="nx">listaCompras</span><span class="p">.</span><span class="nx">value</span><span class="p">[</span><span class="nx">index</span><span class="p">].</span><span class="nx">quantidade</span><span class="o">++</span><span class="p">;</span>
+</span></span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12"></a><span class="hll"><span class="w">  </span><span class="p">}</span>
+</span></span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13"></a><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14"></a><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span><span id="__span-11-15"><a id="__codelineno-11-15" name="__codelineno-11-15"></a>  <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span><span id="__span-11-16"><a id="__codelineno-11-16" name="__codelineno-11-16"></a>    <span class="p">&lt;</span><span class="nt">li</span> <span class="na">v-for</span><span class="o">=</span><span class="s">&quot;(item, index) in listaCompras&quot;</span><span class="p">&gt;</span>
+</span><span id="__span-11-17"><a id="__codelineno-11-17" name="__codelineno-11-17"></a>      {{ item.nome }} - {{ item.quantidade }}
+</span><span id="__span-11-18"><a id="__codelineno-11-18" name="__codelineno-11-18"></a><span class="hll">      <span class="p">&lt;</span><span class="nt">button</span> <span class="err">@</span><span class="na">click</span><span class="o">=</span><span class="s">&quot;incrementar(index)&quot;</span><span class="p">&gt;</span>Incrementar<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span></span><span id="__span-11-19"><a id="__codelineno-11-19" name="__codelineno-11-19"></a>    <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span><span id="__span-11-20"><a id="__codelineno-11-20" name="__codelineno-11-20"></a>  <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span><span id="__span-11-21"><a id="__codelineno-11-21" name="__codelineno-11-21"></a><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Neste exemplo, a lista de compras é um array de objetos. Cada objeto representa um item da lista de compras. Cada item da lista de compras possui duas propriedades: <code>nome</code> e <code>quantidade</code>. Para atualizar a quantidade de um item, basta incrementar a propriedade <code>quantidade</code> do item.</p>
+<h2 id="exercicios">Exercícios<a class="headerlink" href="#exercicios" title="Permanent link">&para;</a></h2>
+<p>Para fixar o conteúdo, vamos resolver alguns exercícios.</p>
+<h3 id="exercicio-1">Exercício 1<a class="headerlink" href="#exercicio-1" title="Permanent link">&para;</a></h3>
+<p>Faça uma tela que renderize uma lista de cidades. O componente deve receber um array de cidades como propriedade. A lista deve ser renderizada em um elemento <code>ul</code>. Cada item da lista deve ser renderizado em um elemento <code>li</code>. As cidades iniciais devem ser:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="p">[</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">  </span><span class="s1">&#39;São Paulo&#39;</span><span class="p">,</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">  </span><span class="s1">&#39;Rio de Janeiro&#39;</span><span class="p">,</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">  </span><span class="s1">&#39;Belo Horizonte&#39;</span><span class="p">,</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">  </span><span class="s1">&#39;Salvador&#39;</span><span class="p">,</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="w">  </span><span class="s1">&#39;Fortaleza&#39;</span><span class="p">,</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="w">  </span><span class="s1">&#39;Curitiba&#39;</span><span class="p">,</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="w">  </span><span class="s1">&#39;Manaus&#39;</span><span class="p">,</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="w">  </span><span class="s1">&#39;Recife&#39;</span><span class="p">,</span>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="w">  </span><span class="s1">&#39;Porto Alegre&#39;</span><span class="p">,</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="w">  </span><span class="s1">&#39;Brasília&#39;</span><span class="p">,</span>
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="p">];</span>
+</span></code></pre></div>
+<h3 id="exercicio-2">Exercício 2<a class="headerlink" href="#exercicio-2" title="Permanent link">&para;</a></h3>
+<p>Usando o mesmo Array do exercício anterior, deve ser renderizada uma lista deve ser renderizada em ordem alfabética. A lista deve ser renderizada em um elemento <code>ul</code>. Cada item da lista deve ser renderizado em um elemento <code>li</code>. <em>Dica</em>: para ordenar um array, você pode usar o método <code>sort</code> do array, preferencialmente em uma propriedade computada.</p>
+<h3 id="exercicio-3">Exercício 3<a class="headerlink" href="#exercicio-3" title="Permanent link">&para;</a></h3>
+<p>Neste exercício você deve criar uma lista de notícias (newsletter), contendo <code>título</code>, <code>data</code>, <code>resumo da notícia</code>, <code>link da notícia</code> e, opcionalmente, a <code>imagem da notícia</code>. Deve haver um botão que, quando clicado, direcionará para a página da notícia, abrindo o link em uma nova aba. Note que você deve abrir a url que está informada na chave <code>link</code> do objeto.</p>
+<p><em>Dica 1</em>: como o link está numa variável e você precisa atribuir esse valor para o atributo <code>href</code> da tag <code>a</code>, você pode usar a diretiva v-bind para fazer isso.</p>
+<p><em>Dica 2</em>: para as imagens você pode apenas usar o endereço público da Internet de uma imagem.</p>
+<p>Abaixo, um exemplo de como o objeto de notícias pode ser estruturado:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nx">noticias</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">  </span><span class="p">{</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">    </span><span class="nx">titulo</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Título 1&#39;</span><span class="p">,</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">    </span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;01/01/2023&#39;</span><span class="p">,</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">    </span><span class="nx">resumo</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Resumo da notícia 1&#39;</span><span class="p">,</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">    </span><span class="nx">link</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;https://www.google.com&#39;</span><span class="p">,</span>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="w">    </span><span class="nx">imagem</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;https://placehold.co/600x400.png&#39;</span><span class="p">,</span>
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="w">  </span><span class="p">{</span>
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="w">    </span><span class="nx">titulo</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Título 2&#39;</span><span class="p">,</span>
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="w">    </span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;02/01/2023&#39;</span><span class="p">,</span>
+</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="w">    </span><span class="nx">resumo</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Resumo da notícia 2&#39;</span><span class="p">,</span>
+</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="w">    </span><span class="nx">link</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;https://www.google.com&#39;</span><span class="p">,</span>
+</span><span id="__span-13-14"><a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a><span class="w">    </span><span class="nx">imagem</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;https://placehold.co/600x400.png&#39;</span><span class="p">,</span>
+</span><span id="__span-13-15"><a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-13-16"><a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a><span class="p">];</span>
+</span></code></pre></div>
+<h2 id="correcao-dos-exercicios">Correção dos exercícios<a class="headerlink" href="#correcao-dos-exercicios" title="Permanent link">&para;</a></h2>
+<p>Faremos a correção dos exercícios usando a API de composição. Vamos, além disso, corrigir todos os itens num só exemplo. Sugiro que você tente resolver os exercícios antes de ver a correção. A correção é apenas uma sugestão de como você pode resolver os exercícios. Não é a única forma de resolver os exercícios.</p>
+<div class="admonition warning">
+<p class="admonition-title">Aviso</p>
+<p><strong>Importante</strong>: Não foi apresentada a correção do exercício 3, referente à lista de notícias (newsletter).</p>
+</div>
+<details class="example">
+<summary>Correção dos exercícios</summary>
+<div class="language-html highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">./src/App.vue</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">  1</a></span>
+<span class="normal"><a href="#__codelineno-14-2">  2</a></span>
+<span class="normal"><a href="#__codelineno-14-3">  3</a></span>
+<span class="normal"><a href="#__codelineno-14-4">  4</a></span>
+<span class="normal"><a href="#__codelineno-14-5">  5</a></span>
+<span class="normal"><a href="#__codelineno-14-6">  6</a></span>
+<span class="normal"><a href="#__codelineno-14-7">  7</a></span>
+<span class="normal"><a href="#__codelineno-14-8">  8</a></span>
+<span class="normal"><a href="#__codelineno-14-9">  9</a></span>
+<span class="normal"><a href="#__codelineno-14-10"> 10</a></span>
+<span class="normal"><a href="#__codelineno-14-11"> 11</a></span>
+<span class="normal"><a href="#__codelineno-14-12"> 12</a></span>
+<span class="normal"><a href="#__codelineno-14-13"> 13</a></span>
+<span class="normal"><a href="#__codelineno-14-14"> 14</a></span>
+<span class="normal"><a href="#__codelineno-14-15"> 15</a></span>
+<span class="normal"><a href="#__codelineno-14-16"> 16</a></span>
+<span class="normal"><a href="#__codelineno-14-17"> 17</a></span>
+<span class="normal"><a href="#__codelineno-14-18"> 18</a></span>
+<span class="normal"><a href="#__codelineno-14-19"> 19</a></span>
+<span class="normal"><a href="#__codelineno-14-20"> 20</a></span>
+<span class="normal"><a href="#__codelineno-14-21"> 21</a></span>
+<span class="normal"><a href="#__codelineno-14-22"> 22</a></span>
+<span class="normal"><a href="#__codelineno-14-23"> 23</a></span>
+<span class="normal"><a href="#__codelineno-14-24"> 24</a></span>
+<span class="normal"><a href="#__codelineno-14-25"> 25</a></span>
+<span class="normal"><a href="#__codelineno-14-26"> 26</a></span>
+<span class="normal"><a href="#__codelineno-14-27"> 27</a></span>
+<span class="normal"><a href="#__codelineno-14-28"> 28</a></span>
+<span class="normal"><a href="#__codelineno-14-29"> 29</a></span>
+<span class="normal"><a href="#__codelineno-14-30"> 30</a></span>
+<span class="normal"><a href="#__codelineno-14-31"> 31</a></span>
+<span class="normal"><a href="#__codelineno-14-32"> 32</a></span>
+<span class="normal"><a href="#__codelineno-14-33"> 33</a></span>
+<span class="normal"><a href="#__codelineno-14-34"> 34</a></span>
+<span class="normal"><a href="#__codelineno-14-35"> 35</a></span>
+<span class="normal"><a href="#__codelineno-14-36"> 36</a></span>
+<span class="normal"><a href="#__codelineno-14-37"> 37</a></span>
+<span class="normal"><a href="#__codelineno-14-38"> 38</a></span>
+<span class="normal"><a href="#__codelineno-14-39"> 39</a></span>
+<span class="normal"><a href="#__codelineno-14-40"> 40</a></span>
+<span class="normal"><a href="#__codelineno-14-41"> 41</a></span>
+<span class="normal"><a href="#__codelineno-14-42"> 42</a></span>
+<span class="normal"><a href="#__codelineno-14-43"> 43</a></span>
+<span class="normal"><a href="#__codelineno-14-44"> 44</a></span>
+<span class="normal"><a href="#__codelineno-14-45"> 45</a></span>
+<span class="normal"><a href="#__codelineno-14-46"> 46</a></span>
+<span class="normal"><a href="#__codelineno-14-47"> 47</a></span>
+<span class="normal"><a href="#__codelineno-14-48"> 48</a></span>
+<span class="normal"><a href="#__codelineno-14-49"> 49</a></span>
+<span class="normal"><a href="#__codelineno-14-50"> 50</a></span>
+<span class="normal"><a href="#__codelineno-14-51"> 51</a></span>
+<span class="normal"><a href="#__codelineno-14-52"> 52</a></span>
+<span class="normal"><a href="#__codelineno-14-53"> 53</a></span>
+<span class="normal"><a href="#__codelineno-14-54"> 54</a></span>
+<span class="normal"><a href="#__codelineno-14-55"> 55</a></span>
+<span class="normal"><a href="#__codelineno-14-56"> 56</a></span>
+<span class="normal"><a href="#__codelineno-14-57"> 57</a></span>
+<span class="normal"><a href="#__codelineno-14-58"> 58</a></span>
+<span class="normal"><a href="#__codelineno-14-59"> 59</a></span>
+<span class="normal"><a href="#__codelineno-14-60"> 60</a></span>
+<span class="normal"><a href="#__codelineno-14-61"> 61</a></span>
+<span class="normal"><a href="#__codelineno-14-62"> 62</a></span>
+<span class="normal"><a href="#__codelineno-14-63"> 63</a></span>
+<span class="normal"><a href="#__codelineno-14-64"> 64</a></span>
+<span class="normal"><a href="#__codelineno-14-65"> 65</a></span>
+<span class="normal"><a href="#__codelineno-14-66"> 66</a></span>
+<span class="normal"><a href="#__codelineno-14-67"> 67</a></span>
+<span class="normal"><a href="#__codelineno-14-68"> 68</a></span>
+<span class="normal"><a href="#__codelineno-14-69"> 69</a></span>
+<span class="normal"><a href="#__codelineno-14-70"> 70</a></span>
+<span class="normal"><a href="#__codelineno-14-71"> 71</a></span>
+<span class="normal"><a href="#__codelineno-14-72"> 72</a></span>
+<span class="normal"><a href="#__codelineno-14-73"> 73</a></span>
+<span class="normal"><a href="#__codelineno-14-74"> 74</a></span>
+<span class="normal"><a href="#__codelineno-14-75"> 75</a></span>
+<span class="normal"><a href="#__codelineno-14-76"> 76</a></span>
+<span class="normal"><a href="#__codelineno-14-77"> 77</a></span>
+<span class="normal"><a href="#__codelineno-14-78"> 78</a></span>
+<span class="normal"><a href="#__codelineno-14-79"> 79</a></span>
+<span class="normal"><a href="#__codelineno-14-80"> 80</a></span>
+<span class="normal"><a href="#__codelineno-14-81"> 81</a></span>
+<span class="normal"><a href="#__codelineno-14-82"> 82</a></span>
+<span class="normal"><a href="#__codelineno-14-83"> 83</a></span>
+<span class="normal"><a href="#__codelineno-14-84"> 84</a></span>
+<span class="normal"><a href="#__codelineno-14-85"> 85</a></span>
+<span class="normal"><a href="#__codelineno-14-86"> 86</a></span>
+<span class="normal"><a href="#__codelineno-14-87"> 87</a></span>
+<span class="normal"><a href="#__codelineno-14-88"> 88</a></span>
+<span class="normal"><a href="#__codelineno-14-89"> 89</a></span>
+<span class="normal"><a href="#__codelineno-14-90"> 90</a></span>
+<span class="normal"><a href="#__codelineno-14-91"> 91</a></span>
+<span class="normal"><a href="#__codelineno-14-92"> 92</a></span>
+<span class="normal"><a href="#__codelineno-14-93"> 93</a></span>
+<span class="normal"><a href="#__codelineno-14-94"> 94</a></span>
+<span class="normal"><a href="#__codelineno-14-95"> 95</a></span>
+<span class="normal"><a href="#__codelineno-14-96"> 96</a></span>
+<span class="normal"><a href="#__codelineno-14-97"> 97</a></span>
+<span class="normal"><a href="#__codelineno-14-98"> 98</a></span>
+<span class="normal"><a href="#__codelineno-14-99"> 99</a></span>
+<span class="normal"><a href="#__codelineno-14-100">100</a></span>
+<span class="normal"><a href="#__codelineno-14-101">101</a></span>
+<span class="normal"><a href="#__codelineno-14-102">102</a></span>
+<span class="normal"><a href="#__codelineno-14-103">103</a></span>
+<span class="normal"><a href="#__codelineno-14-104">104</a></span>
+<span class="normal"><a href="#__codelineno-14-105">105</a></span>
+<span class="normal"><a href="#__codelineno-14-106">106</a></span>
+<span class="normal"><a href="#__codelineno-14-107">107</a></span>
+<span class="normal"><a href="#__codelineno-14-108">108</a></span>
+<span class="normal"><a href="#__codelineno-14-109">109</a></span>
+<span class="normal"><a href="#__codelineno-14-110">110</a></span>
+<span class="normal"><a href="#__codelineno-14-111">111</a></span>
+<span class="normal"><a href="#__codelineno-14-112">112</a></span>
+<span class="normal"><a href="#__codelineno-14-113">113</a></span>
+<span class="normal"><a href="#__codelineno-14-114">114</a></span>
+<span class="normal"><a href="#__codelineno-14-115">115</a></span>
+<span class="normal"><a href="#__codelineno-14-116">116</a></span>
+<span class="normal"><a href="#__codelineno-14-117">117</a></span>
+<span class="normal"><a href="#__codelineno-14-118">118</a></span>
+<span class="normal"><a href="#__codelineno-14-119">119</a></span>
+<span class="normal"><a href="#__codelineno-14-120">120</a></span>
+<span class="normal"><a href="#__codelineno-14-121">121</a></span>
+<span class="normal"><a href="#__codelineno-14-122">122</a></span>
+<span class="normal"><a href="#__codelineno-14-123">123</a></span>
+<span class="normal"><a href="#__codelineno-14-124">124</a></span>
+<span class="normal"><a href="#__codelineno-14-125">125</a></span>
+<span class="normal"><a href="#__codelineno-14-126">126</a></span>
+<span class="normal"><a href="#__codelineno-14-127">127</a></span>
+<span class="normal"><a href="#__codelineno-14-128">128</a></span>
+<span class="normal"><a href="#__codelineno-14-129">129</a></span>
+<span class="normal"><a href="#__codelineno-14-130">130</a></span>
+<span class="normal"><a href="#__codelineno-14-131">131</a></span>
+<span class="normal"><a href="#__codelineno-14-132">132</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="p">&lt;</span><span class="nt">script</span> <span class="na">setup</span><span class="p">&gt;</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="w">  </span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">computed</span><span class="p">,</span><span class="w"> </span><span class="nx">ref</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;vue&#39;</span><span class="p">;</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3"></a>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">cidade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ref</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">cidades</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ref</span><span class="p">([</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6"></a><span class="w">    </span><span class="s1">&#39;São Paulo&#39;</span><span class="p">,</span>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7"></a><span class="w">    </span><span class="s1">&#39;Rio de Janeiro&#39;</span><span class="p">,</span>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8"></a><span class="w">    </span><span class="s1">&#39;Belo Horizonte&#39;</span><span class="p">,</span>
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9"></a><span class="w">    </span><span class="s1">&#39;Salvador&#39;</span><span class="p">,</span>
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10"></a><span class="w">    </span><span class="s1">&#39;Fortaleza&#39;</span><span class="p">,</span>
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11"></a><span class="w">    </span><span class="s1">&#39;Curitiba&#39;</span><span class="p">,</span>
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12"></a><span class="w">    </span><span class="s1">&#39;Manaus&#39;</span><span class="p">,</span>
+</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13"></a><span class="w">    </span><span class="s1">&#39;Recife&#39;</span><span class="p">,</span>
+</span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14"></a><span class="w">    </span><span class="s1">&#39;Porto Alegre&#39;</span><span class="p">,</span>
+</span><span id="__span-14-15"><a id="__codelineno-14-15" name="__codelineno-14-15"></a><span class="w">    </span><span class="s1">&#39;Brasília&#39;</span><span class="p">,</span>
+</span><span id="__span-14-16"><a id="__codelineno-14-16" name="__codelineno-14-16"></a><span class="w">  </span><span class="p">]);</span>
+</span><span id="__span-14-17"><a id="__codelineno-14-17" name="__codelineno-14-17"></a>
+</span><span id="__span-14-18"><a id="__codelineno-14-18" name="__codelineno-14-18"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">cidadesOrdenadas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">computed</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">[...</span><span class="nx">cidades</span><span class="p">.</span><span class="nx">value</span><span class="p">].</span><span class="nx">sort</span><span class="p">());</span>
+</span><span id="__span-14-19"><a id="__codelineno-14-19" name="__codelineno-14-19"></a>
+</span><span id="__span-14-20"><a id="__codelineno-14-20" name="__codelineno-14-20"></a><span class="w">  </span><span class="kd">function</span><span class="w"> </span><span class="nx">adicionarCidade</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-14-21"><a id="__codelineno-14-21" name="__codelineno-14-21"></a><span class="w">    </span><span class="nx">cidades</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">cidade</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+</span><span id="__span-14-22"><a id="__codelineno-14-22" name="__codelineno-14-22"></a><span class="w">    </span><span class="nx">cidade</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span>
+</span><span id="__span-14-23"><a id="__codelineno-14-23" name="__codelineno-14-23"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-14-24"><a id="__codelineno-14-24" name="__codelineno-14-24"></a>
+</span><span id="__span-14-25"><a id="__codelineno-14-25" name="__codelineno-14-25"></a><span class="w">  </span><span class="kd">function</span><span class="w"> </span><span class="nx">removerCidade</span><span class="p">(</span><span class="nx">index</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-14-26"><a id="__codelineno-14-26" name="__codelineno-14-26"></a><span class="w">    </span><span class="nx">cidades</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span><span class="w"> </span><span class="mf">1</span><span class="p">);</span>
+</span><span id="__span-14-27"><a id="__codelineno-14-27" name="__codelineno-14-27"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-14-28"><a id="__codelineno-14-28" name="__codelineno-14-28"></a><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span><span id="__span-14-29"><a id="__codelineno-14-29" name="__codelineno-14-29"></a>
+</span><span id="__span-14-30"><a id="__codelineno-14-30" name="__codelineno-14-30"></a><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span><span id="__span-14-31"><a id="__codelineno-14-31" name="__codelineno-14-31"></a>  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;correcao&quot;</span><span class="p">&gt;</span>
+</span><span id="__span-14-32"><a id="__codelineno-14-32" name="__codelineno-14-32"></a>    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Correção dos exercícios<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</span><span id="__span-14-33"><a id="__codelineno-14-33" name="__codelineno-14-33"></a>    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form&quot;</span><span class="p">&gt;</span>
+</span><span id="__span-14-34"><a id="__codelineno-14-34" name="__codelineno-14-34"></a>      <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Formulário de cidades<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+</span><span id="__span-14-35"><a id="__codelineno-14-35" name="__codelineno-14-35"></a>      <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">v-model</span><span class="o">=</span><span class="s">&quot;cidade&quot;</span> <span class="p">/&gt;</span>
+</span><span id="__span-14-36"><a id="__codelineno-14-36" name="__codelineno-14-36"></a>      <span class="p">&lt;</span><span class="nt">button</span> <span class="err">@</span><span class="na">click</span><span class="o">=</span><span class="s">&quot;adicionarCidade&quot;</span><span class="p">&gt;</span>Adicionar<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span><span id="__span-14-37"><a id="__codelineno-14-37" name="__codelineno-14-37"></a>    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span><span id="__span-14-38"><a id="__codelineno-14-38" name="__codelineno-14-38"></a>    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;resultados&quot;</span><span class="p">&gt;</span>
+</span><span id="__span-14-39"><a id="__codelineno-14-39" name="__codelineno-14-39"></a>      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;cidades&quot;</span><span class="p">&gt;</span>
+</span><span id="__span-14-40"><a id="__codelineno-14-40" name="__codelineno-14-40"></a>        <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Lista de cidades<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+</span><span id="__span-14-41"><a id="__codelineno-14-41" name="__codelineno-14-41"></a>        <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span><span id="__span-14-42"><a id="__codelineno-14-42" name="__codelineno-14-42"></a>          <span class="p">&lt;</span><span class="nt">li</span> <span class="na">v-for</span><span class="o">=</span><span class="s">&quot;(cidade, index) in cidades&quot;</span> <span class="na">:key</span><span class="o">=</span><span class="s">&quot;index&quot;</span><span class="p">&gt;</span>
+</span><span id="__span-14-43"><a id="__codelineno-14-43" name="__codelineno-14-43"></a>             {{ cidade }}
+</span><span id="__span-14-44"><a id="__codelineno-14-44" name="__codelineno-14-44"></a>            <span class="p">&lt;</span><span class="nt">button</span> <span class="err">@</span><span class="na">click</span><span class="o">=</span><span class="s">&quot;removerCidade(index)&quot;</span><span class="p">&gt;</span>Remover<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span><span id="__span-14-45"><a id="__codelineno-14-45" name="__codelineno-14-45"></a>          <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span><span id="__span-14-46"><a id="__codelineno-14-46" name="__codelineno-14-46"></a>        <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span><span id="__span-14-47"><a id="__codelineno-14-47" name="__codelineno-14-47"></a>      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span><span id="__span-14-48"><a id="__codelineno-14-48" name="__codelineno-14-48"></a>      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;cidades&quot;</span><span class="p">&gt;</span>
+</span><span id="__span-14-49"><a id="__codelineno-14-49" name="__codelineno-14-49"></a>        <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Cidades ordenadas<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+</span><span id="__span-14-50"><a id="__codelineno-14-50" name="__codelineno-14-50"></a>        <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span><span id="__span-14-51"><a id="__codelineno-14-51" name="__codelineno-14-51"></a>          <span class="p">&lt;</span><span class="nt">li</span> <span class="na">v-for</span><span class="o">=</span><span class="s">&quot;cidade in cidadesOrdenadas&quot;</span> <span class="na">:key</span><span class="o">=</span><span class="s">&quot;cidade&quot;</span><span class="p">&gt;</span>
+</span><span id="__span-14-52"><a id="__codelineno-14-52" name="__codelineno-14-52"></a>             {{ cidade }}
+</span><span id="__span-14-53"><a id="__codelineno-14-53" name="__codelineno-14-53"></a>          <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span><span id="__span-14-54"><a id="__codelineno-14-54" name="__codelineno-14-54"></a>        <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span><span id="__span-14-55"><a id="__codelineno-14-55" name="__codelineno-14-55"></a>      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span><span id="__span-14-56"><a id="__codelineno-14-56" name="__codelineno-14-56"></a>    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span><span id="__span-14-57"><a id="__codelineno-14-57" name="__codelineno-14-57"></a>  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span><span id="__span-14-58"><a id="__codelineno-14-58" name="__codelineno-14-58"></a><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span><span id="__span-14-59"><a id="__codelineno-14-59" name="__codelineno-14-59"></a>
+</span><span id="__span-14-60"><a id="__codelineno-14-60" name="__codelineno-14-60"></a><span class="p">&lt;</span><span class="nt">style</span> <span class="na">scoped</span><span class="p">&gt;</span>
+</span><span id="__span-14-61"><a id="__codelineno-14-61" name="__codelineno-14-61"></a><span class="w">  </span><span class="nt">button</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-14-62"><a id="__codelineno-14-62" name="__codelineno-14-62"></a><span class="w">    </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+</span><span id="__span-14-63"><a id="__codelineno-14-63" name="__codelineno-14-63"></a><span class="w">    </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span><span class="p">;</span>
+</span><span id="__span-14-64"><a id="__codelineno-14-64" name="__codelineno-14-64"></a><span class="w">    </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="kt">px</span><span class="p">;</span>
+</span><span id="__span-14-65"><a id="__codelineno-14-65" name="__codelineno-14-65"></a><span class="w">    </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="mh">#007bff</span><span class="p">;</span>
+</span><span id="__span-14-66"><a id="__codelineno-14-66" name="__codelineno-14-66"></a><span class="w">    </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#fff</span><span class="p">;</span>
+</span><span id="__span-14-67"><a id="__codelineno-14-67" name="__codelineno-14-67"></a><span class="w">    </span><span class="k">cursor</span><span class="p">:</span><span class="w"> </span><span class="kc">pointer</span><span class="p">;</span>
+</span><span id="__span-14-68"><a id="__codelineno-14-68" name="__codelineno-14-68"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-14-69"><a id="__codelineno-14-69" name="__codelineno-14-69"></a>
+</span><span id="__span-14-70"><a id="__codelineno-14-70" name="__codelineno-14-70"></a><span class="w">  </span><span class="nt">button</span><span class="p">:</span><span class="nd">hover</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-14-71"><a id="__codelineno-14-71" name="__codelineno-14-71"></a><span class="w">    </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="mh">#0056b3</span><span class="p">;</span>
+</span><span id="__span-14-72"><a id="__codelineno-14-72" name="__codelineno-14-72"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-14-73"><a id="__codelineno-14-73" name="__codelineno-14-73"></a>
+</span><span id="__span-14-74"><a id="__codelineno-14-74" name="__codelineno-14-74"></a><span class="w">  </span><span class="p">.</span><span class="nc">correcao</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-14-75"><a id="__codelineno-14-75" name="__codelineno-14-75"></a><span class="w">    </span><span class="k">text-align</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;</span>
+</span><span id="__span-14-76"><a id="__codelineno-14-76" name="__codelineno-14-76"></a><span class="w">    </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">flex</span><span class="p">;</span>
+</span><span id="__span-14-77"><a id="__codelineno-14-77" name="__codelineno-14-77"></a><span class="w">    </span><span class="k">flex-direction</span><span class="p">:</span><span class="w"> </span><span class="kc">column</span><span class="p">;</span>
+</span><span id="__span-14-78"><a id="__codelineno-14-78" name="__codelineno-14-78"></a><span class="w">    </span><span class="k">align-items</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;</span>
+</span><span id="__span-14-79"><a id="__codelineno-14-79" name="__codelineno-14-79"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-14-80"><a id="__codelineno-14-80" name="__codelineno-14-80"></a>
+</span><span id="__span-14-81"><a id="__codelineno-14-81" name="__codelineno-14-81"></a><span class="w">  </span><span class="p">.</span><span class="nc">form</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-14-82"><a id="__codelineno-14-82" name="__codelineno-14-82"></a><span class="w">    </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="kt">px</span><span class="w"> </span><span class="kc">auto</span><span class="p">;</span>
+</span><span id="__span-14-83"><a id="__codelineno-14-83" name="__codelineno-14-83"></a><span class="w">    </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="mh">#f5f5f5</span><span class="p">;</span>
+</span><span id="__span-14-84"><a id="__codelineno-14-84" name="__codelineno-14-84"></a><span class="w">    </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+</span><span id="__span-14-85"><a id="__codelineno-14-85" name="__codelineno-14-85"></a><span class="w">    </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="kt">px</span><span class="p">;</span>
+</span><span id="__span-14-86"><a id="__codelineno-14-86" name="__codelineno-14-86"></a><span class="w">    </span><span class="k">box-shadow</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">10</span><span class="kt">px</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1</span><span class="p">);</span>
+</span><span id="__span-14-87"><a id="__codelineno-14-87" name="__codelineno-14-87"></a><span class="w">    </span><span class="k">width</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="kt">%</span><span class="p">;</span>
+</span><span id="__span-14-88"><a id="__codelineno-14-88" name="__codelineno-14-88"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-14-89"><a id="__codelineno-14-89" name="__codelineno-14-89"></a>
+</span><span id="__span-14-90"><a id="__codelineno-14-90" name="__codelineno-14-90"></a><span class="w">  </span><span class="p">.</span><span class="nc">form</span><span class="w"> </span><span class="nt">input</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-14-91"><a id="__codelineno-14-91" name="__codelineno-14-91"></a><span class="w">    </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+</span><span id="__span-14-92"><a id="__codelineno-14-92" name="__codelineno-14-92"></a><span class="w">    </span><span class="k">margin-right</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+</span><span id="__span-14-93"><a id="__codelineno-14-93" name="__codelineno-14-93"></a><span class="w">    </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="mh">#ccc</span><span class="p">;</span>
+</span><span id="__span-14-94"><a id="__codelineno-14-94" name="__codelineno-14-94"></a><span class="w">    </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="kt">px</span><span class="p">;</span>
+</span><span id="__span-14-95"><a id="__codelineno-14-95" name="__codelineno-14-95"></a><span class="w">    </span><span class="k">width</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="kt">%</span><span class="p">;</span>
+</span><span id="__span-14-96"><a id="__codelineno-14-96" name="__codelineno-14-96"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-14-97"><a id="__codelineno-14-97" name="__codelineno-14-97"></a>
+</span><span id="__span-14-98"><a id="__codelineno-14-98" name="__codelineno-14-98"></a><span class="w">  </span><span class="p">.</span><span class="nc">resultados</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-14-99"><a id="__codelineno-14-99" name="__codelineno-14-99"></a><span class="w">    </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">flex</span><span class="p">;</span>
+</span><span id="__span-14-100"><a id="__codelineno-14-100" name="__codelineno-14-100"></a><span class="w">    </span><span class="k">justify-content</span><span class="p">:</span><span class="w"> </span><span class="kc">space-between</span><span class="p">;</span>
+</span><span id="__span-14-101"><a id="__codelineno-14-101" name="__codelineno-14-101"></a><span class="w">    </span><span class="k">width</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="kt">%</span><span class="p">;</span>
+</span><span id="__span-14-102"><a id="__codelineno-14-102" name="__codelineno-14-102"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-14-103"><a id="__codelineno-14-103" name="__codelineno-14-103"></a>
+</span><span id="__span-14-104"><a id="__codelineno-14-104" name="__codelineno-14-104"></a><span class="w">  </span><span class="p">.</span><span class="nc">cidades</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-14-105"><a id="__codelineno-14-105" name="__codelineno-14-105"></a><span class="w">    </span><span class="k">margin-bottom</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+</span><span id="__span-14-106"><a id="__codelineno-14-106" name="__codelineno-14-106"></a><span class="w">    </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="mh">#f5f5f5</span><span class="p">;</span>
+</span><span id="__span-14-107"><a id="__codelineno-14-107" name="__codelineno-14-107"></a><span class="w">    </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+</span><span id="__span-14-108"><a id="__codelineno-14-108" name="__codelineno-14-108"></a><span class="w">    </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="kt">px</span><span class="p">;</span>
+</span><span id="__span-14-109"><a id="__codelineno-14-109" name="__codelineno-14-109"></a><span class="w">    </span><span class="k">box-shadow</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">10</span><span class="kt">px</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1</span><span class="p">);</span>
+</span><span id="__span-14-110"><a id="__codelineno-14-110" name="__codelineno-14-110"></a><span class="w">    </span><span class="k">width</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="kt">%</span><span class="p">;</span>
+</span><span id="__span-14-111"><a id="__codelineno-14-111" name="__codelineno-14-111"></a><span class="w">    </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">flex</span><span class="p">;</span>
+</span><span id="__span-14-112"><a id="__codelineno-14-112" name="__codelineno-14-112"></a><span class="w">    </span><span class="k">flex-direction</span><span class="p">:</span><span class="w"> </span><span class="kc">column</span><span class="p">;</span>
+</span><span id="__span-14-113"><a id="__codelineno-14-113" name="__codelineno-14-113"></a><span class="w">    </span><span class="k">align-items</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;</span>
+</span><span id="__span-14-114"><a id="__codelineno-14-114" name="__codelineno-14-114"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-14-115"><a id="__codelineno-14-115" name="__codelineno-14-115"></a>
+</span><span id="__span-14-116"><a id="__codelineno-14-116" name="__codelineno-14-116"></a><span class="w">  </span><span class="p">.</span><span class="nc">cidades</span><span class="w"> </span><span class="nt">ul</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-14-117"><a id="__codelineno-14-117" name="__codelineno-14-117"></a><span class="w">    </span><span class="k">list-style</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span><span class="p">;</span>
+</span><span id="__span-14-118"><a id="__codelineno-14-118" name="__codelineno-14-118"></a><span class="w">    </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-14-119"><a id="__codelineno-14-119" name="__codelineno-14-119"></a><span class="w">    </span><span class="k">width</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="kt">%</span><span class="p">;</span>
+</span><span id="__span-14-120"><a id="__codelineno-14-120" name="__codelineno-14-120"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-14-121"><a id="__codelineno-14-121" name="__codelineno-14-121"></a>
+</span><span id="__span-14-122"><a id="__codelineno-14-122" name="__codelineno-14-122"></a><span class="w">  </span><span class="p">.</span><span class="nc">cidades</span><span class="w"> </span><span class="nt">li</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-14-123"><a id="__codelineno-14-123" name="__codelineno-14-123"></a><span class="w">    </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">flex</span><span class="p">;</span>
+</span><span id="__span-14-124"><a id="__codelineno-14-124" name="__codelineno-14-124"></a><span class="w">    </span><span class="k">justify-content</span><span class="p">:</span><span class="w"> </span><span class="kc">space-between</span><span class="p">;</span>
+</span><span id="__span-14-125"><a id="__codelineno-14-125" name="__codelineno-14-125"></a><span class="w">    </span><span class="k">align-items</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;</span>
+</span><span id="__span-14-126"><a id="__codelineno-14-126" name="__codelineno-14-126"></a><span class="w">    </span><span class="k">margin-bottom</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+</span><span id="__span-14-127"><a id="__codelineno-14-127" name="__codelineno-14-127"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-14-128"><a id="__codelineno-14-128" name="__codelineno-14-128"></a>
+</span><span id="__span-14-129"><a id="__codelineno-14-129" name="__codelineno-14-129"></a><span class="w">  </span><span class="p">.</span><span class="nc">cidades</span><span class="w"> </span><span class="nt">button</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-14-130"><a id="__codelineno-14-130" name="__codelineno-14-130"></a><span class="w">    </span><span class="k">margin-left</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+</span><span id="__span-14-131"><a id="__codelineno-14-131" name="__codelineno-14-131"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-14-132"><a id="__codelineno-14-132" name="__codelineno-14-132"></a><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</span></code></pre></div></td></tr></table></div>
+</details>
+<p>Note que esta é uma das formas de corrigir os exercícios. Existem outras
+formas de fazer a mesma coisa. O importante é entender os conceitos e como
+utilizá-los.</p>
+<h2 id="projeto">Projeto<a class="headerlink" href="#projeto" title="Permanent link">&para;</a></h2>
+<p>Neste projeto você deve desenvolver um protótipo de um carrinho de compras de uma livraria. Nesse caso, crie uma lista fixa de produtos, como descrito abaixo:</p>
+<div class="admonition example">
+<p class="admonition-title">Estrutura do objeto de produtos</p>
+<div class="language-js highlight"><span class="filename">App.vue</span><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">produtos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">        </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">        </span><span class="nx">titulo</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Livro 1&#39;</span><span class="p">,</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">        </span><span class="nx">resenha</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Descrição breve 1&#39;</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="w">        </span><span class="nx">preco</span><span class="o">:</span><span class="w"> </span><span class="mf">49.9</span><span class="p">,</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="w">        </span><span class="nx">capa</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;https://placehold.co/600x400.png&#39;</span><span class="p">,</span>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="w">        </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span>
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="w">        </span><span class="nx">titulo</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Livro 2&#39;</span><span class="p">,</span>
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="w">        </span><span class="nx">resenha</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Descrição breve 2&#39;</span>
+</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="w">        </span><span class="nx">preco</span><span class="o">:</span><span class="w"> </span><span class="mf">99.9</span><span class="p">,</span>
+</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a><span class="w">        </span><span class="nx">capa</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;https://placehold.co/600x400.png&#39;</span><span class="p">,</span>
+</span><span id="__span-15-15"><a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-15-16"><a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-15-17"><a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a><span class="w">        </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span>
+</span><span id="__span-15-18"><a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a><span class="w">        </span><span class="nx">titulo</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Livro 3&#39;</span><span class="p">,</span>
+</span><span id="__span-15-19"><a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a><span class="w">        </span><span class="nx">resenha</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Descrição breve 3&#39;</span>
+</span><span id="__span-15-20"><a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a><span class="w">        </span><span class="nx">preco</span><span class="o">:</span><span class="w"> </span><span class="mf">9.9</span><span class="p">,</span>
+</span><span id="__span-15-21"><a id="__codelineno-15-21" name="__codelineno-15-21" href="#__codelineno-15-21"></a><span class="w">        </span><span class="nx">capa</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;https://placehold.co/600x400.png&#39;</span><span class="p">,</span>
+</span><span id="__span-15-22"><a id="__codelineno-15-22" name="__codelineno-15-22" href="#__codelineno-15-22"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-15-23"><a id="__codelineno-15-23" name="__codelineno-15-23" href="#__codelineno-15-23"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-15-24"><a id="__codelineno-15-24" name="__codelineno-15-24" href="#__codelineno-15-24"></a><span class="w">        </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span>
+</span><span id="__span-15-25"><a id="__codelineno-15-25" name="__codelineno-15-25" href="#__codelineno-15-25"></a><span class="w">        </span><span class="nx">titulo</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Livro 4&#39;</span><span class="p">,</span>
+</span><span id="__span-15-26"><a id="__codelineno-15-26" name="__codelineno-15-26" href="#__codelineno-15-26"></a><span class="w">        </span><span class="nx">resenha</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Descrição breve 4&#39;</span>
+</span><span id="__span-15-27"><a id="__codelineno-15-27" name="__codelineno-15-27" href="#__codelineno-15-27"></a><span class="w">        </span><span class="nx">preco</span><span class="o">:</span><span class="w"> </span><span class="mf">199.9</span><span class="p">,</span>
+</span><span id="__span-15-28"><a id="__codelineno-15-28" name="__codelineno-15-28" href="#__codelineno-15-28"></a><span class="w">        </span><span class="nx">capa</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;https://placehold.co/600x400.png&#39;</span><span class="p">,</span>
+</span><span id="__span-15-29"><a id="__codelineno-15-29" name="__codelineno-15-29" href="#__codelineno-15-29"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-15-30"><a id="__codelineno-15-30" name="__codelineno-15-30" href="#__codelineno-15-30"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-15-31"><a id="__codelineno-15-31" name="__codelineno-15-31" href="#__codelineno-15-31"></a><span class="w">        </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="mf">5</span><span class="p">,</span>
+</span><span id="__span-15-32"><a id="__codelineno-15-32" name="__codelineno-15-32" href="#__codelineno-15-32"></a><span class="w">        </span><span class="nx">titulo</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Livro 5&#39;</span><span class="p">,</span>
+</span><span id="__span-15-33"><a id="__codelineno-15-33" name="__codelineno-15-33" href="#__codelineno-15-33"></a><span class="w">        </span><span class="nx">resenha</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Descrição breve 5&#39;</span>
+</span><span id="__span-15-34"><a id="__codelineno-15-34" name="__codelineno-15-34" href="#__codelineno-15-34"></a><span class="w">        </span><span class="nx">preco</span><span class="o">:</span><span class="w"> </span><span class="mf">29.9</span><span class="p">,</span>
+</span><span id="__span-15-35"><a id="__codelineno-15-35" name="__codelineno-15-35" href="#__codelineno-15-35"></a><span class="w">        </span><span class="nx">capa</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;https://placehold.co/600x400.png&#39;</span><span class="p">,</span>
+</span><span id="__span-15-36"><a id="__codelineno-15-36" name="__codelineno-15-36" href="#__codelineno-15-36"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-15-37"><a id="__codelineno-15-37" name="__codelineno-15-37" href="#__codelineno-15-37"></a><span class="p">];</span>
+</span></code></pre></div>
+</div>
+<p>O usuário deve poder adicionar os livros ao carrinho. Para isso, deve ser renderizada uma lista de livros. O usuário deve poder clicar em um produto para adicioná-lo ao carrinho. O carrinho deve ser renderizado em uma <code>div</code> ou <code>section</code> abaixo da listagem dos produtos ou ficar escondida e ser apresentada quando clicar no ícone <code>carrinho</code> do <code>layout</code> proposto. (<em>Dica:</em> pode ser criada uma variável<code>booleana</code> para controlar essa função de visibilidade do carrinho).</p>
+<p>Em cada item do carrinho deve ter a opção de adicionar quantidade ou remover o item do carrinho. Ao final, deve ser apresentado o valor total dos itens no carrinho, que pode ser calculado a partir da quantidade de cada item e do preço do livro.</p>
+<p>Uma sugestão para a estrutura do objeto do carrinho é:</p>
+<div class="admonition example">
+<p class="admonition-title">Estrutura do objeto do carrinho</p>
+<div class="language-js highlight"><span class="filename">App.vue</span><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">carrinho</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">    </span><span class="nx">items</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">            </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">            </span><span class="nx">nome</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Livro 1&#39;</span><span class="p">,</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">            </span><span class="nx">preco</span><span class="o">:</span><span class="w"> </span><span class="mf">49.9</span><span class="p">,</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="w">            </span><span class="nx">quantidade</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="w">            </span><span class="nx">valorTotal</span><span class="o">:</span><span class="w"> </span><span class="mf">49.9</span><span class="p">,</span>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="w">            </span><span class="p">},</span>
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="w">            </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span>
+</span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a><span class="w">            </span><span class="nx">nome</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Livro 2&#39;</span><span class="p">,</span>
+</span><span id="__span-16-13"><a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a><span class="w">            </span><span class="nx">preco</span><span class="o">:</span><span class="w"> </span><span class="mf">99.9</span><span class="p">,</span>
+</span><span id="__span-16-14"><a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a><span class="w">            </span><span class="nx">quantidade</span><span class="o">:</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span>
+</span><span id="__span-16-15"><a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a><span class="w">            </span><span class="nx">valorTotal</span><span class="o">:</span><span class="w"> </span><span class="mf">199.8</span><span class="p">,</span>
+</span><span id="__span-16-16"><a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a><span class="w">        </span><span class="p">},</span>
+</span><span id="__span-16-17"><a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a><span class="w">    </span><span class="p">],</span>
+</span><span id="__span-16-18"><a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a><span class="w">    </span><span class="nx">frete</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
+</span><span id="__span-16-19"><a id="__codelineno-16-19" name="__codelineno-16-19" href="#__codelineno-16-19"></a><span class="w">    </span><span class="nx">desconto</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span>
+</span><span id="__span-16-20"><a id="__codelineno-16-20" name="__codelineno-16-20" href="#__codelineno-16-20"></a><span class="w">    </span><span class="nx">total</span><span class="o">:</span><span class="w"> </span><span class="mf">288.3</span><span class="p">,</span>
+</span><span id="__span-16-21"><a id="__codelineno-16-21" name="__codelineno-16-21" href="#__codelineno-16-21"></a><span class="p">};</span>
+</span></code></pre></div>
+</div>
+<p class="annotate">Note que o objeto do carrinho possui um atributo <code>total</code> que é o valor total dos itens no carrinho. Ainda, note que cada item do carrinho possui um atributo <code>valorTotal</code> que é o valor total do item multiplicado pela quantidade (1). Ainda, esses dois valores não devem ser informados pelo usuário, mas sim calculados a partir dos valores informados.</p>
+<ol>
+<li>Esse valor pode também ser calculado direto na renderização do item. Exemplo: {{ item.preco * item.quantidade }}. Mas, nesse caso, o valor total do item não estará disponível para ser usado em outros lugares do código, como no cálculo do total do carrinho.</li>
+</ol>
+<p><strong>Dica 1:</strong> você pode calcular o valor total de cada item da compra ao aumentar ou diminuir a quantidade de itens no carrinho, na mesma função que manipula o incrementar e decrementar item do carrinho.</p>
+<p><strong>Dica 2:</strong> o mesmo pode ser feito com o total da compra, que pode ser recalculado sempre que um item é modificado no carrinho.</p>
+<p><strong>Dica 3:</strong> se você desejar, todos esses cálculos podem ser feitos em propriedades computadas, mas não é obrigatório.</p>
+<p><strong>Dica 4:</strong> um modelo de layout pode ser visto <a href="https://www.figma.com/design/iY248n1M3QOKwrtlWrZe9K/Untitled?node-id=1-1096&amp;t=69vLGugLA87aupkY-1">aqui</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar para o topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Rodapé" >
+        
+          
+          <a href="../reatividade/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Reatividade">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Reatividade
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../livraria-tutorial/" class="md-footer__link md-footer__link--next" aria-label="Próximo: Tutorial livraria">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Próximo
+              </span>
+              <div class="md-ellipsis">
+                Tutorial livraria
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["announce.dismiss", "content.code.annotate", "content.code.copy", "content.code.select", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.instant.progress", "navigation.sections", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

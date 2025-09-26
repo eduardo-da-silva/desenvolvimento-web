@@ -1,0 +1,1395 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Eduardo da Silva e Kennedy Araújo">
+      
+      
+        <link rel="canonical" href="https://eduardo-da-silva.github.io/desenvolvimento-web/sintaxe-templates/">
+      
+      
+        <link rel="prev" href="../vuejs/">
+      
+      
+        <link rel="next" href="../reatividade/">
+      
+      
+      <link rel="icon" href="../images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Sintaxe do templates - Desenvolvimento Web II</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#sintaxe-de-templates" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href=".." title="Desenvolvimento Web II" class="md-header__button md-logo" aria-label="Desenvolvimento Web II" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Desenvolvimento Web II
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Sintaxe do templates
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Compartilhar" aria-label="Compartilhar" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/eduardo-da-silva/desenvolvimento-web" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    eduardo-da-silva/desenvolvimento-web
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Desenvolvimento Web II" class="md-nav__button md-logo" aria-label="Desenvolvimento Web II" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Desenvolvimento Web II
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/eduardo-da-silva/desenvolvimento-web" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    eduardo-da-silva/desenvolvimento-web
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vuejs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Conhecendo o VueJS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Sintaxe do templates
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sintaxe do templates
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#interpolacoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interpolações
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Interpolações">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interpolacao-de-texto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interpolação de texto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#html-puro" class="md-nav__link">
+    <span class="md-ellipsis">
+      HTML puro
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expressoes-javascript" class="md-nav__link">
+    <span class="md-ellipsis">
+      Expressões JavaScript
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diretivas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diretivas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Diretivas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parametros-ou-argumentos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parâmetros ou argumentos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#argumentos-dinamicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Argumentos dinâmicos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modificadores" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modificadores
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exemplos-praticos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exemplos práticos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercícios
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#correcao-dos-exercicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Correção dos exercícios
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reatividade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Reatividade
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../listas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Renderização de listas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../livraria-tutorial/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tutorial livraria
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../componentes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Componentes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../router/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Roteamento
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../state/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Gerenciamento de estados
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../axios/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Comunicação com APIs usando Axios
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tmdb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tutorial TMDB
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#interpolacoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interpolações
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Interpolações">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interpolacao-de-texto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interpolação de texto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#html-puro" class="md-nav__link">
+    <span class="md-ellipsis">
+      HTML puro
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expressoes-javascript" class="md-nav__link">
+    <span class="md-ellipsis">
+      Expressões JavaScript
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diretivas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diretivas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Diretivas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parametros-ou-argumentos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parâmetros ou argumentos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#argumentos-dinamicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Argumentos dinâmicos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modificadores" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modificadores
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exemplos-praticos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exemplos práticos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercícios
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#correcao-dos-exercicios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Correção dos exercícios
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="sintaxe-de-templates">Sintaxe de templates<a class="headerlink" href="#sintaxe-de-templates" title="Permanent link">&para;</a></h1>
+<p>O VueJs permite a criação de <em>templates</em> HTML que são renderizados dinamicamente com base nos dados da aplicação. Essa renderização é feita de forma declarativa, ou seja, o desenvolvedor declara o que deve ser renderizado, e não como deve ser renderizado. Isso permite que o VueJs faça o trabalho de atualizar a interface do usuário de forma eficiente. Todas as templates são sintaticamente válidas no HTML, e podem ser usadas em qualquer lugar que aceite HTML.</p>
+<p>Em linhas gerais, todas as templates do VueJs são compiladas para funções JavaScript puras, o que as torna muito rápidas. A seguir, veremos alguns exemplos de templates e o seu uso.</p>
+<h2 id="interpolacoes">Interpolações<a class="headerlink" href="#interpolacoes" title="Permanent link">&para;</a></h2>
+<p>Esta seção apresenta as interpolações de texto, HTML puro e expressões JavaScript.</p>
+<h3 id="interpolacao-de-texto">Interpolação de texto<a class="headerlink" href="#interpolacao-de-texto" title="Permanent link">&para;</a></h3>
+<p>A interpolação de texto é a forma mais básica de renderização de dados. Ela permite a renderização de dados em texto simples. Para isso, basta usar a sintaxe <code>{{ variavel }}</code>, também conhecida como <em>mustache</em>. Considere o exemplo abaixo:</p>
+<div class="language-html highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span>Valor do contador: {{contador}}<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+</span></code></pre></div>
+<p>O código acima renderiza o valor da variável <code>contador</code> no elemento <code>&lt;span&gt;</code>. Se o valor da variável <code>contador</code> for <code>10</code>, o código acima será renderizado como:</p>
+<div class="language-html highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span>Valor do contador: 10<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+</span></code></pre></div>
+<h3 id="html-puro">HTML puro<a class="headerlink" href="#html-puro" title="Permanent link">&para;</a></h3>
+<p>O padrão de interpolação de texto não é adequado para renderizar HTML puro. Para isso, o VueJs oferece a diretiva <code>v-html</code>. Considere o exemplo abaixo:</p>
+<div class="language-html highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">&lt;</span><span class="nt">script</span> <span class="na">setup</span><span class="p">&gt;</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">rawHtml</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&lt;span style=&quot;color: red&quot;&gt;Este é um texto em vermelho&lt;/span&gt;&#39;</span><span class="p">;</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Usando interpolação de textos: {{rawHtml}}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Usando v-html: <span class="p">&lt;</span><span class="nt">span</span> <span class="na">v-html</span><span class="o">=</span><span class="s">&quot;rawHtml&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></code></pre></div>
+<p>O código acima renderiza o seguinte HTML:</p>
+<div style="padding:10px;background-color: #f8f8f8;color:#000">
+Usando interpolação de textos: &lt;span style="color: red"> Este é um texto em vermelho &lt;/span>
+<p>Usando v-html: <span style="color: red">Este é um texto em vermelho</span></p>
+</div>
+
+<p>Neste exemplo, a interpolação de texto renderiza o HTML como texto, enquanto a diretiva <code>v-html</code> renderiza o HTML como HTML. No segundo caso, o conteúdo do elemento <code>&lt;span&gt;</code> é renderizado com o valor de <code>rawHtml</code> e interpretado como HTML puro.</p>
+<div class="admonition note">
+<p class="admonition-title">Uma observação</p>
+<p>No VueJS, o atributo <code>v-html</code> é chamado de <em>diretiva</em>. Diretivas são atributos especiais que começam com <code>v-</code> e que são usados para modificar o comportamento de um elemento. Diretivas são usadas para renderizar dados, modificar o comportamento de um elemento, ou modificar o comportamento de um elemento de acordo com o estado da aplicação. As diretivas serão abordadas em detalhes em outro momento.</p>
+</div>
+<h3 id="expressoes-javascript">Expressões JavaScript<a class="headerlink" href="#expressoes-javascript" title="Permanent link">&para;</a></h3>
+<p>O VueJs permite a renderização de expressões JavaScript. Para isso, basta usar a sintaxe <code>{{ expressao }}</code>. As expressões JavaScript são avaliadas em tempo de execução, ou seja, o resultado é renderizado no template de acordo com o valor da expressão no momento da renderização. Considere o exemplo abaixo:</p>
+<div class="language-html highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">&lt;</span><span class="nt">script</span> <span class="na">setup</span><span class="p">&gt;</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">numero</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">ok</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">mensagem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;programar&#39;</span><span class="p">;</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{ numero + 1 }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{ ok ? &#39;Sim&#39; : &#39;Não&#39; }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{mensagem.split(&#39;&#39;).reverse().join(&#39;&#39;) }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></code></pre></div>
+<p>As expressões acima são avaliadas como uma expressão Javascript e o resultado é renderizado no template. No primeiro caso, o resultado é <code>2</code>, no segundo caso, o resultado é <code>Sim</code>, e no terceiro caso, o resultado é <code>ramargorp</code>.</p>
+<p>Nos templates, você pode usar qualquer expressão JavaScript válida. Isso inclui operadores aritméticos, lógicos, condicionais, até funções JavaScript, como <code>Math.max()</code>, <code>Math.min()</code>, etc. As expressões JavaScript podem ser usadas nos seguintes lugares:</p>
+<ul>
+<li>Interpolação de texto</li>
+<li>Em qualquer diretiva Vue (atributos que começam com <code>v-</code>)</li>
+</ul>
+<p>Note que são permitidas apenas expressões JavaScript simples. Não é possível usar declarações de variáveis, bem como controles de fluxo como <code>if</code>, <code>for</code>, etc.</p>
+<p>Por fim, é possível invocar funções JavaScript em templates. Considere o exemplo abaixo:</p>
+<div class="language-html highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="p">&lt;</span><span class="nt">script</span> <span class="na">setup</span><span class="p">&gt;</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">mensagem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;programar&#39;</span><span class="p">;</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span><span class="kd">function</span><span class="w"> </span><span class="nx">inverter</span><span class="p">(</span><span class="nx">texto</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">texto</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">).</span><span class="nx">reverse</span><span class="p">().</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{ inverter(mensagem) }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></code></pre></div>
+<p>No exemplo acima, a função <code>inverter()</code> é invocada em um template. O resultado é renderizado no elemento <code>&lt;p&gt;</code>. Nesse caso, o resultado é <code>ramargorp</code>.</p>
+<h2 id="diretivas">Diretivas<a class="headerlink" href="#diretivas" title="Permanent link">&para;</a></h2>
+<p>As diretivas são atributos especiais que começam com <code>v-</code>. Elas são usadas para modificar o comportamento de um elemento ou componente. Por exemplo, a diretiva <code>v-if</code> é usada para mostrar ou esconder um elemento baseado em uma expressão. Os valores das diretivas são avaliados em tempo de execução, ou seja, o resultado é renderizado no template de acordo com o valor da expressão no momento da renderização.</p>
+<p>Em geral, os valores das diretivas são expressões JavaScript. No entanto, algumas diretivas permitem outros valores, como <code>v-for</code>, <code>v-bind</code>, <code>v-on</code> e <code>v-slot</code>, que serão abordados em detalhes em outro momento.</p>
+<p>Considere o exemplo abaixo:</p>
+<div class="language-html highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">&lt;</span><span class="nt">script</span> <span class="na">setup</span><span class="p">&gt;</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">ok</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">v-if</span><span class="o">=</span><span class="s">&quot;ok&quot;</span><span class="p">&gt;</span>Mostrar<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></code></pre></div>
+<p>Nesse exemplo, o elemento <code>&lt;div&gt;</code> será renderizado se a variável <code>ok</code> for avaliada como <code>true</code>. Caso contrário, o elemento não será renderizado.</p>
+<p>A seguir, veremos algumas diretivas que são usadas com mais frequência.</p>
+<h3 id="parametros-ou-argumentos">Parâmetros ou argumentos<a class="headerlink" href="#parametros-ou-argumentos" title="Permanent link">&para;</a></h3>
+<p>Algumas diretivas permitem que sejam passados parâmetros ou argumentos. Por exemplo, a diretiva <code>v-bind</code> é usada para associar um atributo de um elemento a uma expressão. O valor do atributo é atualizado sempre que a expressão for atualizada. Por exemplo:</p>
+<div class="language-html highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="p">&lt;</span><span class="nt">script</span> <span class="na">setup</span><span class="p">&gt;</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;https://vuejs.org/&#39;</span><span class="p">;</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>  <span class="p">&lt;</span><span class="nt">a</span> <span class="na">v-bind:href</span><span class="o">=</span><span class="s">&quot;url&quot;</span><span class="p">&gt;</span>Mais informações...<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></code></pre></div>
+<p>Nesse exemplo, o atributo <code>href</code> do elemento <code>&lt;a&gt;</code> é atualizado sempre que a variável <code>url</code> for atualizada. Inicialmente, o valor do atributo é <code>https://vuejs.org/</code>, mas se o valor da variável for alterado, o atributo também será atualizado.</p>
+<p>A diretiva <code>v-bind</code> pode ser usada de forma abreviada, usando apenas o prefixo <code>:</code>. Por exemplo:</p>
+<div class="language-html highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="p">&lt;</span><span class="nt">script</span> <span class="na">setup</span><span class="p">&gt;</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;https://vuejs.org/&#39;</span><span class="p">;</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>  <span class="p">&lt;</span><span class="nt">a</span> <span class="na">:href</span><span class="o">=</span><span class="s">&quot;url&quot;</span><span class="p">&gt;</span>Mais informações...<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></code></pre></div>
+<p>Outro exemplo de diretiva que permite parâmetros é a diretiva <code>v-on</code>. Essa diretiva é usada para associar um evento de um elemento a uma expressão. Por exemplo:</p>
+<div class="language-html highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="p">&lt;</span><span class="nt">script</span> <span class="na">setup</span><span class="p">&gt;</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span><span class="kd">function</span><span class="w"> </span><span class="nx">mostrarAlerta</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;Botão clicado!&#39;</span><span class="p">);</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">  </span><span class="p">};</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">v-on:click</span><span class="o">=</span><span class="s">&quot;mostrarAlerta&quot;</span><span class="p">&gt;</span>Clique aqui<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></code></pre></div>
+<p>Nesse exemplo, a função <code>mostrarAlerta</code> é executada sempre que o botão for clicado. A diretiva <code>v-on</code> pode ser usada de forma abreviada, usando apenas o prefixo <code>@</code>. Por exemplo:</p>
+<div class="language-html highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="p">&lt;</span><span class="nt">script</span> <span class="na">setup</span><span class="p">&gt;</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span><span class="kd">function</span><span class="w"> </span><span class="nx">mostrarAlerta</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;Botão clicado!&#39;</span><span class="p">);</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">  </span><span class="p">};</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>  <span class="p">&lt;</span><span class="nt">button</span> <span class="err">@</span><span class="na">click</span><span class="o">=</span><span class="s">&quot;mostrarAlerta&quot;</span><span class="p">&gt;</span>Clique aqui<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></code></pre></div>
+<h3 id="argumentos-dinamicos">Argumentos dinâmicos<a class="headerlink" href="#argumentos-dinamicos" title="Permanent link">&para;</a></h3>
+<p>Algumas diretivas permitem que sejam passados argumentos dinâmicos. Por exemplo, a diretiva <code>v-bind</code> permite que sejam passados argumentos dinâmicos, como no exemplo abaixo:</p>
+<div class="language-html highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="p">&lt;</span><span class="nt">script</span> <span class="na">setup</span><span class="p">&gt;</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;https://vuejs.org/&#39;</span><span class="p">;</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">nomeAtributo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;href&#39;</span><span class="p">;</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>  <span class="p">&lt;</span><span class="nt">a</span> <span class="na">v-bind:</span><span class="err">[</span><span class="na">atribnomeAtributouto</span><span class="err">]=&quot;</span><span class="na">url</span><span class="err">&quot;</span><span class="p">&gt;</span>Mais informações...<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></code></pre></div>
+<p>Aqui, <code>nomeAtributo</code> é uma variável que contém o nome do atributo que será associado à expressão. Nesse caso, o valor da variável é <code>href</code>, mas poderia ser qualquer outro valor, como <code>src</code>, <code>title</code>, etc. O valor do atributo será atualizado sempre que a variável <code>nomeAtributo</code> for atualizada. No caso do exemplo, essa associação será equivalente a <code>v-bind:href="url"</code>.</p>
+<p>Esse tipo de associação é muito útil quando se deseja associar um atributo a uma expressão, mas o nome do atributo é dinâmico. Da mesma forma, a diretiva <code>v-on</code> permite que sejam passados argumentos dinâmicos, como no exemplo abaixo:</p>
+<div class="language-html highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="p">&lt;</span><span class="nt">script</span> <span class="na">setup</span><span class="p">&gt;</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">nomeEvento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;click&#39;</span><span class="p">;</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">  </span><span class="kd">function</span><span class="w"> </span><span class="nx">mostrarAlerta</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">    </span><span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;Botão clicado!&#39;</span><span class="p">);</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">  </span><span class="p">};</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">v-on:</span><span class="err">[</span><span class="na">nomeEvento</span><span class="err">]=&quot;</span><span class="na">mostrarAlerta</span><span class="err">&quot;</span><span class="p">&gt;</span>Clique aqui<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></code></pre></div>
+<p>Aqui, <code>nomeEvento</code> é uma variável que contém o nome do evento que será associado à expressão. Nesse caso, o valor da variável é <code>click</code>, mas poderia ser qualquer outro valor, como <code>mouseover</code>, <code>mouseout</code>, etc. A função <code>mostrarAlerta</code> será executada sempre que o evento for disparado. No caso do exemplo, essa associação será equivalente a <code>v-on:click="mostrarAlerta"</code>.</p>
+<h3 id="modificadores">Modificadores<a class="headerlink" href="#modificadores" title="Permanent link">&para;</a></h3>
+<p>Algumas diretivas permitem que sejam passados modificadores. Por exemplo, a diretiva <code>v-on</code> permite que sejam passados modificadores, como no exemplo abaixo:</p>
+<div class="language-html highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="p">&lt;</span><span class="nt">script</span> <span class="na">setup</span><span class="p">&gt;</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">  </span><span class="kd">function</span><span class="w"> </span><span class="nx">mostrarAlerta</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span><span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;Botão clicado!&#39;</span><span class="p">);</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">  </span><span class="p">};</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">v-on:click</span><span class="err">.</span><span class="na">stop</span><span class="o">=</span><span class="s">&quot;mostrarAlerta&quot;</span><span class="p">&gt;</span>Clique aqui<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></code></pre></div>
+<p>Nesse exemplo, a função <code>mostrarAlerta</code> é executada sempre que o botão for clicado. No entanto, o evento <code>click</code> não será propagado para os elementos pais. Isso significa que o evento não será disparado para os elementos pais, mesmo que esses elementos tenham um evento associado ao evento <code>click</code>.</p>
+<p>Um outro exemplo comum é o uso do modificador <code>.prevent</code>:</p>
+<div class="language-html highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>  <span class="p">&lt;</span><span class="nt">form</span> <span class="na">v-on:submit</span><span class="err">.</span><span class="na">prevent</span><span class="o">=</span><span class="s">&quot;mostrarAlerta&quot;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span></code></pre></div>
+<p>Nesse exemplo, a função <code>mostrarAlerta</code> é executada sempre que o formulário for submetido. Contudo, o modificador <code>.prevent</code> informa ao Vue para chamar o método <code>event.preventDefault()</code> no evento <code>submit</code>, evitando que o formulário seja submetido.</p>
+<h2 id="exemplos-praticos">Exemplos práticos<a class="headerlink" href="#exemplos-praticos" title="Permanent link">&para;</a></h2>
+<p>Nesta seção, vamos ver alguns exemplos práticos do uso de sintaxe de templates. Aqui, considero que você esteja iniciando um novo projeto VueJS para cada exemplo prático que estamos vendo. Ao longo do texto, eu apenas informo o que foi adicionado ou alterado ao projeto.</p>
+<div class="admonition example">
+<p class="admonition-title">Exemplo 1 - Mostrando informações</p>
+<p>Nesse exemplo, vamos mostrar informações na tela. Para isso, vamos editar o arquivo <code>App.vue</code> e adicionar o seguinte código:</p>
+<div class="language-html highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">./src/App.vue</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-14-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-14-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-14-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-14-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-14-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-14-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-14-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-14-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-14-10">10</a></span>
+<span class="normal"><a href="#__codelineno-14-11">11</a></span>
+<span class="normal"><a href="#__codelineno-14-12">12</a></span>
+<span class="normal"><a href="#__codelineno-14-13">13</a></span>
+<span class="normal"><a href="#__codelineno-14-14">14</a></span>
+<span class="normal"><a href="#__codelineno-14-15">15</a></span>
+<span class="normal"><a href="#__codelineno-14-16">16</a></span>
+<span class="normal"><a href="#__codelineno-14-17">17</a></span>
+<span class="normal"><a href="#__codelineno-14-18">18</a></span>
+<span class="normal"><a href="#__codelineno-14-19">19</a></span>
+<span class="normal"><a href="#__codelineno-14-20">20</a></span>
+<span class="normal"><a href="#__codelineno-14-21">21</a></span>
+<span class="normal"><a href="#__codelineno-14-22">22</a></span>
+<span class="normal"><a href="#__codelineno-14-23">23</a></span>
+<span class="normal"><a href="#__codelineno-14-24">24</a></span>
+<span class="normal"><a href="#__codelineno-14-25">25</a></span>
+<span class="normal"><a href="#__codelineno-14-26">26</a></span>
+<span class="normal"><a href="#__codelineno-14-27">27</a></span>
+<span class="normal"><a href="#__codelineno-14-28">28</a></span>
+<span class="normal"><a href="#__codelineno-14-29">29</a></span>
+<span class="normal"><a href="#__codelineno-14-30">30</a></span>
+<span class="normal"><a href="#__codelineno-14-31">31</a></span>
+<span class="normal"><a href="#__codelineno-14-32">32</a></span>
+<span class="normal"><a href="#__codelineno-14-33">33</a></span>
+<span class="normal"><a href="#__codelineno-14-34">34</a></span>
+<span class="normal"><a href="#__codelineno-14-35">35</a></span>
+<span class="normal"><a href="#__codelineno-14-36">36</a></span>
+<span class="normal"><a href="#__codelineno-14-37">37</a></span>
+<span class="normal"><a href="#__codelineno-14-38">38</a></span>
+<span class="normal"><a href="#__codelineno-14-39">39</a></span>
+<span class="normal"><a href="#__codelineno-14-40">40</a></span>
+<span class="normal"><a href="#__codelineno-14-41">41</a></span>
+<span class="normal"><a href="#__codelineno-14-42">42</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="p">&lt;</span><span class="nt">script</span> <span class="na">setup</span><span class="p">&gt;</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="kd">const</span><span class="w"> </span><span class="nx">nome</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;João&#39;</span><span class="p">;</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3"></a><span class="kd">const</span><span class="w"> </span><span class="nx">idade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">25</span><span class="p">;</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4"></a>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5"></a><span class="kd">function</span><span class="w"> </span><span class="nx">inverter</span><span class="p">(</span><span class="nx">texto</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">texto</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">).</span><span class="nx">reverse</span><span class="p">().</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7"></a><span class="p">}</span>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8"></a>
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9"></a><span class="kd">function</span><span class="w"> </span><span class="nx">saudacao</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="sb">`Olá, </span><span class="si">${</span><span class="nx">nome</span><span class="si">}</span><span class="sb">!`</span><span class="p">;</span>
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11"></a><span class="p">}</span>
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12"></a><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13"></a>
+</span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14"></a><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span><span id="__span-14-15"><a id="__codelineno-14-15" name="__codelineno-14-15"></a><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;info&quot;</span><span class="p">&gt;</span>
+</span><span id="__span-14-16"><a id="__codelineno-14-16" name="__codelineno-14-16"></a>    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Exemplo 1 - Mostrando informações na tela<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</span><span id="__span-14-17"><a id="__codelineno-14-17" name="__codelineno-14-17"></a>    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Nome: {{ nome }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span><span id="__span-14-18"><a id="__codelineno-14-18" name="__codelineno-14-18"></a>    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Idade: {{ idade }} anos<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span><span id="__span-14-19"><a id="__codelineno-14-19" name="__codelineno-14-19"></a>    <span class="p">&lt;</span><span class="nt">hr</span> <span class="p">/&gt;</span>
+</span><span id="__span-14-20"><a id="__codelineno-14-20" name="__codelineno-14-20"></a>    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Para completar 50 anos faltam: {{ 50 - idade }} anos<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span><span id="__span-14-21"><a id="__codelineno-14-21" name="__codelineno-14-21"></a>    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>O nome tem {{ nome.length }} caracteres<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span><span id="__span-14-22"><a id="__codelineno-14-22" name="__codelineno-14-22"></a>    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>O nome invertido é: {{ inverter(nome) }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span><span id="__span-14-23"><a id="__codelineno-14-23" name="__codelineno-14-23"></a>    <span class="p">&lt;</span><span class="nt">hr</span> <span class="p">/&gt;</span>
+</span><span id="__span-14-24"><a id="__codelineno-14-24" name="__codelineno-14-24"></a>    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Exemplo de saudação usando função<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span><span id="__span-14-25"><a id="__codelineno-14-25" name="__codelineno-14-25"></a>    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{ saudacao() }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span><span id="__span-14-26"><a id="__codelineno-14-26" name="__codelineno-14-26"></a><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span><span id="__span-14-27"><a id="__codelineno-14-27" name="__codelineno-14-27"></a><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span><span id="__span-14-28"><a id="__codelineno-14-28" name="__codelineno-14-28"></a>
+</span><span id="__span-14-29"><a id="__codelineno-14-29" name="__codelineno-14-29"></a><span class="p">&lt;</span><span class="nt">style</span> <span class="na">scoped</span><span class="p">&gt;</span>
+</span><span id="__span-14-30"><a id="__codelineno-14-30" name="__codelineno-14-30"></a><span class="p">.</span><span class="nc">info</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-14-31"><a id="__codelineno-14-31" name="__codelineno-14-31"></a><span class="w">    </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">35</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+</span><span id="__span-14-32"><a id="__codelineno-14-32" name="__codelineno-14-32"></a><span class="w">    </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="kt">px</span><span class="w"> </span><span class="mi">30</span><span class="kt">px</span><span class="p">;</span>
+</span><span id="__span-14-33"><a id="__codelineno-14-33" name="__codelineno-14-33"></a><span class="w">    </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="nb">rgb</span><span class="p">(</span><span class="mi">183</span><span class="p">,</span><span class="w"> </span><span class="mi">210</span><span class="p">,</span><span class="w"> </span><span class="mi">219</span><span class="p">);</span>
+</span><span id="__span-14-34"><a id="__codelineno-14-34" name="__codelineno-14-34"></a><span class="w">    </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+</span><span id="__span-14-35"><a id="__codelineno-14-35" name="__codelineno-14-35"></a><span class="p">}</span>
+</span><span id="__span-14-36"><a id="__codelineno-14-36" name="__codelineno-14-36"></a>
+</span><span id="__span-14-37"><a id="__codelineno-14-37" name="__codelineno-14-37"></a><span class="nt">h1</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-14-38"><a id="__codelineno-14-38" name="__codelineno-14-38"></a><span class="w">    </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="kc">white</span><span class="p">;</span>
+</span><span id="__span-14-39"><a id="__codelineno-14-39" name="__codelineno-14-39"></a><span class="w">    </span><span class="k">font-weight</span><span class="p">:</span><span class="w"> </span><span class="kc">bold</span><span class="p">;</span>
+</span><span id="__span-14-40"><a id="__codelineno-14-40" name="__codelineno-14-40"></a><span class="w">    </span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="mf">1.5</span><span class="kt">em</span><span class="p">;</span>
+</span><span id="__span-14-41"><a id="__codelineno-14-41" name="__codelineno-14-41"></a><span class="p">}</span>
+</span><span id="__span-14-42"><a id="__codelineno-14-42" name="__codelineno-14-42"></a><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</span></code></pre></div></td></tr></table></div>
+</div>
+<p>Este é um exemplo completo com vários exemplos de uso de sintaxe de templates. O nosso código está dividido em três partes: script, template e style. Vamos ver cada uma delas.</p>
+<p>Primeiramente na parte de script:</p>
+<ul>
+<li><code>const nome = 'João'</code> - declaração de uma constante chamada <code>nome</code> com o valor <code>'João'</code></li>
+<li><code>const idade = 25</code> - declaração de uma constante chamada <code>idade</code> com o valor <code>25</code></li>
+<li><code>function inverter(texto) { ... }</code> - declaração de uma função chamada <code>inverter</code> que recebe um parâmetro chamado <code>texto</code>. Essa função inverte o texto recebido e retorna o texto invertido.</li>
+<li><code>function saudacao() { ... }</code> - declaração de uma função chamada <code>saudacao</code> que não recebe parâmetros. Essa função retorna uma saudação com o nome da pessoa.</li>
+</ul>
+<p>No bloco de template, temos:</p>
+<ul>
+<li><code>&lt;div class="info"&gt;</code> - declaração de um elemento <code>div</code> com a classe <code>info</code>. Essa classe é utilizada no bloco de style.</li>
+<li><code>&lt;h1&gt;Exemplo 1 - Mostrando informações na tela&lt;/h1&gt;</code> - declaração de um elemento <code>h1</code> com o texto <code>Exemplo 1 - Mostrando informações na tela</code>. Essa <em>tag</em> também é personalizada no bloco de style.</li>
+<li><code>&lt;p&gt;Nome: {{ nome }}&lt;/p&gt;</code> - declaração de um elemento <code>p</code> com o texto <code>Nome:</code> e o valor da variável <code>nome</code>. O valor da variável <code>nome</code> é mostrado entre chaves duplas <code>{{ }}</code>. Isso indica que o valor da variável <code>nome</code> será mostrado na tela.</li>
+<li><code>&lt;p&gt;Idade: {{ idade }} anos&lt;/p&gt;</code> - declaração de um elemento <code>p</code> com o texto <code>Idade:</code> e o valor da variável <code>idade</code>.</li>
+<li><code>&lt;hr /&gt;</code> - declaração de uma linha horizontal.</li>
+<li><code>&lt;p&gt;Para completar 50 anos faltam: {{ 50 - idade }} anos&lt;/p&gt;</code> - declaração de um elemento <code>p</code> com o texto <code>Para completar 50 anos faltam:</code> e o valor da subtração entre 50 e a variável <code>idade</code>. Esse é um exemplo de uma expressão JavaScript realizando uma operação matemática.</li>
+<li><code>&lt;p&gt;O nome tem {{ nome.length }} caracteres&lt;/p&gt;</code> - declaração de um elemento <code>p</code> com o texto <code>O nome tem</code> e o valor da propriedade <code>length</code> da variável <code>nome</code>. Esse é um exemplo de uma expressão JavaScript acessando uma propriedade de um objeto.</li>
+<li><code>&lt;p&gt;O nome invertido é: {{ inverter(nome) }}&lt;/p&gt;</code> - declaração de um elemento <code>p</code> com o texto <code>O nome invertido é:</code> e o valor da função <code>inverter</code> passando a variável <code>nome</code> como parâmetro. Esse é um exemplo de uma expressão JavaScript chamando uma função definida no bloco de script.</li>
+<li><code>&lt;p&gt; Exemplo de saudação usando função&lt;/p&gt;</code> - declaração de um elemento <code>p</code> com o texto <code>Exemplo de saudação usando função</code>.</li>
+<li><code>&lt;p&gt; {{ saudacao() }} &lt;/p&gt;</code> - declaração de um elemento <code>p</code> com o valor da função <code>saudacao</code>. Essa função foi definida no bloco de script e não recebe parâmetros.</li>
+</ul>
+<p>Por fim, no bloco de style, temos:</p>
+<ul>
+<li><code>.info { ... }</code> - declaração de uma classe chamada <code>info</code>. Essa classe é utilizada no bloco de template.</li>
+<li><code>background-color: rgba(35,12,22,1);</code> - declaração da cor de fundo do elemento com a classe <code>info</code>.</li>
+<li><code>padding: 20px 30px;</code> - declaração do espaçamento interno do elemento com a classe <code>info</code>.</li>
+<li><code>color: rgb(183, 210, 219);</code> - declaração da cor do texto do elemento com a classe <code>info</code>.</li>
+<li><code>border-radius: 10px;</code> - declaração do raio das bordas do elemento com a classe <code>info</code>.</li>
+<li><code>h1 { ... }</code> - declaração de uma tag <code>h1</code>. Essa tag é personalizada no bloco de template.</li>
+<li><code>color: white;</code> - declaração da cor do texto do elemento <code>h1</code>.</li>
+<li><code>font-weight: bold;</code> - declaração do peso da fonte do elemento <code>h1</code>.</li>
+<li><code>font-size: 1.5em;</code> - declaração do tamanho da fonte do elemento <code>h1</code>.</li>
+</ul>
+<p>Este é um exemplo completo para interpolação de variáveis, expressões e funções. Ao executar o VueJs, com o comando <code>npm run dev</code>, o resultado será:</p>
+<p><img alt="Exemplo 1 - Mostrando informações na tela" src="../assets/SintaxeTemplate-Exemplo1.png" /></p>
+<h2 id="exercicios">Exercícios<a class="headerlink" href="#exercicios" title="Permanent link">&para;</a></h2>
+<p>Para fixar o conteúdo apresentado, resolva os exercícios abaixo:</p>
+<ol>
+<li>Altere os valores de nome e idade para os seus.</li>
+<li>Mostre o nome invertido em letras maiúsculas.</li>
+<li>Adicione mais um quadro, com o exemplo do contador que fizemos nas aulas anteriores.</li>
+<li>Dentro desse quadro, além do contador, faça uma <code>div</code> aparecer quando o valor for maior que 10 e outra quando for menor que 10.</li>
+<li>Ainda, faça que a <code>div</code> para valores maiores que 10 tenha a cor verde e a outra vermelha.</li>
+</ol>
+<h2 id="correcao-dos-exercicios">Correção dos exercícios<a class="headerlink" href="#correcao-dos-exercicios" title="Permanent link">&para;</a></h2>
+<p>Faremos a correção dos exercícios usando a API de composição. Vamos, além disso, corrigir todos os itens num só exemplo. Contudo, sugiro que você tente resolver os exercícios antes de ver a correção.</p>
+<details class="example">
+<summary>Correção dos exercícios</summary>
+<div class="language-html highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">./src/App.vue</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-15-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-15-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-15-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-15-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-15-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-15-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-15-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-15-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-15-10">10</a></span>
+<span class="normal"><a href="#__codelineno-15-11">11</a></span>
+<span class="normal"><a href="#__codelineno-15-12">12</a></span>
+<span class="normal"><a href="#__codelineno-15-13">13</a></span>
+<span class="normal"><a href="#__codelineno-15-14">14</a></span>
+<span class="normal"><a href="#__codelineno-15-15">15</a></span>
+<span class="normal"><a href="#__codelineno-15-16">16</a></span>
+<span class="normal"><a href="#__codelineno-15-17">17</a></span>
+<span class="normal"><a href="#__codelineno-15-18">18</a></span>
+<span class="normal"><a href="#__codelineno-15-19">19</a></span>
+<span class="normal"><a href="#__codelineno-15-20">20</a></span>
+<span class="normal"><a href="#__codelineno-15-21">21</a></span>
+<span class="normal"><a href="#__codelineno-15-22">22</a></span>
+<span class="normal"><a href="#__codelineno-15-23">23</a></span>
+<span class="normal"><a href="#__codelineno-15-24">24</a></span>
+<span class="normal"><a href="#__codelineno-15-25">25</a></span>
+<span class="normal"><a href="#__codelineno-15-26">26</a></span>
+<span class="normal"><a href="#__codelineno-15-27">27</a></span>
+<span class="normal"><a href="#__codelineno-15-28">28</a></span>
+<span class="normal"><a href="#__codelineno-15-29">29</a></span>
+<span class="normal"><a href="#__codelineno-15-30">30</a></span>
+<span class="normal"><a href="#__codelineno-15-31">31</a></span>
+<span class="normal"><a href="#__codelineno-15-32">32</a></span>
+<span class="normal"><a href="#__codelineno-15-33">33</a></span>
+<span class="normal"><a href="#__codelineno-15-34">34</a></span>
+<span class="normal"><a href="#__codelineno-15-35">35</a></span>
+<span class="normal"><a href="#__codelineno-15-36">36</a></span>
+<span class="normal"><a href="#__codelineno-15-37">37</a></span>
+<span class="normal"><a href="#__codelineno-15-38">38</a></span>
+<span class="normal"><a href="#__codelineno-15-39">39</a></span>
+<span class="normal"><a href="#__codelineno-15-40">40</a></span>
+<span class="normal"><a href="#__codelineno-15-41">41</a></span>
+<span class="normal"><a href="#__codelineno-15-42">42</a></span>
+<span class="normal"><a href="#__codelineno-15-43">43</a></span>
+<span class="normal"><a href="#__codelineno-15-44">44</a></span>
+<span class="normal"><a href="#__codelineno-15-45">45</a></span>
+<span class="normal"><a href="#__codelineno-15-46">46</a></span>
+<span class="normal"><a href="#__codelineno-15-47">47</a></span>
+<span class="normal"><a href="#__codelineno-15-48">48</a></span>
+<span class="normal"><a href="#__codelineno-15-49">49</a></span>
+<span class="normal"><a href="#__codelineno-15-50">50</a></span>
+<span class="normal"><a href="#__codelineno-15-51">51</a></span>
+<span class="normal"><a href="#__codelineno-15-52">52</a></span>
+<span class="normal"><a href="#__codelineno-15-53">53</a></span>
+<span class="normal"><a href="#__codelineno-15-54">54</a></span>
+<span class="normal"><a href="#__codelineno-15-55">55</a></span>
+<span class="normal"><a href="#__codelineno-15-56">56</a></span>
+<span class="normal"><a href="#__codelineno-15-57">57</a></span>
+<span class="normal"><a href="#__codelineno-15-58">58</a></span>
+<span class="normal"><a href="#__codelineno-15-59">59</a></span>
+<span class="normal"><a href="#__codelineno-15-60">60</a></span>
+<span class="normal"><a href="#__codelineno-15-61">61</a></span>
+<span class="normal"><a href="#__codelineno-15-62">62</a></span>
+<span class="normal"><a href="#__codelineno-15-63">63</a></span>
+<span class="normal"><a href="#__codelineno-15-64">64</a></span>
+<span class="normal"><a href="#__codelineno-15-65">65</a></span>
+<span class="normal"><a href="#__codelineno-15-66">66</a></span>
+<span class="normal"><a href="#__codelineno-15-67">67</a></span>
+<span class="normal"><a href="#__codelineno-15-68">68</a></span>
+<span class="normal"><a href="#__codelineno-15-69">69</a></span>
+<span class="normal"><a href="#__codelineno-15-70">70</a></span>
+<span class="normal"><a href="#__codelineno-15-71">71</a></span>
+<span class="normal"><a href="#__codelineno-15-72">72</a></span>
+<span class="normal"><a href="#__codelineno-15-73">73</a></span>
+<span class="normal"><a href="#__codelineno-15-74">74</a></span>
+<span class="normal"><a href="#__codelineno-15-75">75</a></span>
+<span class="normal"><a href="#__codelineno-15-76">76</a></span>
+<span class="normal"><a href="#__codelineno-15-77">77</a></span>
+<span class="normal"><a href="#__codelineno-15-78">78</a></span>
+<span class="normal"><a href="#__codelineno-15-79">79</a></span>
+<span class="normal"><a href="#__codelineno-15-80">80</a></span>
+<span class="normal"><a href="#__codelineno-15-81">81</a></span>
+<span class="normal"><a href="#__codelineno-15-82">82</a></span>
+<span class="normal"><a href="#__codelineno-15-83">83</a></span>
+<span class="normal"><a href="#__codelineno-15-84">84</a></span>
+<span class="normal"><a href="#__codelineno-15-85">85</a></span>
+<span class="normal"><a href="#__codelineno-15-86">86</a></span>
+<span class="normal"><a href="#__codelineno-15-87">87</a></span>
+<span class="normal"><a href="#__codelineno-15-88">88</a></span>
+<span class="normal"><a href="#__codelineno-15-89">89</a></span>
+<span class="normal"><a href="#__codelineno-15-90">90</a></span>
+<span class="normal"><a href="#__codelineno-15-91">91</a></span>
+<span class="normal"><a href="#__codelineno-15-92">92</a></span>
+<span class="normal"><a href="#__codelineno-15-93">93</a></span>
+<span class="normal"><a href="#__codelineno-15-94">94</a></span>
+<span class="normal"><a href="#__codelineno-15-95">95</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="p">&lt;</span><span class="nt">script</span> <span class="na">setup</span><span class="p">&gt;</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2"></a><span class="w">  </span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">ref</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;vue&#39;</span><span class="p">;</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3"></a>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">nome</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ref</span><span class="p">(</span><span class="s1">&#39;Seu nome&#39;</span><span class="p">);</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">idade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ref</span><span class="p">(</span><span class="mf">20</span><span class="p">);</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">contador</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ref</span><span class="p">(</span><span class="mf">0</span><span class="p">);</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7"></a>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8"></a><span class="w">  </span><span class="kd">function</span><span class="w"> </span><span class="nx">incrementar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9"></a><span class="w">    </span><span class="nx">contador</span><span class="p">.</span><span class="nx">value</span><span class="o">++</span><span class="p">;</span>
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11"></a>
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12"></a><span class="w">  </span><span class="kd">function</span><span class="w"> </span><span class="nx">decrementar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">contador</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14"></a><span class="w">      </span><span class="nx">contador</span><span class="p">.</span><span class="nx">value</span><span class="o">--</span><span class="p">;</span>
+</span><span id="__span-15-15"><a id="__codelineno-15-15" name="__codelineno-15-15"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-15-16"><a id="__codelineno-15-16" name="__codelineno-15-16"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-15-17"><a id="__codelineno-15-17" name="__codelineno-15-17"></a>
+</span><span id="__span-15-18"><a id="__codelineno-15-18" name="__codelineno-15-18"></a><span class="w">  </span><span class="kd">function</span><span class="w"> </span><span class="nx">reiniciar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-19"><a id="__codelineno-15-19" name="__codelineno-15-19"></a><span class="w">    </span><span class="nx">contador</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+</span><span id="__span-15-20"><a id="__codelineno-15-20" name="__codelineno-15-20"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-15-21"><a id="__codelineno-15-21" name="__codelineno-15-21"></a>
+</span><span id="__span-15-22"><a id="__codelineno-15-22" name="__codelineno-15-22"></a><span class="w">  </span><span class="kd">function</span><span class="w"> </span><span class="nx">inverterTextoEmMaiusculo</span><span class="p">(</span><span class="nx">texto</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-23"><a id="__codelineno-15-23" name="__codelineno-15-23"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">texto</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">).</span><span class="nx">reverse</span><span class="p">().</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">).</span><span class="nx">toUpperCase</span><span class="p">();</span>
+</span><span id="__span-15-24"><a id="__codelineno-15-24" name="__codelineno-15-24"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-15-25"><a id="__codelineno-15-25" name="__codelineno-15-25"></a><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span><span id="__span-15-26"><a id="__codelineno-15-26" name="__codelineno-15-26"></a>
+</span><span id="__span-15-27"><a id="__codelineno-15-27" name="__codelineno-15-27"></a><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+</span><span id="__span-15-28"><a id="__codelineno-15-28" name="__codelineno-15-28"></a>  <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Correção dos exercícios<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</span><span id="__span-15-29"><a id="__codelineno-15-29" name="__codelineno-15-29"></a>  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;info&quot;</span><span class="p">&gt;</span>
+</span><span id="__span-15-30"><a id="__codelineno-15-30" name="__codelineno-15-30"></a>    <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Informações<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+</span><span id="__span-15-31"><a id="__codelineno-15-31" name="__codelineno-15-31"></a>    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Nome: {{ nome }} <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span><span id="__span-15-32"><a id="__codelineno-15-32" name="__codelineno-15-32"></a>    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Idade: {{ idade }}  anos<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span><span id="__span-15-33"><a id="__codelineno-15-33" name="__codelineno-15-33"></a>    <span class="p">&lt;</span><span class="nt">hr</span> <span class="p">/&gt;</span>
+</span><span id="__span-15-34"><a id="__codelineno-15-34" name="__codelineno-15-34"></a>    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+</span><span id="__span-15-35"><a id="__codelineno-15-35" name="__codelineno-15-35"></a>      Para completar 50 anos faltam: {{ 50 - idade }}  anos
+</span><span id="__span-15-36"><a id="__codelineno-15-36" name="__codelineno-15-36"></a>    <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span><span id="__span-15-37"><a id="__codelineno-15-37" name="__codelineno-15-37"></a>    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>O nome tem {{ nome.length }}  caracteres<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span><span id="__span-15-38"><a id="__codelineno-15-38" name="__codelineno-15-38"></a>    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+</span><span id="__span-15-39"><a id="__codelineno-15-39" name="__codelineno-15-39"></a>      O nome invertido em maiúscula é: {{
+</span><span id="__span-15-40"><a id="__codelineno-15-40" name="__codelineno-15-40"></a>      inverterTextoEmMaiusculo(nome) }}
+</span><span id="__span-15-41"><a id="__codelineno-15-41" name="__codelineno-15-41"></a>    <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span><span id="__span-15-42"><a id="__codelineno-15-42" name="__codelineno-15-42"></a>  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span><span id="__span-15-43"><a id="__codelineno-15-43" name="__codelineno-15-43"></a>  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;contador&quot;</span><span class="p">&gt;</span>
+</span><span id="__span-15-44"><a id="__codelineno-15-44" name="__codelineno-15-44"></a>    <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Contador<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+</span><span id="__span-15-45"><a id="__codelineno-15-45" name="__codelineno-15-45"></a>    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Valor: {{ contador }} <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span><span id="__span-15-46"><a id="__codelineno-15-46" name="__codelineno-15-46"></a>    <span class="p">&lt;</span><span class="nt">button</span> <span class="err">@</span><span class="na">click</span><span class="o">=</span><span class="s">&quot;incrementar&quot;</span><span class="p">&gt;</span>Incrementar<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span><span id="__span-15-47"><a id="__codelineno-15-47" name="__codelineno-15-47"></a>    <span class="p">&lt;</span><span class="nt">button</span> <span class="err">@</span><span class="na">click</span><span class="o">=</span><span class="s">&quot;decrementar&quot;</span><span class="p">&gt;</span>Decrementar<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span><span id="__span-15-48"><a id="__codelineno-15-48" name="__codelineno-15-48"></a>    <span class="p">&lt;</span><span class="nt">button</span> <span class="err">@</span><span class="na">click</span><span class="o">=</span><span class="s">&quot;reiniciar&quot;</span><span class="p">&gt;</span>Reiniciar<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</span><span id="__span-15-49"><a id="__codelineno-15-49" name="__codelineno-15-49"></a>    <span class="p">&lt;</span><span class="nt">div</span>
+</span><span id="__span-15-50"><a id="__codelineno-15-50" name="__codelineno-15-50"></a>      <span class="na">:style</span><span class="o">=</span><span class="s">&quot;{ backgroundColor: contador &gt; 10 ? &#39;green&#39; : &#39;red&#39; }&quot;</span>
+</span><span id="__span-15-51"><a id="__codelineno-15-51" name="__codelineno-15-51"></a>    <span class="p">&gt;</span>
+</span><span id="__span-15-52"><a id="__codelineno-15-52" name="__codelineno-15-52"></a>      <span class="p">&lt;</span><span class="nt">p</span> <span class="na">v-if</span><span class="o">=</span><span class="s">&quot;contador &gt; 10&quot;</span><span class="p">&gt;</span>Valor maior que 10<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span><span id="__span-15-53"><a id="__codelineno-15-53" name="__codelineno-15-53"></a>      <span class="p">&lt;</span><span class="nt">p</span> <span class="na">v-else</span><span class="p">&gt;</span>Valor menor que 10<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span><span id="__span-15-54"><a id="__codelineno-15-54" name="__codelineno-15-54"></a>    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span><span id="__span-15-55"><a id="__codelineno-15-55" name="__codelineno-15-55"></a>  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span><span id="__span-15-56"><a id="__codelineno-15-56" name="__codelineno-15-56"></a><span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+</span><span id="__span-15-57"><a id="__codelineno-15-57" name="__codelineno-15-57"></a>
+</span><span id="__span-15-58"><a id="__codelineno-15-58" name="__codelineno-15-58"></a><span class="p">&lt;</span><span class="nt">style</span> <span class="na">scoped</span><span class="p">&gt;</span>
+</span><span id="__span-15-59"><a id="__codelineno-15-59" name="__codelineno-15-59"></a><span class="w">  </span><span class="p">.</span><span class="nc">info</span><span class="o">,</span>
+</span><span id="__span-15-60"><a id="__codelineno-15-60" name="__codelineno-15-60"></a><span class="w">  </span><span class="p">.</span><span class="nc">contador</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-61"><a id="__codelineno-15-61" name="__codelineno-15-61"></a><span class="w">    </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">35</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+</span><span id="__span-15-62"><a id="__codelineno-15-62" name="__codelineno-15-62"></a><span class="w">    </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="kt">px</span><span class="w"> </span><span class="mi">30</span><span class="kt">px</span><span class="p">;</span>
+</span><span id="__span-15-63"><a id="__codelineno-15-63" name="__codelineno-15-63"></a><span class="w">    </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="nb">rgb</span><span class="p">(</span><span class="mi">183</span><span class="p">,</span><span class="w"> </span><span class="mi">210</span><span class="p">,</span><span class="w"> </span><span class="mi">219</span><span class="p">);</span>
+</span><span id="__span-15-64"><a id="__codelineno-15-64" name="__codelineno-15-64"></a><span class="w">    </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+</span><span id="__span-15-65"><a id="__codelineno-15-65" name="__codelineno-15-65"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-15-66"><a id="__codelineno-15-66" name="__codelineno-15-66"></a>
+</span><span id="__span-15-67"><a id="__codelineno-15-67" name="__codelineno-15-67"></a><span class="w">  </span><span class="nt">h1</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-68"><a id="__codelineno-15-68" name="__codelineno-15-68"></a><span class="w">    </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="kc">darkblue</span><span class="p">;</span>
+</span><span id="__span-15-69"><a id="__codelineno-15-69" name="__codelineno-15-69"></a><span class="w">    </span><span class="k">font-weight</span><span class="p">:</span><span class="w"> </span><span class="kc">bold</span><span class="p">;</span>
+</span><span id="__span-15-70"><a id="__codelineno-15-70" name="__codelineno-15-70"></a><span class="w">    </span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="mf">1.5</span><span class="kt">em</span><span class="p">;</span>
+</span><span id="__span-15-71"><a id="__codelineno-15-71" name="__codelineno-15-71"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-15-72"><a id="__codelineno-15-72" name="__codelineno-15-72"></a>
+</span><span id="__span-15-73"><a id="__codelineno-15-73" name="__codelineno-15-73"></a><span class="w">  </span><span class="nt">button</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-74"><a id="__codelineno-15-74" name="__codelineno-15-74"></a><span class="w">    </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+</span><span id="__span-15-75"><a id="__codelineno-15-75" name="__codelineno-15-75"></a><span class="w">    </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+</span><span id="__span-15-76"><a id="__codelineno-15-76" name="__codelineno-15-76"></a><span class="w">    </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-15-77"><a id="__codelineno-15-77" name="__codelineno-15-77"></a><span class="w">    </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="kt">px</span><span class="p">;</span>
+</span><span id="__span-15-78"><a id="__codelineno-15-78" name="__codelineno-15-78"></a><span class="w">    </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="kc">lightblue</span><span class="p">;</span>
+</span><span id="__span-15-79"><a id="__codelineno-15-79" name="__codelineno-15-79"></a><span class="w">    </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="kc">black</span><span class="p">;</span>
+</span><span id="__span-15-80"><a id="__codelineno-15-80" name="__codelineno-15-80"></a><span class="w">    </span><span class="k">font-weight</span><span class="p">:</span><span class="w"> </span><span class="kc">bold</span><span class="p">;</span>
+</span><span id="__span-15-81"><a id="__codelineno-15-81" name="__codelineno-15-81"></a><span class="w">    </span><span class="k">cursor</span><span class="p">:</span><span class="w"> </span><span class="kc">pointer</span><span class="p">;</span>
+</span><span id="__span-15-82"><a id="__codelineno-15-82" name="__codelineno-15-82"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-15-83"><a id="__codelineno-15-83" name="__codelineno-15-83"></a>
+</span><span id="__span-15-84"><a id="__codelineno-15-84" name="__codelineno-15-84"></a><span class="w">  </span><span class="nt">button</span><span class="p">:</span><span class="nd">hover</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-85"><a id="__codelineno-15-85" name="__codelineno-15-85"></a><span class="w">    </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="kc">blue</span><span class="p">;</span>
+</span><span id="__span-15-86"><a id="__codelineno-15-86" name="__codelineno-15-86"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-15-87"><a id="__codelineno-15-87" name="__codelineno-15-87"></a>
+</span><span id="__span-15-88"><a id="__codelineno-15-88" name="__codelineno-15-88"></a><span class="w">  </span><span class="nt">div</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-89"><a id="__codelineno-15-89" name="__codelineno-15-89"></a><span class="w">    </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="kt">px</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-15-90"><a id="__codelineno-15-90" name="__codelineno-15-90"></a><span class="w">    </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+</span><span id="__span-15-91"><a id="__codelineno-15-91" name="__codelineno-15-91"></a><span class="w">    </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="kt">px</span><span class="p">;</span>
+</span><span id="__span-15-92"><a id="__codelineno-15-92" name="__codelineno-15-92"></a><span class="w">    </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="kc">white</span><span class="p">;</span>
+</span><span id="__span-15-93"><a id="__codelineno-15-93" name="__codelineno-15-93"></a><span class="w">    </span><span class="k">font-weight</span><span class="p">:</span><span class="w"> </span><span class="kc">bold</span><span class="p">;</span>
+</span><span id="__span-15-94"><a id="__codelineno-15-94" name="__codelineno-15-94"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-15-95"><a id="__codelineno-15-95" name="__codelineno-15-95"></a><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</span></code></pre></div></td></tr></table></div>
+</details>
+<p>Esta é a correção dos exercícios. Neste exemplo, usamos a API de composição para criar um contador e mostrar informações na tela. Além disso, corrigimos o nome invertido em maiúsculas e adicionamos um quadro com o contador e a <code>div</code> que muda de cor e aparece de acordo com o valor do contador.</p>
+<p>Note que esta é uma das formas de corrigir os exercícios. Existem outras formas de fazer a mesma coisa. O importante é entender o conceito e a sintaxe de templates do Vue 3.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar para o topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Rodapé" >
+        
+          
+          <a href="../vuejs/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: Conhecendo o VueJS">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                Conhecendo o VueJS
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../reatividade/" class="md-footer__link md-footer__link--next" aria-label="Próximo: Reatividade">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Próximo
+              </span>
+              <div class="md-ellipsis">
+                Reatividade
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["announce.dismiss", "content.code.annotate", "content.code.copy", "content.code.select", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.instant.progress", "navigation.sections", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
